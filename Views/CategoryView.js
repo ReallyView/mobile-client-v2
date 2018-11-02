@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Container,
-  Header,
   Content,
   Footer,
   FooterTab,

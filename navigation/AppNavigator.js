@@ -29,5 +29,5 @@ export default createSwitchNavigator({
     navigateOptions: {
       header: null
     }
-  },
+  }
 })
