@@ -3,9 +3,10 @@ import {
   Card,
   List,
   Button,
-  Text
+  Label,
+  Item
 } from 'native-base'
-import { Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 
 import Layout from '../constants/Layout'
 
@@ -36,9 +37,9 @@ const styles = StyleSheet.create({
 export default class ItemCard extends React.Component {
   render () {
     return (
-      <TouchableOpacity>
+      <Item>
         <Card style={styles.cardStyle}>
-          <Text style={styles.titleStyle}>{this.props.item.name}</Text>
+          <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews} style={styles.imageListStyle}
             renderRow={(review) =>
               <Button transparent style={styles.imageStyle}>
@@ -46,7 +47,7 @@ export default class ItemCard extends React.Component {
                   source={{ uri: review.imgUrls[0] }} />
               </Button>} />
         </Card>
-      </TouchableOpacity>
+      </Item>
     )
   }
 }
