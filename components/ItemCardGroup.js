@@ -27,8 +27,8 @@ function showItemCards ({ data: { loading, items } }) {
 }
 
 export default graphql(gql`
-  {
-    items(category: MAIN) {
+  query {
+    items: recommendedItems {
       id
       name
       reviews {

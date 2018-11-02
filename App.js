@@ -3,12 +3,12 @@ import AppNavigator from './navigation/AppNavigator'
 import { ApolloProvider } from 'react-apollo'
 import ApolloClient from 'apollo-boost'
 import Expo from 'expo'
-import { StyleProvider } from 'native-base'
+import { Root, StyleProvider } from 'native-base'
 import getTheme from './native-base-theme/components'
 import platform from './native-base-theme/variables/platform'
 
 const client = new ApolloClient({
-  uri: 'http://ec2-13-125-69-81.ap-northeast-2.compute.amazonaws.com:8080/graphql'
+  uri: 'http://ec2-13-125-69-81.ap-northeast-2.compute.amazonaws.com:4000'
 })
 
 export default class App extends React.Component {
@@ -36,7 +36,9 @@ export default class App extends React.Component {
     return (
       <ApolloProvider client={client}>
         <StyleProvider style={getTheme(platform)}>
-          <AppNavigator />
+          <Root>
+            <AppNavigator />
+          </Root>
         </StyleProvider>
       </ApolloProvider>
     )

@@ -16,7 +16,8 @@ export default class HomeView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isSearchButtonClicked: false
+      isSearchButtonClicked: false,
+      token: this.props.navigation.getParam('token')
     }
     this.onClickSearchButton = this.onClickSearchButton.bind(this)
     this.onClickBackButton = this.onClickBackButton.bind(this)
