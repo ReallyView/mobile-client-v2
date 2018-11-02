@@ -5,7 +5,8 @@ import {
   Icon,
   Input,
   Item,
-  Text, Body, Right
+  Text,
+  Body
 } from 'native-base'
 import { Platform } from 'react-native'
 import Layout from '../constants/Layout'
@@ -21,16 +22,14 @@ export default class SearchHeader extends React.Component {
             <Text>Back</Text>
           </Button>
           <Body>
-            <Item>
+            <Item rounded>
               <Icon name='search' />
-              <Input placeholder='Search' />
+              <Input style={{ width: 100 }} placeholder='Search' />
             </Item>
           </Body>
-          <Right>
-            <Button transparent>
-              <Text>Search</Text>
-            </Button>
-          </Right>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
         </Header>
       )
     }
