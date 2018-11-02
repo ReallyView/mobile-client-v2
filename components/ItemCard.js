@@ -5,10 +5,9 @@ import {
   Button,
   Text
 } from 'native-base'
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 import Layout from '../constants/Layout'
-import Colors from '../constants/Colors'
 
 const width = Layout.window.width
 const height = Layout.window.height

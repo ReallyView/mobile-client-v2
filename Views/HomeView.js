@@ -5,10 +5,8 @@ import {
   FooterTab,
   Button,
   Icon,
-  Body,
-  StyleProvider
+  Body
 } from 'native-base'
-
 
 import MainHeader from '../components/MainHeader'
 import SearchHeader from '../components/SearchHeader'
@@ -35,34 +33,33 @@ export default class HomeView extends React.Component {
   }
   render () {
     return (
-
-        <Container>
-          {
-            this.state.isSearchButtonClicked
-              ? <SearchHeader onClickBackButton={this.onClickBackButton} />
-              : <MainHeader
-                onClickSearchButton={this.onClickSearchButton} />
-          }
-          <Body style={{ backgroundColor: '#e9ebee' }}>
-            <ItemCardGroup />
-          </Body>
-          <Footer>
-            <FooterTab>
-              <Button active>
-                <Icon active name='home' />
-              </Button>
-              <Button onPress={() => this.props.navigation.navigate('Category')}>
-                <Icon name='menu' />
-              </Button>
-              <Button onPress={() => this.props.navigation.navigate('RequestAndCompare')}>
-                <Icon name='navigate' />
-              </Button>
-              <Button onPress={() => this.props.navigation.navigate('More')}>
-                <Icon name='ios-more' />
-              </Button>
-            </FooterTab>
-          </Footer>
-        </Container>
+      <Container>
+        {
+          this.state.isSearchButtonClicked
+            ? <SearchHeader onClickBackButton={this.onClickBackButton} />
+            : <MainHeader
+              onClickSearchButton={this.onClickSearchButton} />
+        }
+        <Body style={{ backgroundColor: '#e9ebee' }}>
+          <ItemCardGroup />
+        </Body>
+        <Footer>
+          <FooterTab>
+            <Button active>
+              <Icon active name='home' />
+            </Button>
+            <Button onPress={() => this.props.navigation.navigate('Category')}>
+              <Icon name='menu' />
+            </Button>
+            <Button onPress={() => this.props.navigation.navigate('RequestAndCompare')}>
+              <Icon name='navigate' />
+            </Button>
+            <Button onPress={() => this.props.navigation.navigate('More')}>
+              <Icon name='ios-more' />
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     )
   }
 }

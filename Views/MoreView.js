@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Container,
-  Header,
   Content,
   Footer,
   FooterTab,
@@ -10,7 +9,7 @@ import {
 } from 'native-base'
 import MainHeader from '../components/MainHeader'
 
-export default class HomeView extends React.Component {
+export default class MoreView extends React.Component {
   render () {
     return (
       <Container>

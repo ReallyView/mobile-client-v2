@@ -10,7 +10,7 @@ import {
 
 import Layout from '../constants/Layout'
 
-export default class MainHeader extends React.Component {
+export default class SearchHeader extends React.Component {
   render () {
     return (
       <Header searchBar rounded>

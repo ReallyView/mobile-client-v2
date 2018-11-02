@@ -10,7 +10,7 @@ import {
 } from 'native-base'
 import MainHeader from '../components/MainHeader'
 
-export default class HomeView extends React.Component {
+export default class CategoryView extends React.Component {
   render () {
     return (
       <Container>
