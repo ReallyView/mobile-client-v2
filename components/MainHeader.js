@@ -51,7 +51,7 @@ export default class MainHeader extends React.Component {
           <Button transparent onPress={this.props.onClickSearchButton}>
             <Icon name={'search'} style={{ color: 'gray' }} />
           </Button>
-          <Button transparent>
+          <Button transparent onPress={this.props.onClickAddIcon}>
             <Icon name={'md-add'} style={{ color: 'gray' }} />
           </Button>
         </Right>
