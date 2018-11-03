@@ -15,6 +15,18 @@ export default class MoreContent extends React.Component {
               </Body>
             </Left>
           </CardItem>
+          <CardItem>
+            <Text>프로필 수정</Text>
+          </CardItem>
+          <CardItem>
+            <Text>공지사항</Text>
+          </CardItem>
+          <CardItem>
+            <Text>버전</Text>
+          </CardItem>
+          <CardItem>
+            <Text>라이센스</Text>
+          </CardItem>
         </Card>
       </Content>
     )
