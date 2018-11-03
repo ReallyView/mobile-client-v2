@@ -4,7 +4,8 @@ import {
   List,
   Button,
   Label,
-  Item
+  Item,
+  View
 } from 'native-base'
 import { Image, StyleSheet } from 'react-native'
 
@@ -12,6 +13,27 @@ import Layout from '../constants/Layout'
 
 const width = Layout.window.width
 const height = Layout.window.height
+
+export default class ItemCard extends React.Component {
+  render () {
+    if (!this.props.item) {
+      return <View />
+    }
+    return (
+      <Item onPress={() => this.props.onClickItemCard(this.props.item.name, this.props.item.id)}>
+        <Card style={styles.cardStyle}>
+          <Label style={styles.titleStyle}>{this.props.item.name}</Label>
+          <List horizontal dataArray={this.props.item.reviews}
+            renderRow={(review) =>
+              <Button transparent style={styles.imageStyle}>
+                <Image style={styles.imageStyle}
+                  source={{ uri: review.imgUrls[0] }} />
+              </Button>} />
+        </Card>
+      </Item>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   titleStyle: {
@@ -33,21 +55,3 @@ const styles = StyleSheet.create({
     paddingBottom: 0.02 * height
   }
 })
-
-export default class ItemCard extends React.Component {
-  render () {
-    return (
-      <Item>
-        <Card style={styles.cardStyle}>
-          <Label style={styles.titleStyle}>{this.props.item.name}</Label>
-          <List horizontal dataArray={this.props.item.reviews} style={styles.imageListStyle}
-            renderRow={(review) =>
-              <Button transparent style={styles.imageStyle}>
-                <Image style={styles.imageStyle}
-                  source={{ uri: review.imgUrls[0] }} />
-              </Button>} />
-        </Card>
-      </Item>
-    )
-  }
-}

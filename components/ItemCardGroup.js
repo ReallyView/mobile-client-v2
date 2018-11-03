@@ -8,7 +8,7 @@ import { graphql } from 'react-apollo'
 
 import ItemCard from './ItemCard'
 
-function showItemCards ({ data: { loading, items } }) {
+function showItemCards ({ data: { loading, items, variables } }) {
   if (loading) {
     return <Text>Loading...</Text>
   } else {
@@ -17,7 +17,10 @@ function showItemCards ({ data: { loading, items } }) {
         {
           items.map((item, index) => {
             return (
-              <ItemCard item={item} key={index} />
+              <ItemCard
+                item={item}
+                key={index}
+                onClickItemCard={variables.onClickItemCard} />
             )
           })
         }
@@ -37,4 +40,12 @@ export default graphql(gql`
       }
     }
   }
-`)(showItemCards)
+`, {
+  options: props => {
+    return ({
+      variables: {
+        onClickItemCard: props.onClickItemCard
+      }
+    })
+  }
+})(showItemCards)

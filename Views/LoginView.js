@@ -6,8 +6,8 @@ export default class LoginView extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: '',
-      password: ''
+      email: 'sskim0126@gmail.com',
+      password: '1234'
     }
     this.finishLogin = this.finishLogin.bind(this)
   }
@@ -31,12 +31,15 @@ export default class LoginView extends Component {
             <Item>
               <Input placeholder='Email'
                 onChangeText={(text) => this.setState({ email: text.toLowerCase() })}
-                autoCapitalize={'none'} />
+                autoCapitalize={'none'}
+                value={this.state.email} />
             </Item>
             <Item last>
               <Input placeholder='Password'
                 onChangeText={(text) => this.setState({ password: text.toLowerCase() })}
-                autoCapitalize={'none'} />
+                autoCapitalize={'none'}
+                value={this.state.password}
+                secureTextEntry />
             </Item>
           </Form>
           <LoginButton
