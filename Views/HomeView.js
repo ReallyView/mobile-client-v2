@@ -11,6 +11,7 @@ import {
 import MainHeader from '../components/MainHeader'
 import SearchHeader from '../components/SearchHeader'
 import ItemCardGroup from '../components/ItemCardGroup'
+import { SearchItem } from '../components/SearchContents'
 
 export default class HomeView extends React.Component {
   constructor (props) {
@@ -42,7 +43,11 @@ export default class HomeView extends React.Component {
               onClickSearchButton={this.onClickSearchButton} />
         }
         <Body style={{ backgroundColor: '#e9ebee' }}>
-          <ItemCardGroup />
+          {
+            this.state.isSearchButtonClicked
+              ? <Body />
+              : <ItemCardGroup />
+          }
         </Body>
         <Footer>
           <FooterTab>
