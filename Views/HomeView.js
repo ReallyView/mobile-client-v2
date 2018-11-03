@@ -57,7 +57,7 @@ export default class HomeView extends React.Component {
           {
             this.state.isSearchButtonClicked
               ? <Body />
-              : <ItemCardGroup onClickItemCard={this.onClickItemCard} />
+              : <ItemCardGroup onClickItemCard={this.onClickItemCard} navigation={this.props.navigation} />
           }
         </Body>
         <Footer>

@@ -20,7 +20,8 @@ function showItemCards ({ data: { loading, items, variables } }) {
               <ItemCard
                 item={item}
                 key={index}
-                onClickItemCard={variables.onClickItemCard} />
+                onClickItemCard={variables.onClickItemCard}
+                navigation={variables.navigation} />
             )
           })
         }
@@ -35,8 +36,22 @@ export default graphql(gql`
       id
       name
       reviews {
-        id
-        imgUrls
+        id,
+        title,
+        author {
+          id,
+          profileImgUrl,
+          name
+        },
+        imgUrls,
+        text,
+        grades {
+          id,
+          name,
+          starNum
+        },
+        likeNum,
+        dislikeNum
       }
     }
   }
@@ -44,7 +59,8 @@ export default graphql(gql`
   options: props => {
     return ({
       variables: {
-        onClickItemCard: props.onClickItemCard
+        onClickItemCard: props.onClickItemCard,
+        navigation: props.navigation
       }
     })
   }

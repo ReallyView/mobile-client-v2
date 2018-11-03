@@ -34,8 +34,8 @@ export default class ReviewView extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      itemName: this.props.navigation.getParam('itemName'),
-      itemId: this.props.navigation.getParam('itemId'),
+      itemName: this.props.navigation.getParam('itemName', null),
+      itemId: this.props.navigation.getParam('itemId', null),
       review: this.props.navigation.getParam('review')
     }
   }
@@ -45,7 +45,10 @@ export default class ReviewView extends Component {
         <Header>
           <Left>
             <Button transparent
-              onPress={() => this.props.navigation.navigate('Item', { itemName: this.state.itemName, itemId: this.state.itemId })}>
+              onPress={
+                (this.state.itemId)
+                  ? () => this.props.navigation.navigate('Item', { itemName: this.state.itemName, itemId: this.state.itemId })
+                  : () => this.props.navigation.navigate('Home')}>
               <Icon
                 name={'arrow-back'} />
             </Button>

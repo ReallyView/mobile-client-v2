@@ -25,7 +25,9 @@ export default class ItemCard extends React.Component {
           <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews}
             renderRow={(review) =>
-              <Button transparent style={styles.imageStyle}>
+              <Button transparent
+                style={styles.imageStyle}
+                onPress={() => this.props.navigation.navigate('Review', { review: review })}>
                 <Image style={styles.imageStyle}
                   source={{ uri: review.imgUrls[0] }} />
               </Button>} />
