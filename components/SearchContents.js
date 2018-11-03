@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Content, Container } from 'native-base'
+import { Card, CardItem, Content, Container, Text } from 'native-base'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
@@ -23,13 +23,17 @@ export const SearchItem = (name) => (
       return (
         <Container>
           <Content>
-            {
-              data.searchItems.map(({ id, name }) => {
-                return (
-                  <Text key={id}>{name}</Text>
-                )
-              })
-            }
+            <Card transparent>
+              {
+                data.searchItems.map(({ id, name }) => {
+                  return (
+                    <CardItem key={id}>
+                      <Text>{name}</Text>
+                    </CardItem>
+                  )
+                })
+              }
+            </Card>
           </Content>
         </Container>
       )
