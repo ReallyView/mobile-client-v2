@@ -14,8 +14,14 @@ export default class MoreView extends React.Component {
   render () {
     return (
       <Container>
-        <MoreHeader />
-        <MoreContent email={this.props.navigation.getParam('email')} name={this.props.navigation.getParam('name')} profileImgUrl={this.props.navigation.getParam('profileImgUrl')} />
+        <MoreHeader
+          navigation={this.props.navigation}
+        />
+        <MoreContent
+          email={this.props.navigation.getParam('email')}
+          name={this.props.navigation.getParam('name')}
+          profileImgUrl={this.props.navigation.getParam('profileImgUrl')}
+        />
         <Footer>
           <FooterTab>
             <Button onPress={() => this.props.navigation.navigate('Home')}>

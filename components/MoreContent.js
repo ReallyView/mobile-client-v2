@@ -8,7 +8,7 @@ export default class MoreContent extends React.Component {
         <Card transparent>
           <CardItem>
             <Left>
-              <Thumbnail square source={{ uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png' }} />
+              <Thumbnail square large source={{ uri: this.props.profileImgUrl }} />
               <Body>
                 <Text>email: {this.props.email}</Text>
                 <Text>name: {this.props.name}</Text>

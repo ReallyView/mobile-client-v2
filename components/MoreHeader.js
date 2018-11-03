@@ -7,7 +7,7 @@ export default class MoreHeader extends React.Component {
     return (
       <Header>
         <Left>
-          <Button transparent>
+          <Button transparent onPress={() => this.props.navigation.navigate('Home')}>
             <Icon name={'ios-arrow-back'} style={{ color: 'gray', marginLeft: 0.02 * Layout.window.width }} />
           </Button>
         </Left>
