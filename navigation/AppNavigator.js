@@ -6,6 +6,7 @@ import CategoryView from '../Views/CategoryView'
 import RequestAndCompareView from '../Views/RequestAndCompareView'
 import MoreView from '../Views/MoreView'
 import ItemView from '../Views/ItemView'
+import AddReviewView from '../Views/AddReviewView'
 
 export default createSwitchNavigator({
   Login: {
@@ -40,6 +41,12 @@ export default createSwitchNavigator({
   },
   Item: {
     screen: ItemView,
+    navigateOptions: {
+      header: null
+    }
+  },
+  AddReview: {
+    screen: AddReviewView,
     navigateOptions: {
       header: null
     }
