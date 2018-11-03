@@ -10,7 +10,7 @@ import {
   Content,
   Container
 } from 'native-base'
-import { Platform } from 'react-native'
+import { Platform, StatusBar } from 'react-native'
 import Layout from '../constants/Layout'
 import { SearchItem } from './SearchContents'
 
@@ -27,7 +27,7 @@ export default class SearchHeader extends React.Component {
     if (platfrom === 'android') {
       return (
         <Container>
-          <Header>
+          <Header style={{ marginTop: StatusBar.currentHeight }}>
             <Button transparent style={{ marginLeft: -0.04 * Layout.window.width }} onPress={this.props.onClickBackButton}>
               <Text>Back</Text>
             </Button>
