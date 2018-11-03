@@ -19,7 +19,8 @@ function showReviewCards ({ data: { loading, reviews, variables } }) {
             return (
               <ReviewCard
                 review={review}
-                key={index} />
+                key={index}
+                onClickReviewCard={variables.onClickReviewCard} />
             )
           })
         }
@@ -53,7 +54,8 @@ export default graphql(gql`
   options: props => {
     return ({
       variables: {
-        itemId: props.itemId
+        itemId: props.itemId,
+        onClickReviewCard: props.onClickReviewCard
       }
     })
   }

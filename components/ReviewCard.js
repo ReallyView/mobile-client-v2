@@ -8,7 +8,6 @@ import {
   Item,
   View,
   Thumbnail,
-  Title,
   Left,
   Body,
   Right
@@ -18,7 +17,6 @@ import { Image, StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 
 const width = Layout.window.width
-const height = Layout.window.height
 
 const starImages = [
   require('../assets/images/GradeStars/1-star.png'),
@@ -34,22 +32,22 @@ export default class ReviewCard extends React.Component {
       return <View />
     }
     return (
-      <Item>
+      <Item onPress={() => this.props.onClickReviewCard(this.props.review)}>
         <Card>
           <View style={{ flexDirection: 'row' }}>
             <Left style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Thumbnail square small
-                style={{ margin: 0.02 * width }}
+                style={{ margin: 0.02 * width, marginLeft: 0.04 * width }}
                 source={{
                   uri: (this.props.review.author.profileImgUrl)
                     ? (this.props.review.author.profileImgUrl)
                     : 'https://facebook.github.io/react-native/docs/assets/favicon.png' }} />
               <Text style={{ margin: 0.02 * width }}>{this.props.review.author.name}</Text>
             </Left>
-            <Body />
-            <Right />
           </View>
-          <Text style={styles.title}>{this.props.review.title}</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{this.props.review.title}</Text>
+          </View>
           <List horizontal dataArray={this.props.review.imgUrls}
             renderRow={(imgUrl) =>
               <Button transparent style={styles.itemImage}>
@@ -78,10 +76,17 @@ export default class ReviewCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  titleContainer: {
+    padding: 0.03 * width,
+    marginBottom: 0.02 * width,
+    marginLeft: 0.04 * width,
+    marginRight: 0.04 * width,
+    borderTopWidth: 0.3,
+    borderBottomWidth: 0.3,
+    borderColor: '#bdc3c7'
+  },
   title: {
-    marginTop: 0.03 * width,
-    marginBottom: 0.05 * width,
-    marginLeft: 0.07 * width
+    fontSize: 20
   },
   itemImage: {
     height: 0.35 * width,

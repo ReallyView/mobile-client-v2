@@ -19,6 +19,14 @@ export default class ItemView extends Component {
       itemName: this.props.navigation.getParam('itemName'),
       itemId: this.props.navigation.getParam('itemId')
     }
+    this.onClickReviewCard = this.onClickReviewCard.bind(this)
+  }
+  onClickReviewCard (review) {
+    this.props.navigation.navigate('Review', {
+      itemName: this.state.itemName,
+      itemId: this.state.itemId,
+      review: review
+    })
   }
   render () {
     return (
@@ -36,7 +44,7 @@ export default class ItemView extends Component {
           <Right />
         </Header>
         <Body>
-          <ReviewCardGroup itemId={this.state.itemId} />
+          <ReviewCardGroup itemId={this.state.itemId} onClickReviewCard={this.onClickReviewCard} />
         </Body>
       </Container>
     )
