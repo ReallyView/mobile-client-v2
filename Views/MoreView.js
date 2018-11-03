@@ -7,13 +7,13 @@ import {
   Button,
   Icon
 } from 'native-base'
-import MainHeader from '../components/MainHeader'
+import MoreHeader from '../components/MoreHeader'
 
 export default class MoreView extends React.Component {
   render () {
     return (
       <Container>
-        <MainHeader />
+        <MoreHeader />
         <Content />
         <Footer>
           <FooterTab>
