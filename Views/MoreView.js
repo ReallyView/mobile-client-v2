@@ -30,7 +30,7 @@ export default class MoreView extends React.Component {
               <Icon name='menu' />
             </Button>
             <Button onPress={() => this.props.navigation.navigate('RequestAndCompare')}>
-              <Icon active name='navigate' />
+              <Icon name='navigate' />
             </Button>
             <Button active>
               <Icon active name='ios-more' />
