@@ -17,7 +17,10 @@ export default class HomeView extends React.Component {
     super(props)
     this.state = {
       isSearchButtonClicked: false,
-      token: this.props.navigation.getParam('token')
+      token: this.props.navigation.getParam('token'),
+      email: this.props.navigation.getParam('email'),
+      name: this.props.navigation.getParam('name'),
+      profileImgUrl: this.props.navigation.getParam('profileImgUrl')
     }
     this.onClickSearchButton = this.onClickSearchButton.bind(this)
     this.onClickBackButton = this.onClickBackButton.bind(this)
@@ -59,7 +62,7 @@ export default class HomeView extends React.Component {
             <Button onPress={() => this.props.navigation.navigate('RequestAndCompare')}>
               <Icon name='navigate' />
             </Button>
-            <Button onPress={() => this.props.navigation.navigate('More')}>
+            <Button onPress={() => this.props.navigation.navigate('More', { email: this.state.email, name: this.state.name, profileImgUrl: this.state.profileImgUrl })}>
               <Icon name='ios-more' />
             </Button>
           </FooterTab>

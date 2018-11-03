@@ -11,10 +11,13 @@ export default class LoginView extends Component {
     }
     this.finishLogin = this.finishLogin.bind(this)
   }
-  finishLogin (token) {
+  finishLogin (token, email, name, profileImgUrl) {
     if (token) {
       this.props.navigation.navigate('Home', {
-        token: token
+        token: token,
+        email: email,
+        name: name,
+        profileImgUrl: profileImgUrl
       })
     }
   }
