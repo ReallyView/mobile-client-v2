@@ -11,7 +11,6 @@ import {
 import MainHeader from '../components/MainHeader'
 import SearchHeader from '../components/SearchHeader'
 import ItemCardGroup from '../components/ItemCardGroup'
-import { SearchItem } from '../components/SearchContents'
 
 export default class HomeView extends React.Component {
   constructor (props) {
