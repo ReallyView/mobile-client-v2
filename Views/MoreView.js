@@ -8,13 +8,14 @@ import {
   Icon
 } from 'native-base'
 import MoreHeader from '../components/MoreHeader'
+import MoreContent from '../components/MoreContent'
 
 export default class MoreView extends React.Component {
   render () {
     return (
       <Container>
         <MoreHeader />
-        <Content />
+        <MoreContent email={this.props.navigation.getParam('email')} name={this.props.navigation.getParam('name')} profileImgUrl={this.props.navigation.getParam('profileImgUrl')} />
         <Footer>
           <FooterTab>
             <Button onPress={() => this.props.navigation.navigate('Home')}>
