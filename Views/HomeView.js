@@ -25,6 +25,7 @@ export default class HomeView extends React.Component {
     this.onClickSearchButton = this.onClickSearchButton.bind(this)
     this.onClickBackButton = this.onClickBackButton.bind(this)
     this.onClickItemCard = this.onClickItemCard.bind(this)
+    this.onClickAddIcon = this.onClickAddIcon.bind(this)
   }
   onClickSearchButton () {
     this.setState({
@@ -39,6 +40,9 @@ export default class HomeView extends React.Component {
   onClickItemCard (itemName, itemId) {
     this.props.navigation.navigate('Item', { itemName: itemName, itemId: itemId })
   }
+  onClickAddIcon () {
+    this.props.navigation.navigate('AddReview')
+  }
   render () {
     return (
       <Container>
@@ -46,7 +50,8 @@ export default class HomeView extends React.Component {
           this.state.isSearchButtonClicked
             ? <SearchHeader onClickBackButton={this.onClickBackButton} />
             : <MainHeader
-              onClickSearchButton={this.onClickSearchButton} />
+              onClickSearchButton={this.onClickSearchButton}
+              onClickAddIcon={this.onClickAddIcon} />
         }
         <Body style={{ backgroundColor: '#e9ebee' }}>
           {
