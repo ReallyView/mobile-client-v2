@@ -5,12 +5,15 @@ import {
   FooterTab,
   Button,
   Icon,
-  Body
+  Body,
+  View,
+  Content
 } from 'native-base'
 
 import MainHeader from '../components/MainHeader'
 import SearchHeader from '../components/SearchHeader'
 import ItemCardGroup from '../components/ItemCardGroup'
+import { SearchItem } from '../components/SearchContents'
 
 export default class HomeView extends React.Component {
   constructor (props) {
@@ -20,12 +23,14 @@ export default class HomeView extends React.Component {
       token: this.props.navigation.getParam('token'),
       email: this.props.navigation.getParam('email'),
       name: this.props.navigation.getParam('name'),
-      profileImgUrl: this.props.navigation.getParam('profileImgUrl')
+      profileImgUrl: this.props.navigation.getParam('profileImgUrl'),
+      itemName: ''
     }
     this.onClickSearchButton = this.onClickSearchButton.bind(this)
     this.onClickBackButton = this.onClickBackButton.bind(this)
     this.onClickItemCard = this.onClickItemCard.bind(this)
     this.onClickAddIcon = this.onClickAddIcon.bind(this)
+    this.onChangeItemName = this.onChangeItemName.bind(this)
   }
   onClickSearchButton () {
     this.setState({
@@ -43,23 +48,34 @@ export default class HomeView extends React.Component {
   onClickAddIcon () {
     this.props.navigation.navigate('AddReview')
   }
+  onChangeItemName (itemName) {
+    this.setState({
+      itemName: itemName
+    })
+  }
   render () {
     return (
       <Container>
         {
           this.state.isSearchButtonClicked
-            ? <SearchHeader onClickBackButton={this.onClickBackButton} />
+            ? <SearchHeader
+              onClickBackButton={this.onClickBackButton}
+              onChangeItemName={this.onChangeItemName} />
             : <MainHeader
               onClickSearchButton={this.onClickSearchButton}
               onClickAddIcon={this.onClickAddIcon} />
         }
-        <Body style={{ backgroundColor: '#e9ebee' }}>
-          {
-            this.state.isSearchButtonClicked
-              ? <Body />
-              : <ItemCardGroup onClickItemCard={this.onClickItemCard} navigation={this.props.navigation} />
-          }
-        </Body>
+        {
+          this.state.isSearchButtonClicked
+            ? <Body style={{ alignSelf: 'flex-start' }}>
+              {(this.state.itemName)
+                ? <SearchItem itemName={this.state.itemName} navigation={this.props.navigation} />
+                : <View /> }
+            </Body>
+            : <Body style={{ backgroundColor: '#e9ebee' }}>
+              <ItemCardGroup onClickItemCard={(this.onClickItemCard)} navigation={this.props.navigation} />
+            </Body>
+        }
         <Footer>
           <FooterTab>
             <Button active>

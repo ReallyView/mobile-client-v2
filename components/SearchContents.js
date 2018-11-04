@@ -1,43 +1,57 @@
 import React from 'react'
-import { Card, CardItem, Content, Container, Text } from 'native-base'
+import { List, ListItem, Content, Text } from 'native-base'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
+import Layout from '../constants/Layout'
+
+const width = Layout.window.width
+
 const SearchQuery = gql`
-  query SearchItems($name: String!) {
-    searchItems(name: $name) {
+  query SearchItems($itemName: String!) {
+    searchItems(name: $itemName) {
       id
       name
     }
   }
 `
-export const SearchItem = (name) => (
-  <Query
-    query={SearchQuery}
-    variables={name}
-  >
-    {({ loading, error, data }) => {
-      if (loading) return <Text>Loading...</Text>
-      if (error) return <Text>Error : {error.message}</Text>
+export const SearchItem = (props) => {
+  return (
+    <Query
+      query={SearchQuery}
+      variables={{
+        itemName: props.itemName
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (loading) return <Text style={textStyle}>Loading...</Text>
+        if (error) return <Text style={textStyle}>Error : {error.message}</Text>
+        if (data.searchItems.length === 0) return <Text style={textStyle}>찾은 결과가 없습니다.</Text>
 
-      return (
-        <Container>
+        return (
           <Content>
-            <Card transparent>
+            <List transparent>
               {
                 data.searchItems.map(({ id, name }) => {
                   return (
-                    <CardItem key={id}>
+                    <ListItem key={id} onPress={() => props.navigation.navigate('Item', {
+                      itemName: name,
+                      itemId: id
+                    })}>
                       <Text>{name}</Text>
-                    </CardItem>
+                    </ListItem>
                   )
                 })
               }
-            </Card>
+            </List>
           </Content>
-        </Container>
-      )
-    }
-    }
-  </Query>
-)
+        )
+      }
+      }
+    </Query>
+  )
+}
+
+const textStyle = {
+  margin: 0.05 * width
+}
