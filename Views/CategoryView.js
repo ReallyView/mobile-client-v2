@@ -1,20 +1,56 @@
 import React from 'react'
 import {
   Container,
-  Content,
+  Body,
   Footer,
   FooterTab,
   Button,
   Icon
 } from 'native-base'
-import MainHeader from '../components/MainHeader'
+
+import CategoryHeader from '../components/CategoryHeader'
+import CategoryGroup from '../components/CategoryGroup'
+import CategoryItemCardGroup from '../components/CategoryItemCardGroup'
 
 export default class CategoryView extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isCategorySelected: false,
+      categoryId: '',
+      categoryName: ''
+    }
+    this.returnToCategoryView = this.returnToCategoryView.bind(this)
+    this.onClickCategory = this.onClickCategory.bind(this)
+  }
+  returnToCategoryView () {
+    this.setState({
+      isCategorySelected: false
+    })
+  }
+  onClickCategory (categoryId, categoryName) {
+    this.setState({
+      isCategorySelected: true,
+      categoryId: categoryId,
+      categoryName: categoryName
+    })
+  }
   render () {
     return (
       <Container>
-        <MainHeader />
-        <Content />
+        <CategoryHeader
+          navigation={this.props.navigation}
+          isCategorySelected={this.state.isCategorySelected}
+          returnToCategoryView={this.returnToCategoryView}
+          categoryName={this.state.categoryName}
+        />
+        <Body>
+          {
+            this.state.isCategorySelected
+              ? <CategoryItemCardGroup categoryId={this.state.categoryId} navigation={this.props.navigation} />
+              : <CategoryGroup onClickCategory={this.onClickCategory} />
+          }
+        </Body>
         <Footer>
           <FooterTab>
             <Button onPress={() => this.props.navigation.navigate('Home')}>

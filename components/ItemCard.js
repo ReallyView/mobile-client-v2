@@ -20,7 +20,7 @@ export default class ItemCard extends React.Component {
       return <View />
     }
     return (
-      <Item onPress={() => this.props.onClickItemCard(this.props.item.name, this.props.item.id)}>
+      <Item onPress={() => this.props.navigation.navigate('Item', { itemName: this.props.item.name, itemId: this.props.item.id })}>
         <Card style={styles.cardStyle}>
           <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews}

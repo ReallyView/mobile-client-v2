@@ -8,7 +8,7 @@ import { graphql } from 'react-apollo'
 
 import ItemCard from './ItemCard'
 
-function showItemCards ({ data: { loading, items, variables } }) {
+function showCategoryItemCards ({ data: { loading, items, variables } }) {
   if (loading) {
     return <Text>Loading...</Text>
   } else {
@@ -30,8 +30,8 @@ function showItemCards ({ data: { loading, items, variables } }) {
 }
 
 export default graphql(gql`
-  query {
-    items: recommendedItems {
+  query ($categoryId: ID!) {
+    items: items(categoryId: $categoryId) {
       id
       name
       reviews {
@@ -58,8 +58,9 @@ export default graphql(gql`
   options: props => {
     return ({
       variables: {
+        categoryId: props.categoryId,
         navigation: props.navigation
       }
     })
   }
-})(showItemCards)
+})(showCategoryItemCards)

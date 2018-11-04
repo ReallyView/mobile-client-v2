@@ -28,7 +28,6 @@ export default class HomeView extends React.Component {
     }
     this.onClickSearchButton = this.onClickSearchButton.bind(this)
     this.onClickBackButton = this.onClickBackButton.bind(this)
-    this.onClickItemCard = this.onClickItemCard.bind(this)
     this.onClickAddIcon = this.onClickAddIcon.bind(this)
     this.onChangeItemName = this.onChangeItemName.bind(this)
   }
@@ -41,9 +40,6 @@ export default class HomeView extends React.Component {
     this.setState({
       isSearchButtonClicked: false
     })
-  }
-  onClickItemCard (itemName, itemId) {
-    this.props.navigation.navigate('Item', { itemName: itemName, itemId: itemId })
   }
   onClickAddIcon () {
     this.props.navigation.navigate('AddReview')
@@ -73,7 +69,7 @@ export default class HomeView extends React.Component {
                 : <View /> }
             </Body>
             : <Body style={{ backgroundColor: '#e9ebee' }}>
-              <ItemCardGroup onClickItemCard={(this.onClickItemCard)} navigation={this.props.navigation} />
+              <ItemCardGroup navigation={this.props.navigation} />
             </Body>
         }
         <Footer>
