@@ -7,13 +7,13 @@ import {
   Button,
   Icon
 } from 'native-base'
-import MainHeader from '../components/MainHeader'
+import RequestAndCompareHeader from '../components/RequestAndCompareHeader'
 
 export default class RequestAndCompareView extends React.Component {
   render () {
     return (
       <Container>
-        <MainHeader />
+        <RequestAndCompareHeader />
         <Content />
         <Footer>
           <FooterTab>
