@@ -13,7 +13,7 @@ export default class RequestAndCompareView extends React.Component {
   render () {
     return (
       <Container>
-        <RequestAndCompareHeader />
+        <RequestAndCompareHeader navigation={this.props.navigation} />
         <Content />
         <Footer>
           <FooterTab>
