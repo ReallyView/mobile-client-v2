@@ -10,16 +10,16 @@ export default class RequestAndCompareContent extends React.Component {
       <Content >
         <Card transparent>
           <CardItem>
-            <AddReviewTitleName />
+            <AddReviewTitleName onChangeTitle={this.props.onChangeTitle} />
           </CardItem>
         </Card>
         <Card transparent>
           <CardItem>
-            <AddReviewItemName />
-            <AddReviewCategory />
+            <AddReviewItemName onChangeItemName={this.props.onChangeItemName} />
+            <AddReviewCategory selectedCategory={this.props.selectedCategory} onChangeSelectedCategory={this.props.onChangeSelectedCategory} />
           </CardItem>
         </Card>
-        <Textarea rowSpan={5} bordered placeholder='리뷰를 입력하세요.' />
+        <Textarea rowSpan={5} bordered placeholder='리뷰를 입력하세요' />
       </Content>
     )
   }
