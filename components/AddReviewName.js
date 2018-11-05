@@ -1,6 +1,6 @@
 import React from 'react'
 import { Body, Card, CardItem, Input, Item, Left, Text, Right } from 'native-base'
-import AddReviewPicAndCategory from '../components/AddReviewPicAndCategory'
+import AddReviewCategory from '../components/AddReviewCategory'
 
 export default class AddReviewName extends React.Component {
   constructor (props) {
@@ -27,7 +27,7 @@ export default class AddReviewName extends React.Component {
               </Item>
             </Body>
             <Right>
-              <AddReviewPicAndCategory />
+              <AddReviewCategory />
             </Right>
           </Left>
         </CardItem>
