@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Icon, Picker } from 'native-base'
 import Layout from '../constants/Layout'
 
-export default class AddReviewPicAndCategory extends React.Component {
+export default class AddReviewCategory extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
