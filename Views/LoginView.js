@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Form, Item, Input } from 'native-base'
+import { Container, Content, Form, Item, Input, View, Title } from 'native-base'
+
 import LoginButton from '../components/LoginButton'
+import Layout from '../constants/Layout'
+
+const height = Layout.window.height
 
 export default class LoginView extends Component {
   constructor (props) {
@@ -25,8 +29,8 @@ export default class LoginView extends Component {
   render () {
     return (
       <Container>
-        <Header />
-        <Content>
+        <View>
+          <Title style={titleStyle}>ReallyView</Title>
           <Form>
             <Item>
               <Input placeholder='Email'
@@ -34,7 +38,7 @@ export default class LoginView extends Component {
                 autoCapitalize={'none'}
                 value={this.state.email} />
             </Item>
-            <Item last>
+            <Item>
               <Input placeholder='Password'
                 onChangeText={(text) => this.setState({ password: text.toLowerCase() })}
                 autoCapitalize={'none'}
@@ -46,8 +50,14 @@ export default class LoginView extends Component {
             email={this.state.email}
             password={this.state.password}
             finishLogin={this.finishLogin} />
-        </Content>
+        </View>
       </Container>
     )
   }
+}
+
+const titleStyle = {
+  fontSize: 50,
+  marginTop: 0.2 * height,
+  marginBottom: 0.1 * height
 }
