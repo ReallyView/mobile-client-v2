@@ -23,7 +23,11 @@ export default class MoreView extends React.Component {
         />
         <Footer>
           <FooterTab>
-            <Button onPress={() => this.props.navigation.navigate('Home')}>
+            <Button onPress={() => this.props.navigation.navigate('Home',
+              { email: this.props.navigation.getParam('email'),
+                name: this.props.navigation.getParam('name'),
+                profileImgUrl: this.props.navigation.getParam('profileImgUrl') })}
+            >
               <Icon name='home' />
             </Button>
             <Button onPress={() => this.props.navigation.navigate('Category')}>
