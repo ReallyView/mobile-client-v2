@@ -1,7 +1,14 @@
 import React from 'react'
-import { Body, Card, CardItem, Input, Item, Left, Text } from 'native-base'
+import { Body, Card, CardItem, Input, Item, Left, Text, Right } from 'native-base'
+import AddReviewPicAndCategory from '../components/AddReviewPicAndCategory'
 
 export default class AddReviewName extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      addItemName: ''
+    }
+  }
   render () {
     return (
       <Card transparent>
@@ -11,10 +18,17 @@ export default class AddReviewName extends React.Component {
             <Body>
               <Item>
                 <Input
-                  placeholder='Input Product Name'
+                  placeholder='Input Name'
+                  onChangeText={(addItemName) => this.setState({
+                    addItemName: addItemName
+                  })
+                  }
                 />
               </Item>
             </Body>
+            <Right>
+              <AddReviewPicAndCategory />
+            </Right>
           </Left>
         </CardItem>
       </Card>
