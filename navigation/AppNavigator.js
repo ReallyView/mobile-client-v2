@@ -1,6 +1,5 @@
 import { createSwitchNavigator } from 'react-navigation'
 
-import LoginView from '../Views/LoginView'
 import HomeView from '../Views/HomeView'
 import CategoryView from '../Views/CategoryView'
 import RequestAndCompareView from '../Views/RequestAndCompareView'
@@ -10,12 +9,6 @@ import AddReviewView from '../Views/AddReviewView'
 import ReviewView from '../Views/ReviewView'
 
 export default createSwitchNavigator({
-  Login: {
-    screen: LoginView,
-    navigateOptions: {
-      header: null
-    }
-  },
   Home: {
     screen: HomeView,
     navigateOptions: {

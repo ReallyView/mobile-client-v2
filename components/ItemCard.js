@@ -8,11 +8,59 @@ import {
   View
 } from 'native-base'
 import { Image, StyleSheet } from 'react-native'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 
 import Layout from '../constants/Layout'
 
 const width = Layout.window.width
 const height = Layout.window.height
+
+const ReviewImage = graphql(gql`
+  mutation ($reviewId: ID!) {
+    seeReview(reviewId: $reviewId) {
+      id,
+      title,
+      author {
+        id,
+        profileImgUrl,
+        name
+      },
+      imgUrls,
+      text,
+      grades {
+        id,
+        name,
+        starNum
+      },
+      likeNum,
+      dislikeNum
+    }
+  }
+`)(goToReview)
+
+function goToReview ({ mutate, reviewId, reviewImgUrl, navigation }) {
+  return (
+    <Button transparent
+      style={styles.imageStyle}
+      onPress={() => mutate({
+        variables: {
+          reviewId: reviewId
+        }
+      })
+        .then(result => {
+          navigation.navigate('Review', {
+            review: result.data.seeReview
+          })
+        })
+        .catch(error => {
+          console.error(error)
+        })}>
+      <Image style={styles.imageStyle}
+        source={{ uri: reviewImgUrl }} />
+    </Button>
+  )
+}
 
 export default class ItemCard extends React.Component {
   render () {
@@ -24,13 +72,13 @@ export default class ItemCard extends React.Component {
         <Card style={styles.cardStyle}>
           <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews}
-            renderRow={(review) =>
-              <Button transparent
-                style={styles.imageStyle}
-                onPress={() => this.props.navigation.navigate('Review', { review: review })}>
-                <Image style={styles.imageStyle}
-                  source={{ uri: review.imgUrls[0] }} />
-              </Button>} />
+            renderRow={(review) => {
+              return (
+                <ReviewImage
+                  reviewId={review.id}
+                  reviewImgUrl={review.imgUrls[0]}
+                  navigation={this.props.navigation} />)
+            }} />
         </Card>
       </Item>
     )

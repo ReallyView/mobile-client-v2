@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Button, Text, Toast } from 'native-base'
 import { graphql } from 'react-apollo'
+import { AsyncStorage } from 'react-native'
 
 function login ({ mutate, finishLogin }) {
   let token = null
@@ -28,8 +29,9 @@ function login ({ mutate, finishLogin }) {
               buttonText: 'Okay',
               type: 'warning'
             })
-          })
-        finishLogin(token, email, name, profileImgUrl)
+          }).then(() => {
+          finishLogin(token, email, name, profileImgUrl)
+        })
       }}>
       <Text>Sign In</Text>
     </Button>

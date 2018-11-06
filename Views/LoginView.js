@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Content, Form, Item, Input, View, Title } from 'native-base'
+import { AsyncStorage } from 'react-native'
 
 import LoginButton from '../components/LoginButton'
 import Layout from '../constants/Layout'
@@ -17,12 +18,16 @@ export default class LoginView extends Component {
   }
   finishLogin (token, email, name, profileImgUrl) {
     if (token) {
-      this.props.navigation.navigate('Home', {
-        token: token,
-        email: email,
-        name: name,
-        profileImgUrl: profileImgUrl
-      })
+      const setData = async () => {
+        await AsyncStorage.multiSet([
+          ['token', token],
+          ['email', email],
+          ['name', name],
+          ['profileImgUrl', profileImgUrl]
+        ])
+      }
+      setData()
+      this.props.onLogin(token)
     }
   }
 

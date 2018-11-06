@@ -6,8 +6,7 @@ import {
   Button,
   Icon,
   Body,
-  View,
-  Content
+  View
 } from 'native-base'
 
 import MainHeader from '../components/MainHeader'
@@ -20,10 +19,6 @@ export default class HomeView extends React.Component {
     super(props)
     this.state = {
       isSearchButtonClicked: false,
-      token: this.props.navigation.getParam('token'),
-      email: this.props.navigation.getParam('email'),
-      name: this.props.navigation.getParam('name'),
-      profileImgUrl: this.props.navigation.getParam('profileImgUrl'),
       itemName: ''
     }
     this.onClickSearchButton = this.onClickSearchButton.bind(this)

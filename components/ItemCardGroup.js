@@ -36,21 +36,7 @@ export default graphql(gql`
       name
       reviews {
         id,
-        title,
-        author {
-          id,
-          profileImgUrl,
-          name
-        },
-        imgUrls,
-        text,
-        grades {
-          id,
-          name,
-          starNum
-        },
-        likeNum,
-        dislikeNum
+        imgUrls
       }
     }
   }

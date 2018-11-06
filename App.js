@@ -1,22 +1,44 @@
 import React from 'react'
 import AppNavigator from './navigation/AppNavigator'
 import { ApolloProvider } from 'react-apollo'
-import ApolloClient from 'apollo-boost'
+import ApolloClient from 'apollo-client'
 import Expo from 'expo'
 import { Root, StyleProvider } from 'native-base'
 import getTheme from './native-base-theme/components'
 import platform from './native-base-theme/variables/platform'
+import { AsyncStorage } from 'react-native'
+import { createHttpLink } from 'apollo-link-http'
+import { setContext } from 'apollo-link-context'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import LoginView from './Views/LoginView'
+import HomeView from './Views/HomeView'
 
-const client = new ApolloClient({
-  uri: 'http://ec2-13-125-69-81.ap-northeast-2.compute.amazonaws.com:4000'
+const httpLink = createHttpLink({
+  uri: 'http://ec2-13-125-69-81.ap-northeast-2.compute.amazonaws.com:4000/'
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = AsyncStorage.getItem('token')
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  }
 })
 
 export default class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      isReady: false
+      isReady: false,
+      token: '',
+      client: new ApolloClient({
+        link: authLink.concat(httpLink),
+        cache: new InMemoryCache()
+      })
     }
+    this.onLogin = this.onLogin.bind(this)
   }
 
   async componentWillMount () {
@@ -29,15 +51,42 @@ export default class App extends React.Component {
     })
     this.setState({ isReady: true })
   }
+  onLogin (token) {
+    const httpLink = createHttpLink({
+      uri: 'http://ec2-13-125-69-81.ap-northeast-2.compute.amazonaws.com:4000/'
+    })
+    const authLink = setContext((_, { headers }) => {
+      return {
+        headers: {
+          ...headers,
+          authorization: token ? `Bearer ${token}` : ''
+        }
+      }
+    })
+    this.setState({
+      token: token,
+      client: new ApolloClient({
+        link: authLink.concat(httpLink),
+        cache: new InMemoryCache()
+      })
+    })
+  }
+  componentDidUpdate () {
+
+  }
   render () {
     if (!this.state.isReady) {
       return <Expo.AppLoading />
     }
     return (
-      <ApolloProvider client={client}>
+      <ApolloProvider client={this.state.client}>
         <StyleProvider style={getTheme(platform)}>
           <Root>
-            <AppNavigator />
+            {
+              (this.state.token)
+                ? <AppNavigator />
+                : <LoginView onLogin={this.onLogin} />
+            }
           </Root>
         </StyleProvider>
       </ApolloProvider>
