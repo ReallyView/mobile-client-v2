@@ -21,7 +21,7 @@ export default class RequestAndCompareContent extends React.Component {
             <AddReviewCategory selectedCategory={this.props.selectedCategory} onChangeSelectedCategory={this.props.onChangeSelectedCategory} />
           </CardItem>
         </Card>
-        <Card transparent>
+        <Card transparent style={{ marginTop: 25 }}>
           <Textarea rowSpan={5} bordered placeholder='리뷰를 입력하세요' />
         </Card>
         <Card transparent>
