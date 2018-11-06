@@ -19,7 +19,7 @@ export default class MainHeader extends React.Component {
       return (
         <Header style={{ marginTop: StatusBar.currentHeight }}>
           <Left>
-            <Button transparent>
+            <Button transparent onPress={this.props.onClickProfileImage}>
               <Icon name={'ios-contact'} style={{ color: 'gray', marginLeft: 0.02 * Layout.window.width }} />
             </Button>
           </Left>
@@ -40,7 +40,7 @@ export default class MainHeader extends React.Component {
     return (
       <Header>
         <Left>
-          <Button transparent>
+          <Button transparent onPress={this.props.onClickProfileImage}>
             <Icon name={'ios-contact'} style={{ color: 'gray', marginLeft: 0.02 * Layout.window.width }} />
           </Button>
         </Left>
