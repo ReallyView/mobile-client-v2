@@ -22,7 +22,12 @@ export default class RequestAndCompareContent extends React.Component {
           </CardItem>
         </Card>
         <Card transparent style={{ marginTop: 25 }}>
-          <Textarea rowSpan={5} bordered placeholder='리뷰를 입력하세요' />
+          <Textarea
+            rowSpan={5}
+            bordered
+            placeholder='리뷰를 입력하세요'
+            onChangeText={(Text) => this.props.onChangeReviewText(Text)}
+          />
         </Card>
         <Card transparent>
           <CardItem>
