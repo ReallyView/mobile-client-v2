@@ -10,8 +10,8 @@ export default class AddReviewCategory extends React.Component {
           mode='dropdown'
           iosIcon={<Icon name='ios-arrow-down-outline' />}
           style={{ width: 0.4 * Layout.window.width }}
-          selectedValue={this.props.selectedCategory}
-          onValueChange={this.props.onChangeSelectedCategory}
+          selectedValue={this.props.categoryId}
+          onValueChange={this.props.onChangeCategoryId}
         >
           <Picker.Item label='Category' value='Category' />
           <Picker.Item label='전자제품' value='전자제품' />

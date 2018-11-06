@@ -18,7 +18,7 @@ export default class RequestAndCompareContent extends React.Component {
         <Card transparent>
           <CardItem>
             <AddReviewItemName onChangeItemName={this.props.onChangeItemName} />
-            <AddReviewCategory selectedCategory={this.props.selectedCategory} onChangeSelectedCategory={this.props.onChangeSelectedCategory} />
+            <AddReviewCategory categoryId={this.props.categoryId} onChangeCategoryId={this.props.onChangeCategoryId} />
           </CardItem>
         </Card>
         <Card transparent style={{ marginTop: 25 }}>

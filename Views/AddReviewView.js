@@ -9,13 +9,14 @@ export default class AddReviewView extends React.Component {
     this.state = {
       addTitle: '',
       addItemName: '',
-      selectedCategory: undefined,
+      categoryId: undefined,
       text: '',
-      grades: [{ name: '', starNum: 1 }]
+      grades: [{ name: '', starNum: 1 }],
+      itemId: ''
     }
     this.onChangeTitle = this.onChangeTitle.bind(this)
     this.onChangeItemName = this.onChangeItemName.bind(this)
-    this.onChangeSelectedCategory = this.onChangeSelectedCategory.bind(this)
+    this.onChangeCategoryId = this.onChangeCategoryId.bind(this)
     this.onIncreaseStarNum = this.onIncreaseStarNum.bind(this)
     this.onChangeGradeName = this.onChangeGradeName.bind(this)
     this.onClickAddGrade = this.onClickAddGrade.bind(this)
@@ -31,9 +32,9 @@ export default class AddReviewView extends React.Component {
       addItemName: itemName
     })
   }
-  onChangeSelectedCategory (value) {
+  onChangeCategoryId (value) {
     this.setState({
-      selectedCategory: value
+      categoryId: value
     })
   }
   onClickAddGrade () {
@@ -68,11 +69,11 @@ export default class AddReviewView extends React.Component {
       <Container>
         <Headers navigation={this.props.navigation} headerTitle={'리뷰추가'} />
         <AddReviewContent
-          selectedCategory={this.state.selectedCategory}
+          categoryId={this.state.categoryId}
           grades={this.state.grades}
           onChangeTitle={this.onChangeTitle}
           onChangeItemName={this.onChangeItemName}
-          onChangeSelectedCategory={this.onChangeSelectedCategory}
+          onChangeCategoryId={this.onChangeCategoryId}
           onIncreaseStarNum={this.onIncreaseStarNum}
           onChangeGradeName={this.onChangeGradeName}
           onClickAddGrade={this.onClickAddGrade}
