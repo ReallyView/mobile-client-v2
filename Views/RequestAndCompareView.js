@@ -7,13 +7,13 @@ import {
   Button,
   Icon
 } from 'native-base'
-import RequestAndCompareHeader from '../components/RequestAndCompareHeader'
+import Headers from '../components/Headers'
 
 export default class RequestAndCompareView extends React.Component {
   render () {
     return (
       <Container>
-        <RequestAndCompareHeader navigation={this.props.navigation} />
+        <Headers navigation={this.props.navigation} headerTitle={'비교하기'}/>
         <Content />
         <Footer>
           <FooterTab>
