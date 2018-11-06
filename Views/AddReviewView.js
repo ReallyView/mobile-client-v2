@@ -17,6 +17,7 @@ export default class AddReviewView extends React.Component {
     this.onChangeSelectedCategory = this.onChangeSelectedCategory.bind(this)
     this.onIncreaseStarNum = this.onIncreaseStarNum.bind(this)
     this.onChangeGradeName = this.onChangeGradeName.bind(this)
+    this.onClickAddGrade = this.onClickAddGrade.bind(this)
   }
   onChangeTitle (title) {
     this.setState({
@@ -32,9 +33,13 @@ export default class AddReviewView extends React.Component {
     this.setState({
       selectedCategory: value
     })
-    console.log(value)
   }
-  // 평점추가함수
+  onClickAddGrade () {
+    let temp = [{ name: '', starNum: 1 }]
+    this.setState({
+      grades: this.state.grades.concat(temp)
+    })
+  }
   onChangeGradeName (name, index) {
     let temp = this.state.grades
     temp[index].name = name
@@ -50,7 +55,7 @@ export default class AddReviewView extends React.Component {
       grades: temp
     })
   }
-
+  // 이미지 넣는 함수
   render () {
     return (
       <Container>
@@ -63,6 +68,7 @@ export default class AddReviewView extends React.Component {
           onChangeSelectedCategory={this.onChangeSelectedCategory}
           onIncreaseStarNum={this.onIncreaseStarNum}
           onChangeGradeName={this.onChangeGradeName}
+          onClickAddGrade={this.onClickAddGrade}
         />
       </Container>
     )

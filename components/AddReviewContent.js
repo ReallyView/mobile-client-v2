@@ -1,9 +1,10 @@
 import React from 'react'
-import { Card, CardItem, Content, Textarea, Text } from 'native-base'
+import { Card, CardItem, Content, Textarea, Text, Left, Button, Body } from 'native-base'
 import AddReviewItemName from '../components/AddReviewItemName'
 import AddReviewCategory from '../components/AddReviewCategory'
 import AddReviewTitleName from '../components/AddReviewTitleName'
 import AddReviewGradeGroup from '../components/AddReviewGradeGroup'
+import AddReviewButtons from '../components/AddReviewButtons'
 
 export default class RequestAndCompareContent extends React.Component {
   render () {
@@ -25,7 +26,14 @@ export default class RequestAndCompareContent extends React.Component {
         </Card>
         <Card transparent>
           <CardItem>
-            <Text>평점</Text>
+            <Left>
+              <Text>평점</Text>
+            </Left>
+            <Body>
+              <Button onPress={this.props.onClickAddGrade}>
+                <Text>평점 추가하기</Text>
+              </Button>
+            </Body>
           </CardItem>
           <CardItem>
             <AddReviewGradeGroup
@@ -35,6 +43,7 @@ export default class RequestAndCompareContent extends React.Component {
             />
           </CardItem>
         </Card>
+        <AddReviewButtons />
       </Content>
     )
   }
