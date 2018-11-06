@@ -10,7 +10,7 @@ export default class AddReviewView extends React.Component {
       addTitle: '',
       addItemName: '',
       selectedCategory: undefined,
-      Text: '',
+      text: '',
       grades: [{ name: '', starNum: 1 }]
     }
     this.onChangeTitle = this.onChangeTitle.bind(this)
@@ -59,7 +59,7 @@ export default class AddReviewView extends React.Component {
   }
   onChangeReviewText (Text) {
     this.setState({
-      Text: Text
+      text: Text
     })
   }
   // 이미지 넣는 함수
