@@ -5,7 +5,7 @@ import { Platform, StatusBar } from 'react-native'
 
 const platform = Platform.OS
 
-export default class MoreHeader extends React.Component {
+export default class Headers extends React.Component {
   render () {
     if (platform === 'android') {
       return (
@@ -16,7 +16,7 @@ export default class MoreHeader extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>더보기</Title>
+            <Title>{this.props.headerTitle}</Title>
           </Body>
           <Right />
         </Header>
@@ -30,7 +30,7 @@ export default class MoreHeader extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>더보기</Title>
+          <Title>{this.props.headerTitle}</Title>
         </Body>
         <Right />
       </Header>

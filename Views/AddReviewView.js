@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'native-base'
-import AddReviewHeader from '../components/AddReviewHeader'
+import Headers from '../components/Headers'
 import AddReviewContent from '../components/AddReviewContent'
 
 export default class AddReviewView extends React.Component {
@@ -66,7 +66,7 @@ export default class AddReviewView extends React.Component {
   render () {
     return (
       <Container>
-        <AddReviewHeader navigation={this.props.navigation} />
+        <Headers navigation={this.props.navigation} headerTitle={'리뷰추가'} />
         <AddReviewContent
           selectedCategory={this.state.selectedCategory}
           grades={this.state.grades}

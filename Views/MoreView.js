@@ -6,15 +6,16 @@ import {
   Button,
   Icon
 } from 'native-base'
-import MoreHeader from '../components/MoreHeader'
+import Headers from '../components/Headers'
 import MoreContent from '../components/MoreContent'
 
 export default class MoreView extends React.Component {
   render () {
     return (
       <Container>
-        <MoreHeader
+        <Headers
           navigation={this.props.navigation}
+          headerTitle={'더보기'}
         />
         <MoreContent
           email={this.props.navigation.getParam('email')}
