@@ -25,7 +25,6 @@ const CompareQuery = gql`
   }
 `
 export const CompareItems = (ids) => {
-  console.log(ids)
   return (
     <Query
       query={CompareQuery}
