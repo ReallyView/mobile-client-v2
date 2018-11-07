@@ -15,7 +15,7 @@ export default class RequestAndCompareInput extends React.Component {
               value={this.props.product1}
             />
           </Item>
-          <Text> VS </Text>
+          <Text>  VS </Text>
           <CardItem>
             <Item style={{ width: 0.4 * Layout.window.width }}>
               <Input

@@ -1,38 +1,63 @@
 import React from 'react'
 import { Content, Card, CardItem, Textarea, Body, Text, Button, Right, Left } from 'native-base'
+import { Alert } from 'react-native'
 import RequestAndCompareInput from './RequestAndCompareInput'
 import RequestAndCompareButton from './RequestAndCompareButton'
-import { CompareItem1 } from './CompareContent1'
-import { CompareItem2 } from './CompareContent2'
+import { CompareItem1 } from './CompareSearchProduct1'
+import { CompareItem2 } from './CompareSearchProduct2'
+import { CompareItems } from './CompareContent'
+import { itemNameAndIdArray } from '../constants/CategoriesQuery'
 
 export default class RequestAndCompareContent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       isRequest: false,
-      isCompare: false
+      isCompare: false,
+      text: '',
+      productId1: '',
+      productId2: ''
     }
     this.onClickCompareButton = this.onClickCompareButton.bind(this)
     this.onClickRequestButton = this.onClickRequestButton.bind(this)
     this.onChangeText = this.onChangeText.bind(this)
   }
   onClickRequestButton () {
-    this.setState({
-      isRequest: true,
-      isCompare: false,
-      text: ''
-    })
+    if (!(this.props.product1 && this.props.product2)) {
+      Alert.alert('경고', '제품명을 입력하세요.')
+    } else {
+      this.setState({
+        isRequest: true,
+        isCompare: false
+      })
+    }
   }
   onClickCompareButton () {
-    this.setState({
-      isCompare: true,
-      isRequest: false
-    })
+    if (!(this.props.product1 && this.props.product2)) {
+      Alert.alert('경고', '제품명을 입력하세요.')
+    } else {
+      this.setState({
+        isCompare: true,
+        isRequest: false
+      })
+      for (let i = 0; i < itemNameAndIdArray.length; i++) {
+        if (this.props.product1 === itemNameAndIdArray[i].name) {
+          this.setState({
+            productId1: itemNameAndIdArray[i].id
+          })
+        } else if (this.props.product2 === itemNameAndIdArray[i].name) {
+          this.setState({
+            productId2: itemNameAndIdArray[i].id
+          })
+        }
+      }
+    }
   }
   onChangeText (Text) {
     this.setState({
       text: Text
     })
+    console.log(this.state.text)
   }
   render () {
     return (
@@ -78,6 +103,10 @@ export default class RequestAndCompareContent extends React.Component {
               }
             </Right>
           </CardItem>
+          {
+            (this.state.isCompare)
+              ? <CompareItems itemIds={[this.state.productId1, this.state.productId2]} /> : <Body />
+          }
         </Card>
       </Content>
     )
