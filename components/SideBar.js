@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   View,
-  Icon,
   List,
   ListItem,
   Item,
@@ -71,20 +70,13 @@ const styles = StyleSheet.create({
     height: 0.15 * height,
     alignSelf: 'center'
   },
-  defaultIcon: {
-    marginTop: 0.1 * height,
-    width: 0.15 * height,
-    height: 0.15 * height,
-    alignSelf: 'center',
-    color: 'gray'
-  },
   name: {
     marginTop: 0.05 * height,
     height: 0.05 * height
   },
   list: {
     marginTop: 0.05 * height,
-    width: 0.6 * width
+    width: 0.8 * width
   },
   item: {
     borderBottomWidth: 0
@@ -92,7 +84,7 @@ const styles = StyleSheet.create({
   listItem: {
     marginLeft: 0,
     height: 0.1 * height,
-    width: 0.6 * width,
+    width: 0.8 * width,
     alignItems: 'center',
     justifyContent: 'center'
   },
