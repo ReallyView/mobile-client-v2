@@ -13,27 +13,32 @@ export default class RequestAndCompareView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      itemName1: '',
-      itemName2: ''
+      product1: '',
+      product2: ''
     }
-    this.onChangeItemName1 = this.onChangeItemName1.bind(this)
-    this.onChangeItemName2 = this.onChangeItemName2.bind(this)
+    this.onChangeProduct1 = this.onChangeProduct1.bind(this)
+    this.onChangeProduct2 = this.onChangeProduct2.bind(this)
   }
-  onChangeItemName1 (itemName) {
+  onChangeProduct1 (itemName) {
     this.setState({
-      itemName1: itemName
+      product1: itemName
     })
   }
-  onChangeItemName2 (itemName) {
+  onChangeProduct2 (itemName) {
     this.setState({
-      itemName2: itemName
+      product2: itemName
     })
   }
   render () {
     return (
       <Container>
         <Headers navigation={this.props.navigation} headerTitle={'비교하기/요청하기'} />
-        <RequestAndCompareContent onChangeItemName1={this.onChangeItemName1} onChangeItemName2={this.onChangeItemName2} />
+        <RequestAndCompareContent
+          onChangeProduct1={this.onChangeProduct1}
+          onChangeProduct2={this.onChangeProduct2}
+          product1={this.state.product1}
+          product2={this.state.product2}
+        />
         <Footer>
           <FooterTab>
             <Button onPress={() => this.props.navigation.navigate('Home')}>

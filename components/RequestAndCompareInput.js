@@ -11,7 +11,8 @@ export default class RequestAndCompareInput extends React.Component {
           <Item style={{ width: 0.35 * Layout.window.width }}>
             <Input
               placeholder='제품명'
-              onChangeText={(itemName) => this.props.onChangeItemName1(itemName)}
+              onChangeText={(itemName) => this.props.onChangeProduct1(itemName)}
+              value={this.props.product1}
             />
           </Item>
           <Text> VS </Text>
@@ -19,7 +20,8 @@ export default class RequestAndCompareInput extends React.Component {
             <Item style={{ width: 0.4 * Layout.window.width }}>
               <Input
                 placeholder='제품명'
-                onChangeText={(itemName) => this.props.onChangeItemName2(itemName)}
+                onChangeText={(itemName) => this.props.onChangeProduct2(itemName)}
+                value={this.props.product2}
               />
             </Item>
           </CardItem>
