@@ -1,9 +1,14 @@
 import React from 'react'
 import {
   View,
-  Icon
+  Icon,
+  List,
+  ListItem,
+  Item,
+  Text,
+  Title
 } from 'native-base'
-import { AsyncStorage, Image } from 'react-native'
+import { AsyncStorage, Image, StyleSheet } from 'react-native'
 
 import Layout from '../constants/Layout'
 
@@ -19,9 +24,11 @@ export default class SideBar extends React.Component {
   }
   componentWillMount () {
     const getData = async () => {
-      const data = await AsyncStorage.getItem('profileImgUrl')
+      const getProfileImgUrl = await AsyncStorage.getItem('profileImgUrl')
+      const getName = await AsyncStorage.getItem('name')
       this.setState({
-        profileImgUrl: data
+        profileImgUrl: getProfileImgUrl,
+        name: getName
       })
     }
     getData()
@@ -31,17 +38,65 @@ export default class SideBar extends React.Component {
       <View style={{ backgroundColor: 'white', height: height }}>
         {
           this.state.profileImgUrl
-            ? <Image source={{ uri: this.state.profileImgUrl }} style={profileImageStyle} />
-            : <Icon name={'ios-contact'} style={profileImageStyle} />
+            ? <Image source={{ uri: this.state.profileImgUrl }} style={styles.profileImage} />
+            : <Image source={require('../assets/images/profileIcon.png')} style={styles.profileImage} />
         }
+        <Title style={{ marginTop: 0.05 * height }}>{this.state.name} 님 환영합니다</Title>
+        <List style={styles.list}>
+          <Item style={styles.item}>
+            <ListItem style={styles.listItem}><Text style={styles.text}>내가 구독한 제품</Text></ListItem>
+          </Item>
+          <Item style={styles.item}>
+            <ListItem style={styles.listItem}><Text style={styles.text}>투표 요청 현황</Text></ListItem>
+          </Item>
+          <Item style={styles.item}>
+            <ListItem style={styles.listItem}><Text style={styles.text}>내가 작성한 글</Text></ListItem>
+          </Item>
+          <Item style={styles.item}>
+            <ListItem style={styles.listItem}><Text style={styles.text}>내가 좋아요한 글</Text></ListItem>
+          </Item>
+          <Item style={styles.item}>
+            <ListItem style={styles.listItem}><Text style={styles.text}>내가 작성한 투표</Text></ListItem>
+          </Item>
+        </List>
       </View>
     )
   }
 }
 
-const profileImageStyle = {
-  marginTop: 0.1 * height,
-  width: 0.3 * width,
-  height: 0.3 * width,
-  alignSelf: 'center'
-}
+const styles = StyleSheet.create({
+  profileImage: {
+    marginTop: 0.1 * height,
+    width: 0.15 * height,
+    height: 0.15 * height,
+    alignSelf: 'center'
+  },
+  defaultIcon: {
+    marginTop: 0.1 * height,
+    width: 0.15 * height,
+    height: 0.15 * height,
+    alignSelf: 'center',
+    color: 'gray'
+  },
+  name: {
+    marginTop: 0.05 * height,
+    height: 0.05 * height
+  },
+  list: {
+    marginTop: 0.05 * height,
+    width: 0.6 * width
+  },
+  item: {
+    borderBottomWidth: 0
+  },
+  listItem: {
+    marginLeft: 0,
+    height: 0.1 * height,
+    width: 0.6 * width,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  text: {
+    alignSelf: 'center'
+  }
+})

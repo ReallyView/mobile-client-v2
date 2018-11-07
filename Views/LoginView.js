@@ -21,9 +21,9 @@ export default class LoginView extends Component {
       const setData = async () => {
         await AsyncStorage.multiSet([
           ['token', token],
-          ['email', email],
-          ['name', name],
-          ['profileImgUrl', profileImgUrl]
+          ['email', email || ''],
+          ['name', name || ''],
+          ['profileImgUrl', profileImgUrl || '']
         ])
       }
       setData()
@@ -39,13 +39,13 @@ export default class LoginView extends Component {
           <Form>
             <Item>
               <Input placeholder='Email'
-                onChangeText={(text) => this.setState({ email: text.toLowerCase() })}
+                onChangeText={(text) => this.setState({ email: text })}
                 autoCapitalize={'none'}
                 value={this.state.email} />
             </Item>
             <Item>
               <Input placeholder='Password'
-                onChangeText={(text) => this.setState({ password: text.toLowerCase() })}
+                onChangeText={(text) => this.setState({ password: text })}
                 autoCapitalize={'none'}
                 value={this.state.password}
                 secureTextEntry />
