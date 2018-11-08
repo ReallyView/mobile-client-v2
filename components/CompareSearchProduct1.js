@@ -34,7 +34,7 @@ export const CompareItem1 = (props) => {
               {
                 data.searchItems.map(({ id, name }) => {
                   return (
-                    <ListItem key={id} onPress={() => props.onChangeProduct1(name)}>
+                    <ListItem key={id} onPress={() => props.onChangeProductNameAndId1(name, id) }>
                       <Text>{name}</Text>
                     </ListItem>
                   )

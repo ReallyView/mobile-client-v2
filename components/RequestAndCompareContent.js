@@ -20,9 +20,13 @@ export default class RequestAndCompareContent extends React.Component {
     this.onClickCompareButton = this.onClickCompareButton.bind(this)
     this.onClickRequestButton = this.onClickRequestButton.bind(this)
     this.onChangeText = this.onChangeText.bind(this)
+    this.onChangeProductId1 = this.onChangeProductId1.bind(this)
+    this.onChangeProductId2 = this.onChangeProductId2.bind(this)
+    this.onChangeProductNameAndId1 = this.onChangeProductNameAndId1.bind(this)
+    this.onChangeProductNameAndId2 = this.onChangeProductNameAndId2.bind(this)
   }
   onClickRequestButton () {
-    if (!(this.props.product1 && this.props.product2)) {
+    if (!(this.state.productId1 && this.state.productId2)) {
       Alert.alert('경고', '제품명을 입력하세요.')
     } else {
       this.setState({
@@ -32,7 +36,7 @@ export default class RequestAndCompareContent extends React.Component {
     }
   }
   onClickCompareButton () {
-    if (!(this.props.product1 && this.props.product2)) {
+    if (!(this.state.productId1 && this.state.productId2)) {
       Alert.alert('경고', '제품명을 입력하세요.')
     } else {
       this.setState({
@@ -45,7 +49,24 @@ export default class RequestAndCompareContent extends React.Component {
     this.setState({
       text: Text
     })
-    console.log(this.state.text)
+  }
+  onChangeProductId1 (id) {
+    this.setState({
+      productId1: id
+    })
+  }
+  onChangeProductId2 (id) {
+    this.setState({
+      productId2: id
+    })
+  }
+  onChangeProductNameAndId1 (itemName, id) {
+    this.props.onChangeProduct1(itemName)
+    this.onChangeProductId1(id)
+  }
+  onChangeProductNameAndId2 (itemName, id) {
+    this.props.onChangeProduct2(itemName)
+    this.onChangeProductId2(id)
   }
   render () {
     return (
@@ -64,13 +85,13 @@ export default class RequestAndCompareContent extends React.Component {
             <Left>
               {
                 (this.props.product1)
-                  ? <CompareItem1 product1={this.props.product1} onChangeProduct1={this.props.onChangeProduct1} /> : <Body />
+                  ? <CompareItem1 product1={this.props.product1} onChangeProductNameAndId1={this.onChangeProductNameAndId1} /> : <Body />
               }
             </Left>
             <Body>
               {
                 (this.props.product2)
-                  ? <CompareItem2 product2={this.props.product2} onChangeProduct2={this.props.onChangeProduct2} /> : <Body />
+                  ? <CompareItem2 product2={this.props.product2} onChangeProductNameAndId2={this.onChangeProductNameAndId2} /> : <Body />
               }
             </Body>
           </CardItem>
