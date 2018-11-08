@@ -6,7 +6,6 @@ import RequestAndCompareButton from './RequestAndCompareButton'
 import { CompareItem1 } from './CompareSearchProduct1'
 import { CompareItem2 } from './CompareSearchProduct2'
 import { CompareItems } from './CompareContent'
-import { itemNameAndIdArray } from '../constants/CategoriesQuery'
 
 export default class RequestAndCompareContent extends React.Component {
   constructor (props) {
@@ -40,17 +39,6 @@ export default class RequestAndCompareContent extends React.Component {
         isCompare: true,
         isRequest: false
       })
-      for (let i = 0; i < itemNameAndIdArray.length; i++) {
-        if (this.props.product1 === itemNameAndIdArray[i].name) {
-          this.setState({
-            productId1: itemNameAndIdArray[i].id
-          })
-        } else if (this.props.product2 === itemNameAndIdArray[i].name) {
-          this.setState({
-            productId2: itemNameAndIdArray[i].id
-          })
-        }
-      }
     }
   }
   onChangeText (Text) {
