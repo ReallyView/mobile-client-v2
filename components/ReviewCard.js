@@ -2,15 +2,12 @@ import React from 'react'
 import {
   Card,
   List,
-  ListItem,
   Button,
   Text,
   Item,
   View,
   Thumbnail,
   Left,
-  Body,
-  Right,
   Segment
 } from 'native-base'
 import { AsyncStorage, Image, StyleSheet } from 'react-native'
@@ -20,14 +17,6 @@ import DislikeButton from './DislikeButton'
 import Layout from '../constants/Layout'
 
 const width = Layout.window.width
-
-const starImages = [
-  require('../assets/images/GradeStars/1-star.png'),
-  require('../assets/images/GradeStars/2-star.png'),
-  require('../assets/images/GradeStars/3-star.png'),
-  require('../assets/images/GradeStars/4-star.png'),
-  require('../assets/images/GradeStars/5-star.png')
-]
 
 export default class ReviewCard extends React.Component {
   constructor (props) {
@@ -104,20 +93,6 @@ export default class ReviewCard extends React.Component {
                 <Image
                   source={{ uri: imgUrl }} style={styles.itemImage} />
               </Button>} />
-          <List>
-            {
-              this.props.review.grades.map((grade, index) =>
-                <ListItem style={{ flexDirection: 'row' }} key={index}>
-                  <Left>
-                    <Text style={{ marginLeft: 0.05 * width }}>{grade.name}</Text>
-                  </Left>
-                  <Body>
-                    <Image source={starImages[grade.starNum - 1]} style={styles.starImage} />
-                  </Body>
-                  <Right />
-                </ListItem>)
-            }
-          </List>
           <View style={styles.likeButtonContainer}>
             <Segment>
               <LikeButton
