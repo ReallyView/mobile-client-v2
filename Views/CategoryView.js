@@ -8,6 +8,7 @@ import {
   Icon
 } from 'native-base'
 
+import CategoriesNameAndId, { categoriesNameAndId } from '../constants/Categories'
 import CategoryHeader from '../components/CategoryHeader'
 import CategoryGroup from '../components/CategoryGroup'
 import CategoryItemCardGroup from '../components/CategoryItemCardGroup'
@@ -48,7 +49,7 @@ export default class CategoryView extends React.Component {
           {
             this.state.isCategorySelected
               ? <CategoryItemCardGroup categoryId={this.state.categoryId} navigation={this.props.navigation} />
-              : <CategoryGroup onClickCategory={this.onClickCategory} />
+              : <CategoryGroup onClickCategory={this.onClickCategory} categoriesNameAndId={categoriesNameAndId} />
           }
         </Body>
         <Footer>

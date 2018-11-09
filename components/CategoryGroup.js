@@ -1,35 +1,40 @@
 import React from 'react'
 import {
-  Text,
   Content,
   View
 } from 'native-base'
-import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
 
 import Category from './Category'
 
-function showCategories ({ data: { loading, categories, variables } }) {
-  if (loading) {
-    return <Text>Loading...</Text>
-  } else {
+export default class CategoryGroup extends React.Component {
+  render () {
     let categoryComponents = []
-    for (let i = 0; i < categories.length; i++) {
+    for (let i = 0; i < this.props.categoriesNameAndId.length; i++) {
       if (i % 2 === 0) {
-        categoryComponents.push(
-          <View style={{ flexDirection: 'row' }} key={i}>
+        if (i < this.props.categoriesNameAndId.length - 1) {
+          categoryComponents.push(
+            <View style={{ flexDirection: 'row' }} key={i}>
+              <Category
+                id={this.props.categoriesNameAndId[i].id}
+                name={this.props.categoriesNameAndId[i].name}
+                onClickCategory={this.props.onClickCategory}
+              />
+              <Category
+                id={this.props.categoriesNameAndId[i + 1].id}
+                name={this.props.categoriesNameAndId[i + 1].name}
+                onClickCategory={this.props.onClickCategory}
+              />
+            </View>
+          )
+        } else {
+          categoryComponents.push(
             <Category
-              id={categories[i].id}
-              name={categories[i].name}
-              onClickCategory={variables.onClickCategory}
+              id={this.props.categoriesNameAndId[i].id}
+              name={this.props.categoriesNameAndId[i].name}
+              onClickCategory={this.props.onClickCategory}
             />
-            <Category
-              id={categories[i + 1].id}
-              name={categories[i + 1].name}
-              onClickCategory={variables.onClickCategory}
-            />
-          </View>
-        )
+          )
+        }
       }
     }
     return (
@@ -39,20 +44,3 @@ function showCategories ({ data: { loading, categories, variables } }) {
     )
   }
 }
-
-export default graphql(gql`
-  query {
-    categories {
-      id
-      name
-    }
-  }
-`, {
-  options: props => {
-    return ({
-      variables: {
-        onClickCategory: props.onClickCategory
-      }
-    })
-  }
-})(showCategories)
