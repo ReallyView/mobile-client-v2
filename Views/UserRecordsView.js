@@ -4,7 +4,8 @@ import {
   Tab,
   Tabs,
   TabHeading,
-  Text
+  Text,
+  View
 } from 'native-base'
 import { AsyncStorage, StyleSheet } from 'react-native'
 
@@ -79,7 +80,9 @@ export default class UserRecordsView extends React.Component {
             <UserRecordsReview userId={this.state.userId} onClickReviewCard={this.onClickReviewCard} />
           </Tab>
           <Tab hastabs heading={<TabHeading><Text style={styles.tabHeading}>{'좋아요\n/ 싫어요'}</Text></TabHeading>}>
-            <UserRecordsLikeAndDislike userId={this.state.userId} onClickReviewCard={this.onClickReviewCard} />
+            {this.state.userId
+              ? <UserRecordsLikeAndDislike userId={this.state.userId} onClickReviewCard={this.onClickReviewCard} />
+              : <View />}
           </Tab>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표</Text></TabHeading>} />
         </Tabs>

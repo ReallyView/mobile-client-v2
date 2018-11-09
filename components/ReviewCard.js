@@ -24,16 +24,14 @@ export default class ReviewCard extends React.Component {
     this.state = {
       review: this.props.review,
       likeNum: this.props.review.likeNum,
-      dislikeNum: this.props.review.dislikeNum
+      dislikeNum: this.props.review.dislikeNum,
+      isLiked: this.props.review.likedBy.length > 0,
+      isDisliked: this.props.review.dislikedBy.length > 0
     }
     this.onClickLikeButton = this.onClickLikeButton.bind(this)
     this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
   }
   componentWillMount () {
-    this.setState({
-      isLiked: (this.state.review.likedBy.length > 0),
-      isDisliked: (this.state.review.dislikedBy.length > 0)
-    })
     const getData = async () => {
       const getUserId = await AsyncStorage.getItem('userId')
       this.setState({
