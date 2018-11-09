@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, ListItem, Content, Text, Left, Body, Right, CardItem } from 'native-base'
+import { Text, Left, Body, Right, CardItem } from 'native-base'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
