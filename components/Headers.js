@@ -7,23 +7,8 @@ const platform = Platform.OS
 
 export default class Headers extends React.Component {
   render () {
-    if (platform === 'android') {
-      return (
-        <Header style={{ marginTop: StatusBar.currentHeight }}>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.navigate('Home')}>
-              <Icon name={'arrow-back'} style={{ marginLeft: 0.02 * Layout.window.width }} />
-            </Button>
-          </Left>
-          <Body>
-            <Title>{this.props.headerTitle}</Title>
-          </Body>
-          <Right />
-        </Header>
-      )
-    }
     return (
-      <Header>
+      <Header style={platform === 'android' ? androidStyle : {}}>
         <Left>
           <Button transparent onPress={() => this.props.navigation.navigate('Home')}>
             <Icon name={'arrow-back'} style={{ marginLeft: 0.02 * Layout.window.width }} />
@@ -36,4 +21,8 @@ export default class Headers extends React.Component {
       </Header>
     )
   }
+}
+
+const androidStyle = {
+  marginTop: StatusBar.currentHeight
 }
