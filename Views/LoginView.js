@@ -16,14 +16,15 @@ export default class LoginView extends Component {
     }
     this.finishLogin = this.finishLogin.bind(this)
   }
-  finishLogin (token, email, name, profileImgUrl) {
+  finishLogin (token, email, name, profileImgUrl, userId) {
     if (token) {
       const setData = async () => {
         await AsyncStorage.multiSet([
           ['token', token],
           ['email', email || ''],
           ['name', name || ''],
-          ['profileImgUrl', profileImgUrl || '']
+          ['profileImgUrl', profileImgUrl || ''],
+          ['userId', userId || '']
         ])
       }
       setData()

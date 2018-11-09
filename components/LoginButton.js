@@ -2,13 +2,13 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Button, Text, Toast } from 'native-base'
 import { graphql } from 'react-apollo'
-import { AsyncStorage } from 'react-native'
 
 function login ({ mutate, finishLogin }) {
   let token = null
   let email = null
   let name = null
   let profileImgUrl = null
+  let userId = null
   return (
     <Button block
       style={{ margin: 15, marginTop: 50 }}
@@ -20,6 +20,7 @@ function login ({ mutate, finishLogin }) {
               email = result.data.login.user.email
               name = result.data.login.user.name
               profileImgUrl = result.data.login.user.profileImgUrl
+              userId = result.data.login.user.id
             }
           })
           .catch(error => {
@@ -30,8 +31,8 @@ function login ({ mutate, finishLogin }) {
               type: 'warning'
             })
           }).then(() => {
-          finishLogin(token, email, name, profileImgUrl)
-        })
+            finishLogin(token, email, name, profileImgUrl, userId)
+          })
       }}>
       <Text>Sign In</Text>
     </Button>
@@ -46,6 +47,7 @@ export default graphql(gql`
         email
         name
         profileImgUrl
+        id
       }
     }
   }

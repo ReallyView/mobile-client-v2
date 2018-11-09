@@ -11,15 +11,26 @@ import {
 } from 'native-base'
 
 import ReviewCardGroup from '../components/ReviewCardGroup'
+import { AsyncStorage } from 'react-native'
 
 export default class ItemView extends Component {
   constructor (props) {
     super(props)
     this.state = {
       itemName: this.props.navigation.getParam('itemName'),
-      itemId: this.props.navigation.getParam('itemId')
+      itemId: this.props.navigation.getParam('itemId'),
+      userId: this.props.navigation.getParam('userId') || ''
     }
     this.onClickReviewCard = this.onClickReviewCard.bind(this)
+  }
+  componentWillMount () {
+    const getData = async () => {
+      const getUserId = await AsyncStorage.getItem('userId')
+      this.setState({
+        userId: getUserId
+      })
+    }
+    getData()
   }
   onClickReviewCard (review) {
     this.props.navigation.navigate('Review', {
@@ -44,7 +55,7 @@ export default class ItemView extends Component {
           <Right />
         </Header>
         <Body>
-          <ReviewCardGroup itemId={this.state.itemId} onClickReviewCard={this.onClickReviewCard} />
+          <ReviewCardGroup itemId={this.state.itemId} onClickReviewCard={this.onClickReviewCard} userId={this.state.userId} />
         </Body>
       </Container>
     )

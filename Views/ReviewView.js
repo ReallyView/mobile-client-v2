@@ -13,11 +13,14 @@ import {
   Text,
   List,
   ListItem,
-  Content
+  Content,
+  Segment
 } from 'native-base'
 
 import Layout from '../constants/Layout'
-import { Image, StyleSheet } from 'react-native'
+import { AsyncStorage, Image, StyleSheet } from 'react-native'
+import LikeButton from '../components/LikeButton'
+import DislikeButton from '../components/DislikeButton'
 
 const width = Layout.window.width
 const height = Layout.window.height
@@ -38,6 +41,45 @@ export default class ReviewView extends Component {
       itemId: this.props.navigation.getParam('itemId', null),
       review: this.props.navigation.getParam('review')
     }
+    this.onClickLikeButton = this.onClickLikeButton.bind(this)
+    this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
+  }
+  componentWillMount () {
+    this.setState({
+      isLiked: (this.state.review.likedBy.length > 0),
+      isDisliked: (this.state.review.dislikedBy.length > 0)
+    })
+    const getData = async () => {
+      const getUserId = await AsyncStorage.getItem('userId')
+      this.setState({
+        userId: getUserId
+      })
+    }
+    getData()
+  }
+  onClickLikeButton (likeReview) {
+    this.setState({
+      review: {
+        ...this.state.review,
+        dislikedBy: likeReview.dislikedBy,
+        likeNum: likeReview.likeNum,
+        dislikeNum: likeReview.dislikeNum
+      },
+      isLiked: !this.state.isLiked,
+      isDisliked: false
+    })
+  }
+  onClickDislikeButton (dislikeReview) {
+    this.setState({
+      review: {
+        ...this.state.review,
+        likedBy: dislikeReview.likedBy,
+        likeNum: dislikeReview.likeNum,
+        dislikeNum: dislikeReview.dislikeNum
+      },
+      isLiked: false,
+      isDisliked: !this.state.isDisliked
+    })
   }
   render () {
     return (
@@ -94,6 +136,22 @@ export default class ReviewView extends Component {
                   </ListItem>)
               }
             </List>
+            <View style={styles.likeButtonContainer}>
+              <Segment>
+                <LikeButton
+                  reviewId={this.state.review.id}
+                  isLiked={this.state.isLiked}
+                  likeNum={this.state.review.likeNum}
+                  onClickLikeButton={this.onClickLikeButton}
+                  userId={this.state.userId} />
+                <DislikeButton
+                  reviewId={this.state.review.id}
+                  isDisliked={this.state.isDisliked}
+                  dislikeNum={this.state.review.dislikeNum}
+                  onClickDislikeButton={this.onClickDislikeButton}
+                  userId={this.state.userId} />
+              </Segment>
+            </View>
             <Text style={styles.text}>{this.state.review.text}</Text>
           </Content>
         </Body>
@@ -126,6 +184,18 @@ const styles = StyleSheet.create({
     height: 0.05 * width
   },
   text: {
-    margin: 0.03 * width
+    marginLeft: 0.05 * width,
+    marginRight: 0.05 * width
+  },
+  likeButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginLeft: 3
+  },
+  likeButton: {
+    width: 0.4 * width,
+    height: 0.06 * height,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })

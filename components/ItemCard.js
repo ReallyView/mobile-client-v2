@@ -7,7 +7,7 @@ import {
   Item,
   View
 } from 'native-base'
-import { Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet, AsyncStorage } from 'react-native'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
@@ -17,7 +17,7 @@ const width = Layout.window.width
 const height = Layout.window.height
 
 const ReviewImage = graphql(gql`
-  mutation ($reviewId: ID!) {
+  mutation ($reviewId: ID!, $userId: ID!) {
     seeReview(reviewId: $reviewId) {
       id,
       title,
@@ -34,18 +34,25 @@ const ReviewImage = graphql(gql`
         starNum
       },
       likeNum,
-      dislikeNum
+      dislikeNum,
+      likedBy (where: { id: $userId }) {
+        id
+      },
+      dislikedBy (where: { id: $userId }) {
+        id
+      }
     }
   }
 `)(goToReview)
 
-function goToReview ({ mutate, reviewId, reviewImgUrl, navigation }) {
+function goToReview ({ mutate, reviewId, reviewImgUrl, userId, navigation }) {
   return (
     <Button transparent
       style={styles.imageStyle}
       onPress={() => mutate({
         variables: {
-          reviewId: reviewId
+          reviewId: reviewId,
+          userId: userId
         }
       })
         .then(result => {
@@ -63,12 +70,30 @@ function goToReview ({ mutate, reviewId, reviewImgUrl, navigation }) {
 }
 
 export default class ItemCard extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      userId: ''
+    }
+  }
+  componentWillMount () {
+    const getData = async () => {
+      const getUserId = await AsyncStorage.getItem('userId')
+      this.setState({
+        userId: getUserId
+      })
+    }
+    getData()
+  }
   render () {
     if (!this.props.item) {
       return <View />
     }
     return (
-      <Item onPress={() => this.props.navigation.navigate('Item', { itemName: this.props.item.name, itemId: this.props.item.id })}>
+      <Item onPress={() => this.props.navigation.navigate('Item', {
+        itemName: this.props.item.name,
+        itemId: this.props.item.id,
+        userId: this.state.userId })}>
         <Card style={styles.cardStyle}>
           <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews}
@@ -77,6 +102,7 @@ export default class ItemCard extends React.Component {
                 <ReviewImage
                   reviewId={review.id}
                   reviewImgUrl={review.imgUrls[0]}
+                  userId={this.state.userId}
                   navigation={this.props.navigation} />)
             }} />
         </Card>

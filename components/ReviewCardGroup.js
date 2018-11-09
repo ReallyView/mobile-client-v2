@@ -30,7 +30,7 @@ function showReviewCards ({ data: { loading, reviews, variables } }) {
 }
 
 export default graphql(gql`
-  query ($itemId: ID!) {
+  query ($itemId: ID!, $userId: ID!) {
     reviews(itemId: $itemId) {
       id,
       title,
@@ -47,7 +47,13 @@ export default graphql(gql`
         starNum
       },
       likeNum,
-      dislikeNum
+      dislikeNum,
+      likedBy (where: { id: $userId }) {
+        id
+      },
+      dislikedBy (where: { id: $userId }) {
+        id
+      }
     }
   }
 `, {
@@ -55,6 +61,7 @@ export default graphql(gql`
     return ({
       variables: {
         itemId: props.itemId,
+        userId: props.userId,
         onClickReviewCard: props.onClickReviewCard
       }
     })
