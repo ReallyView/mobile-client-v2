@@ -13,13 +13,13 @@ export default class AddReviewCategory extends React.Component {
           selectedValue={this.props.categoryId}
           onValueChange={this.props.onChangeCategoryId}
         >
-          <Picker.Item label='Category' value='Category' />
-          <Picker.Item label='전자제품' value='전자제품' />
-          <Picker.Item label='화장품' value='화장품' />
-          <Picker.Item label='악기' value='악기' />
-          <Picker.Item label='의류' value='의류' />
-          <Picker.Item label='음식점' value='음식점' />
-          <Picker.Item label='도서' value='도서' />
+          <Picker.Item label='Category' value='null' />
+          <Picker.Item label='전자제품' value='cjny2hwqyep0s0995wn65axi7' />
+          <Picker.Item label='화장품' value='cjny2i74cep2y0995ym6md0j5' />
+          <Picker.Item label='악기' value='cjny2jqhcepff0995ri13a125' />
+          <Picker.Item label='의류' value='cjny2k01xeph40995sx53g76l' />
+          <Picker.Item label='음식점' value='cjny2kb6vepiq0995qpshmjaa' />
+          <Picker.Item label='도서' value='cjny2ko8vepkj0995plfk6u27' />
         </Picker>
       </Form>
     )
