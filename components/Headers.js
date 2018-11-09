@@ -8,7 +8,7 @@ const platform = Platform.OS
 export default class Headers extends React.Component {
   render () {
     return (
-      <Header style={platform === 'android' ? androidStyle : {}}>
+      <Header style={platform === 'android' ? androidStyle : {}} hasTabs={this.props.hasTabs}>
         <Left>
           <Button transparent onPress={() => this.props.navigation.navigate('Home')}>
             <Icon name={'arrow-back'} style={{ marginLeft: 0.02 * Layout.window.width }} />
