@@ -60,7 +60,7 @@ export default class HomeView extends React.Component {
     return (
       <Drawer
         ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} />}
+        content={<SideBar navigation={this.props.navigation} />}
         onClose={() => this.closeDrawer()}
         closedDrawerOffset={0}>
         <Container>

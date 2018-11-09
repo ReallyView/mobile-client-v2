@@ -39,7 +39,8 @@ export default class ReviewView extends Component {
     this.state = {
       itemName: this.props.navigation.getParam('itemName', null),
       itemId: this.props.navigation.getParam('itemId', null),
-      review: this.props.navigation.getParam('review')
+      review: this.props.navigation.getParam('review'),
+      fromUserRecord: this.props.navigation.getParam('fromUserRecord', false)
     }
     this.onClickLikeButton = this.onClickLikeButton.bind(this)
     this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
@@ -89,7 +90,9 @@ export default class ReviewView extends Component {
             <Button transparent
               onPress={
                 (this.state.itemId)
-                  ? () => this.props.navigation.navigate('Item', { itemName: this.state.itemName, itemId: this.state.itemId })
+                  ? (this.state.fromUserRecord)
+                    ? () => this.props.navigation.navigate('UserRecords', { type: 'review' })
+                    : () => this.props.navigation.navigate('Item', { itemName: this.state.itemName, itemId: this.state.itemId })
                   : () => this.props.navigation.navigate('Home')}>
               <Icon
                 name={'arrow-back'} />
@@ -191,11 +194,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginLeft: 3
-  },
-  likeButton: {
-    width: 0.4 * width,
-    height: 0.06 * height,
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 })

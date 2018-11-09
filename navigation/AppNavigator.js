@@ -7,6 +7,7 @@ import MoreView from '../Views/MoreView'
 import ItemView from '../Views/ItemView'
 import AddReviewView from '../Views/AddReviewView'
 import ReviewView from '../Views/ReviewView'
+import UserRecordsView from '../Views/UserRecordsView'
 
 export default createSwitchNavigator({
   Home: {
@@ -48,6 +49,12 @@ export default createSwitchNavigator({
   Review: {
     screen: ReviewView,
     navigateOptions: {
+      header: null
+    }
+  },
+  UserRecords: {
+    screen: UserRecordsView,
+    navigationOptions: {
       header: null
     }
   }

@@ -20,6 +20,7 @@ export default class SideBar extends React.Component {
     this.state = {
       profileImgUrl: ''
     }
+    this.onClickUserRecords = this.onClickUserRecords.bind(this)
   }
   componentWillMount () {
     const getData = async () => {
@@ -32,6 +33,9 @@ export default class SideBar extends React.Component {
     }
     getData()
   }
+  onClickUserRecords (type) {
+    this.props.navigation.navigate('UserRecords', { type: type })
+  }
   render () {
     return (
       <View style={{ backgroundColor: 'white', height: height }}>
@@ -42,21 +46,22 @@ export default class SideBar extends React.Component {
         }
         <Title style={{ marginTop: 0.05 * height }}>{this.state.name} 님 환영합니다</Title>
         <List style={styles.list}>
-          <Item style={styles.item}>
-            <ListItem style={styles.listItem}><Text style={styles.text}>내가 구독한 제품</Text></ListItem>
-          </Item>
-          <Item style={styles.item}>
-            <ListItem style={styles.listItem}><Text style={styles.text}>투표 요청 현황</Text></ListItem>
-          </Item>
-          <Item style={styles.item}>
-            <ListItem style={styles.listItem}><Text style={styles.text}>내가 작성한 글</Text></ListItem>
-          </Item>
-          <Item style={styles.item}>
-            <ListItem style={styles.listItem}><Text style={styles.text}>내가 좋아요한 글</Text></ListItem>
-          </Item>
-          <Item style={styles.item}>
-            <ListItem style={styles.listItem}><Text style={styles.text}>내가 작성한 투표</Text></ListItem>
-          </Item>
+          <Text style={{ marginLeft: 0.05 * width, fontSize: 0.05 * width, color: '#62B1F6' }}>내 기록</Text>
+          <ListItem style={styles.listItem} onPress={() => this.onClickUserRecords('subscribe')}>
+            <Text style={styles.text}>구독</Text>
+          </ListItem>
+          <ListItem style={styles.listItem} onPress={() => this.onClickUserRecords('voteRequest')}>
+            <Text style={styles.text}>투표 요청</Text>
+          </ListItem>
+          <ListItem style={styles.listItem} onPress={() => this.onClickUserRecords('review')}>
+            <Text style={styles.text}>리뷰</Text>
+          </ListItem>
+          <ListItem style={styles.listItem} onPress={() => this.onClickUserRecords('likeAndDislike')}>
+            <Text style={styles.text}>좋아요 / 싫어요</Text>
+          </ListItem>
+          <ListItem style={styles.listItem} onPress={() => this.onClickUserRecords('vote')}>
+            <Text style={styles.text}>투표</Text>
+          </ListItem>
         </List>
       </View>
     )
@@ -83,12 +88,10 @@ const styles = StyleSheet.create({
   },
   listItem: {
     marginLeft: 0,
-    height: 0.1 * height,
-    width: 0.8 * width,
-    alignItems: 'center',
-    justifyContent: 'center'
+    height: 0.07 * height,
+    width: 0.8 * width - 5
   },
   text: {
-    alignSelf: 'center'
+    marginLeft: 0.1 * width
   }
 })

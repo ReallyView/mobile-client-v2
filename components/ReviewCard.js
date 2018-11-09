@@ -10,9 +10,12 @@ import {
   Thumbnail,
   Left,
   Body,
-  Right
+  Right,
+  Segment
 } from 'native-base'
-import { Image, StyleSheet } from 'react-native'
+import { AsyncStorage, Image, StyleSheet } from 'react-native'
+import LikeButton from './LikeButton'
+import DislikeButton from './DislikeButton'
 
 import Layout from '../constants/Layout'
 
@@ -27,6 +30,53 @@ const starImages = [
 ]
 
 export default class ReviewCard extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      review: this.props.review,
+      likeNum: this.props.review.likeNum,
+      dislikeNum: this.props.review.dislikeNum
+    }
+    this.onClickLikeButton = this.onClickLikeButton.bind(this)
+    this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
+  }
+  componentWillMount () {
+    this.setState({
+      isLiked: (this.state.review.likedBy.length > 0),
+      isDisliked: (this.state.review.dislikedBy.length > 0)
+    })
+    const getData = async () => {
+      const getUserId = await AsyncStorage.getItem('userId')
+      this.setState({
+        userId: getUserId
+      })
+    }
+    getData()
+  }
+  onClickLikeButton (likeReview) {
+    this.setState({
+      review: {
+        ...this.props.review,
+        dislikedBy: likeReview.dislikedBy,
+        likeNum: likeReview.likeNum,
+        dislikeNum: likeReview.dislikeNum
+      },
+      isLiked: !this.state.isLiked,
+      isDisliked: false
+    })
+  }
+  onClickDislikeButton (dislikeReview) {
+    this.setState({
+      review: {
+        ...this.state.review,
+        likedBy: dislikeReview.likedBy,
+        likeNum: dislikeReview.likeNum,
+        dislikeNum: dislikeReview.dislikeNum
+      },
+      isLiked: false,
+      isDisliked: !this.state.isDisliked
+    })
+  }
   render () {
     if (!this.props.review) {
       return <View />
@@ -68,6 +118,22 @@ export default class ReviewCard extends React.Component {
                 </ListItem>)
             }
           </List>
+          <View style={styles.likeButtonContainer}>
+            <Segment>
+              <LikeButton
+                reviewId={this.state.review.id}
+                isLiked={this.state.isLiked}
+                likeNum={this.state.review.likeNum}
+                onClickLikeButton={this.onClickLikeButton}
+                userId={this.state.userId} />
+              <DislikeButton
+                reviewId={this.state.review.id}
+                isDisliked={this.state.isDisliked}
+                dislikeNum={this.state.review.dislikeNum}
+                onClickDislikeButton={this.onClickDislikeButton}
+                userId={this.state.userId} />
+            </Segment>
+          </View>
           <Text numberOfLines={5} style={styles.text}>{this.props.review.text}</Text>
         </Card>
       </Item>
@@ -97,6 +163,11 @@ const styles = StyleSheet.create({
   starImage: {
     width: 0.3 * width,
     height: 0.05 * width
+  },
+  likeButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginLeft: 3
   },
   text: {
     margin: 0.03 * width
