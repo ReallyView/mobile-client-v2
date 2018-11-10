@@ -8,15 +8,18 @@ import {
   View,
   Thumbnail,
   Left,
+  Right,
   Segment
 } from 'native-base'
 import { AsyncStorage, Image, StyleSheet } from 'react-native'
+import DeleteReview from './DeleteReview'
 import LikeButton from './LikeButton'
 import DislikeButton from './DislikeButton'
 
 import Layout from '../constants/Layout'
 
 const width = Layout.window.width
+const height = Layout.window.height
 
 export default class ReviewCard extends React.Component {
   constructor (props) {
@@ -26,10 +29,14 @@ export default class ReviewCard extends React.Component {
       likeNum: this.props.review.likeNum,
       dislikeNum: this.props.review.dislikeNum,
       isLiked: this.props.review.likedBy.length > 0,
-      isDisliked: this.props.review.dislikedBy.length > 0
+      isDisliked: this.props.review.dislikedBy.length > 0,
+      isDeleted: false,
+      isError: false
     }
     this.onClickLikeButton = this.onClickLikeButton.bind(this)
     this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
+    this.finishDeleteReview = this.finishDeleteReview.bind(this)
+    this.errorDeleteReview = this.errorDeleteReview.bind(this)
   }
   componentWillMount () {
     const getData = async () => {
@@ -64,9 +71,34 @@ export default class ReviewCard extends React.Component {
       isDisliked: !this.state.isDisliked
     })
   }
+  finishDeleteReview (reviewId) {
+    this.setState({
+      isDeleted: true
+    })
+  }
+  errorDeleteReview (error) {
+    console.log(error)
+    this.setState({
+      isError: true
+    })
+  }
   render () {
     if (!this.props.review) {
       return <View />
+    }
+    if (this.state.isDeleted) {
+      return (
+        <Card style={{ width: 0.95 * width, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ margin: 0.05 * height }}>삭제되었습니다.</Text>
+        </Card>
+      )
+    }
+    if (this.state.isError) {
+      return (
+        <Card style={{ width: 0.95 * width, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ margin: 0.05 * height }}>이미 삭제된 게시글입니다.</Text>
+        </Card>
+      )
     }
     return (
       <Item style={{ borderBottomWidth: 0 }}
@@ -81,6 +113,15 @@ export default class ReviewCard extends React.Component {
                     ? (this.props.review.author.profileImgUrl)
                     : 'https://facebook.github.io/react-native/docs/assets/favicon.png' }} />
               <Text style={{ margin: 0.02 * width }}>{this.props.review.author.name}</Text>
+              {
+                (this.state.userId === this.props.review.author.id)
+                  ? <Right>
+                    <DeleteReview reviewId={this.props.review.id}
+                      finishDeleteReview={this.finishDeleteReview}
+                      errorDeleteReview={this.errorDeleteReview} />
+                  </Right>
+                  : <View />
+              }
             </Left>
           </View>
           <View style={styles.titleContainer}>
