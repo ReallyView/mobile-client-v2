@@ -71,7 +71,7 @@ export default class ReviewCard extends React.Component {
     return (
       <Item style={{ borderBottomWidth: 0 }}
         onPress={() => this.props.onClickReviewCard(this.props.review)}>
-        <Card>
+        <Card style={{ width: 0.95 * width }}>
           <View style={{ flexDirection: 'row' }}>
             <Left style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Thumbnail square small

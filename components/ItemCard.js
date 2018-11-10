@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
     marginBottom: 0.01 * height,
     marginLeft: 0.02 * width,
     marginRight: 0.02 * width,
-    paddingBottom: 0.02 * height
+    paddingBottom: 0.02 * height,
+    width: 0.95 * width
   }
 })

@@ -104,7 +104,7 @@ export default class ReviewView extends Component {
           <Right />
         </Header>
         <Body>
-          <Content>
+          <Content style={{ width: 0.95 * width }}>
             <View style={{ flexDirection: 'row' }}>
               <Left style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Thumbnail square small
