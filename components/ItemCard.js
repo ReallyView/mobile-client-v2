@@ -99,12 +99,16 @@ export default class ItemCard extends React.Component {
           <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews}
             renderRow={(review) => {
-              return (
-                <ReviewImage
-                  reviewId={review.id}
-                  reviewImgUrl={review.imgUrls[0]}
-                  userId={this.state.userId}
-                  navigation={this.props.navigation} />)
+              if (review.imgUrls && review.imgUrls.length > 0) {
+                return (
+                  <ReviewImage
+                    reviewId={review.id}
+                    reviewImgUrl={review.imgUrls[0]}
+                    userId={this.state.userId}
+                    navigation={this.props.navigation} />)
+              } else {
+                return (<View />)
+              }
             }} />
         </Card>
       </Item>
