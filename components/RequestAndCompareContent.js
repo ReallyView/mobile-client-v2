@@ -27,7 +27,7 @@ export default class RequestAndCompareContent extends React.Component {
   }
   onClickRequestButton () {
     if (!(this.state.productId1 && this.state.productId2)) {
-      Alert.alert('경고', '제품명을 입력하세요.')
+      Alert.alert('경고', '옳바른 제품명을 입력하세요.')
     } else {
       this.setState({
         isRequest: true,
