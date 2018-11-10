@@ -7,7 +7,7 @@ export default class AddReviewButtons extends React.Component {
       <Card transparent>
         <CardItem>
           <Left>
-            <Button>
+            <Button onPress={this.props.onClickSubmitButton}>
               <Text>제출하기</Text>
             </Button>
           </Left>

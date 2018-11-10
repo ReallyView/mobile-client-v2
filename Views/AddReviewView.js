@@ -8,7 +8,7 @@ export default class AddReviewView extends React.Component {
     return (
       <Container>
         <Headers navigation={this.props.navigation} headerTitle={'리뷰추가'} />
-        <AddReviewContent />
+        <AddReviewContent navigation={this.props.navigation} />
       </Container>
     )
   }
