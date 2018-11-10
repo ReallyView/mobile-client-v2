@@ -81,7 +81,7 @@ export default class HomeView extends React.Component {
                   ? <SearchItem itemName={this.state.itemName} navigation={this.props.navigation} />
                   : <View /> }
               </Body>
-              : <Body style={{ backgroundColor: '#e9ebee' }}>
+              : <Body>
                 <ItemCardGroup navigation={this.props.navigation} />
               </Body>
           }

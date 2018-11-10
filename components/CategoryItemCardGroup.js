@@ -1,7 +1,7 @@
 import React from 'react'
 import {
-  Text,
-  Content
+  Content,
+  Spinner
 } from 'native-base'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
@@ -10,7 +10,7 @@ import ItemCard from './ItemCard'
 
 function showCategoryItemCards ({ data: { loading, items, variables } }) {
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner color='gray' />
   } else {
     return (
       <Content>

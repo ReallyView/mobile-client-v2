@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Text,
+  Spinner,
   Content
 } from 'native-base'
 import gql from 'graphql-tag'
@@ -10,7 +10,7 @@ import ReviewCard from './ReviewCard'
 
 function showReviewCards ({ data: { loading, reviews, variables } }) {
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner color='gray' />
   } else {
     return (
       <Content>
