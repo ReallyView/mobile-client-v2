@@ -90,10 +90,11 @@ export default class ItemCard extends React.Component {
       return <View />
     }
     return (
-      <Item onPress={() => this.props.navigation.navigate('Item', {
-        itemName: this.props.item.name,
-        itemId: this.props.item.id,
-        userId: this.state.userId })}>
+      <Item style={{ borderBottomWidth: 0 }}
+        onPress={() => this.props.navigation.navigate('Item', {
+          itemName: this.props.item.name,
+          itemId: this.props.item.id,
+          userId: this.state.userId })}>
         <Card style={styles.cardStyle}>
           <Label style={styles.titleStyle}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews}

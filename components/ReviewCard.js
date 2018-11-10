@@ -69,7 +69,8 @@ export default class ReviewCard extends React.Component {
       return <View />
     }
     return (
-      <Item onPress={() => this.props.onClickReviewCard(this.props.review)}>
+      <Item style={{ borderBottomWidth: 0 }}
+        onPress={() => this.props.onClickReviewCard(this.props.review)}>
         <Card>
           <View style={{ flexDirection: 'row' }}>
             <Left style={{ flexDirection: 'row', alignItems: 'center' }}>
