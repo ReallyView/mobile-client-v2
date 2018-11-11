@@ -38,6 +38,7 @@ export default class RequestAndCompareView extends React.Component {
           onChangeProduct2={this.onChangeProduct2}
           product1={this.state.product1}
           product2={this.state.product2}
+          navigation={this.props.navigation}
         />
         <Footer>
           <FooterTab>

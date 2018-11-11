@@ -1,11 +1,12 @@
 import React from 'react'
-import { Content, Card, CardItem, Textarea, Body, Text, Button, Right, Left } from 'native-base'
+import { Content, Card, CardItem, Textarea, Body, Text, Button, Right, Left, Form } from 'native-base'
 import { Alert } from 'react-native'
 import RequestAndCompareInput from './RequestAndCompareInput'
 import RequestAndCompareButton from './RequestAndCompareButton'
 import { CompareItem1 } from './CompareSearchProduct1'
 import { CompareItem2 } from './CompareSearchProduct2'
 import { CompareItems } from './CompareContent'
+import RequestAndCompareVoteItem from './RequestAndCompareVoteItem'
 
 export default class RequestAndCompareContent extends React.Component {
   constructor (props) {
@@ -13,6 +14,7 @@ export default class RequestAndCompareContent extends React.Component {
     this.state = {
       isRequest: false,
       isCompare: false,
+      isSubmit: false,
       text: '',
       productId1: '',
       productId2: ''
@@ -24,6 +26,8 @@ export default class RequestAndCompareContent extends React.Component {
     this.onChangeProductId2 = this.onChangeProductId2.bind(this)
     this.onChangeProductNameAndId1 = this.onChangeProductNameAndId1.bind(this)
     this.onChangeProductNameAndId2 = this.onChangeProductNameAndId2.bind(this)
+    this.onChangeIsSubmit = this.onChangeIsSubmit.bind(this)
+    this.onClickSubmitButton = this.onClickSubmitButton.bind(this)
   }
   onClickRequestButton () {
     if (!(this.state.productId1 && this.state.productId2)) {
@@ -44,6 +48,27 @@ export default class RequestAndCompareContent extends React.Component {
         isRequest: false
       })
     }
+  }
+  onClickSubmitButton () {
+    if (this.state.text) {
+      Alert.alert(
+        'Message',
+        '제출하시겠습니까?',
+        [
+          { text: 'Cancel' },
+          { text: 'OK',
+            onPress: this.onChangeIsSubmit
+          }
+        ]
+      )
+    } else {
+      Alert.alert('경고', '투표내용을 입력하세요')
+    }
+  }
+  onChangeIsSubmit () {
+    this.setState({
+      isSubmit: true
+    })
   }
   onChangeText (Text) {
     this.setState({
@@ -102,19 +127,26 @@ export default class RequestAndCompareContent extends React.Component {
                 bordered
                 placeholder='글쓰기(10000자 이내)'
                 onChangeText={(Text) => this.onChangeText(Text)}
-              /> : <Body />
+              /> : <Form />
           }
           <CardItem>
             <Right>
               {
                 (this.state.isRequest)
-                  ? <Button><Text>제출하기</Text></Button> : <Body />
+                  ? <Button onPress={this.onClickSubmitButton}><Text>제출하기</Text></Button> : <Form />
               }
             </Right>
           </CardItem>
           {
             (this.state.isCompare)
-              ? <CompareItems itemIds={[this.state.productId1, this.state.productId2]} /> : <Body />
+              ? <CompareItems itemIds={[this.state.productId1, this.state.productId2]} /> : <Form />
+          }
+          {
+            (this.state.isSubmit)
+              ? <RequestAndCompareVoteItem
+                data={{ text: this.state.text, itemIds: [this.state.productId1, this.state.productId2] }}
+                navigation={this.props.navigation}
+              /> : <Form />
           }
         </Card>
       </Content>
