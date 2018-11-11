@@ -4,5 +4,6 @@ export const categories = [
   { name: '악기', id: 'cjny2jqhcepff0995ri13a125', icon: 'md-musical-notes' },
   { name: '의류', id: 'cjny2k01xeph40995sx53g76l', icon: 'md-shirt' },
   { name: '음식점', id: 'cjny2kb6vepiq0995qpshmjaa', icon: 'md-restaurant' },
-  { name: '도서', id: 'cjny2ko8vepkj0995plfk6u27', icon: 'book' }
+  { name: '도서', id: 'cjny2ko8vepkj0995plfk6u27', icon: 'book' },
+  { name: '기타', id: 'cjod16qyx07c70741lijfoo6b', icon: 'ios-more' }
 ]

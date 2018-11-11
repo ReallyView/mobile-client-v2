@@ -20,12 +20,14 @@ export default class CategoryGroup extends React.Component {
                 name={categories[i].name}
                 onClickCategory={this.props.onClickCategory}
                 icon={categories[i].icon}
+                key={categories[i].id}
               />
               <Category
                 id={categories[i + 1].id}
                 name={categories[i + 1].name}
                 onClickCategory={this.props.onClickCategory}
                 icon={categories[i + 1].icon}
+                key={categories[i + 1].id}
               />
             </View>
           )
@@ -36,6 +38,7 @@ export default class CategoryGroup extends React.Component {
               name={categories[i].name}
               onClickCategory={this.props.onClickCategory}
               icon={categories[i].icon}
+              key={categories[i].id}
             />
           )
         }
