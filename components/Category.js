@@ -3,7 +3,8 @@ import {
   Item,
   View,
   Text,
-  Card
+  Card,
+  Icon
 } from 'native-base'
 import { StyleSheet } from 'react-native'
 
@@ -18,8 +19,9 @@ export default class Category extends React.Component {
       return <View />
     }
     return (
-      <Item onPress={() => this.props.onClickCategory(this.props.id, this.props.name)}>
+      <Item onPress={() => this.props.onClickCategory(this.props.id, this.props.name)} style={{ borderBottomWidth: 0 }}>
         <Card style={styles.layout}>
+          <Icon name={this.props.icon} style={{ color: 'gray' }} />
           <Text style={{ alignSelf: 'center' }}>{this.props.name}</Text>
         </Card>
       </Item>
@@ -32,6 +34,8 @@ const styles = StyleSheet.create({
     width: 0.48 * width,
     height: 0.2 * height,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius: 0,
+    marginBottom: 0
   }
 })
