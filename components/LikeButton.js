@@ -16,8 +16,8 @@ class clickLikeButton extends React.Component {
     return (
       <Button first transparent
         style={{
-          width: 0.4 * width,
-          height: 0.06 * height,
+          width: 0.43 * width,
+          height: 0.05 * height,
           alignItems: 'center',
           justifyContent: 'center'
         }}
