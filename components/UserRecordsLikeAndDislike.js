@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Text,
+  Spinner,
   Content,
   Tabs,
   Tab
@@ -12,7 +12,7 @@ import ReviewCard from './ReviewCard'
 
 function showReviewCards ({ data: { loading, userInfo, variables } }) {
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner color='gray' />
   } else {
     return (
       <Tabs>
