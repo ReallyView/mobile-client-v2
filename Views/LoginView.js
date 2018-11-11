@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Container, Content, Form, Item, Input, View, Title } from 'native-base'
+import { Container, Form, Item, Input, View, Title, Button, Text } from 'native-base'
 import { AsyncStorage } from 'react-native'
 
 import LoginButton from '../components/LoginButton'
+import SignUpView from './SignUpView'
 import Layout from '../constants/Layout'
 
 const height = Layout.window.height
@@ -12,9 +13,11 @@ export default class LoginView extends Component {
     super(props)
     this.state = {
       email: 'sskim0126@gmail.com',
-      password: '1234'
+      password: '1234',
+      isSignUpView: false
     }
     this.finishLogin = this.finishLogin.bind(this)
+    this.finishSignUp = this.finishSignUp.bind(this)
   }
   finishLogin (token, email, name, profileImgUrl, userId) {
     if (token) {
@@ -31,8 +34,15 @@ export default class LoginView extends Component {
       this.props.onLogin(token)
     }
   }
-
+  finishSignUp () {
+    this.setState({
+      isSignUpView: false
+    })
+  }
   render () {
+    if (this.state.isSignUpView) {
+      return <SignUpView finishSignUp={this.finishSignUp} />
+    }
     return (
       <Container>
         <View>
@@ -56,6 +66,11 @@ export default class LoginView extends Component {
             email={this.state.email}
             password={this.state.password}
             finishLogin={this.finishLogin} />
+          <Button block
+            style={{ margin: 15, marginTop: 0.02 * height }}
+            onPress={() => this.setState({ isSignUpView: true })}>
+            <Text>Sign Up</Text>
+          </Button>
         </View>
       </Container>
     )

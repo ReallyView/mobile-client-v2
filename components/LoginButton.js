@@ -3,6 +3,10 @@ import gql from 'graphql-tag'
 import { Button, Text, Toast } from 'native-base'
 import { graphql } from 'react-apollo'
 
+import Layout from '../constants/Layout'
+
+const height = Layout.window.height
+
 function login ({ mutate, finishLogin }) {
   let token = null
   let email = null
@@ -11,7 +15,7 @@ function login ({ mutate, finishLogin }) {
   let userId = null
   return (
     <Button block
-      style={{ margin: 15, marginTop: 50 }}
+      style={{ margin: 15, marginTop: 0.1 * height }}
       onPress={() => {
         mutate()
           .then(result => {
