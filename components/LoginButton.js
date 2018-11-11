@@ -35,6 +35,19 @@ function login ({ mutate, finishLogin }) {
               type: 'warning'
             })
           }).then(() => {
+            Toast.show({
+              text: 'Succeed to sign in!',
+              buttonText: 'Okay',
+              type: 'success',
+              position: 'top',
+              style: {
+                opacity: 0.7,
+                backgroundColor: 'gray'
+              },
+              textStyle: {
+                marginLeft: 10
+              }
+            })
             finishLogin(token, email, name, profileImgUrl, userId)
           })
       }}>
