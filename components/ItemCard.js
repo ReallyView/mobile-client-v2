@@ -86,7 +86,7 @@ export default class ItemCard extends React.Component {
     getData()
   }
   render () {
-    if (!this.props.item) {
+    if (!(this.props.item && this.state.userId)) {
       return <View />
     }
     return (

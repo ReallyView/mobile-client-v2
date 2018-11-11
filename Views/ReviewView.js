@@ -40,16 +40,14 @@ export default class ReviewView extends Component {
       itemName: this.props.navigation.getParam('itemName', null),
       itemId: this.props.navigation.getParam('itemId', null),
       review: this.props.navigation.getParam('review'),
+      isLiked: this.props.navigation.getParam('review').likedBy.length > 0,
+      isDisliked: this.props.navigation.getParam('review').dislikedBy.length > 0,
       fromUserRecord: this.props.navigation.getParam('fromUserRecord', false)
     }
     this.onClickLikeButton = this.onClickLikeButton.bind(this)
     this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
   }
   componentWillMount () {
-    this.setState({
-      isLiked: (this.state.review.likedBy.length > 0),
-      isDisliked: (this.state.review.dislikedBy.length > 0)
-    })
     const getData = async () => {
       const getUserId = await AsyncStorage.getItem('userId')
       this.setState({
