@@ -30,11 +30,11 @@ export const SearchItem = (props) => {
 
         return (
           <Content>
-            <List transparent>
+            <List transparent style={{ width: 0.95 * width }}>
               {
                 data.searchItems.map(({ id, name }) => {
                   return (
-                    <ListItem key={id} onPress={() => props.navigation.navigate('Item', {
+                    <ListItem style={{ width: 0.95 * width }} key={id} onPress={() => props.navigation.navigate('Item', {
                       itemName: name,
                       itemId: id
                     })}>
