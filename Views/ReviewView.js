@@ -16,14 +16,14 @@ import {
   Content,
   Segment
 } from 'native-base'
+import { AsyncStorage, Image, StyleSheet, Modal } from 'react-native'
+import ImageViewer from 'react-native-image-zoom-viewer'
 
 import Layout from '../constants/Layout'
-import { AsyncStorage, Image, StyleSheet } from 'react-native'
 import LikeButton from '../components/LikeButton'
 import DislikeButton from '../components/DislikeButton'
 
 const width = Layout.window.width
-const height = Layout.window.height
 
 const starImages = [
   require('../assets/images/GradeStars/1-star.png'),
@@ -42,7 +42,9 @@ export default class ReviewView extends Component {
       review: this.props.navigation.getParam('review'),
       isLiked: this.props.navigation.getParam('review').likedBy.length > 0,
       isDisliked: this.props.navigation.getParam('review').dislikedBy.length > 0,
-      fromUserRecord: this.props.navigation.getParam('fromUserRecord', false)
+      fromUserRecord: this.props.navigation.getParam('fromUserRecord', false),
+      isImageView: false,
+      images: []
     }
     this.onClickLikeButton = this.onClickLikeButton.bind(this)
     this.onClickDislikeButton = this.onClickDislikeButton.bind(this)
@@ -55,6 +57,15 @@ export default class ReviewView extends Component {
       })
     }
     getData()
+    let images = []
+    for (let i = 0; i < this.state.review.imgUrls.length; i++) {
+      images.push({
+        url: this.state.review.imgUrls[i]
+      })
+    }
+    this.setState({
+      images: images
+    })
   }
   onClickLikeButton (likeReview) {
     this.setState({
@@ -81,6 +92,17 @@ export default class ReviewView extends Component {
     })
   }
   render () {
+    if (this.state.isImageView && this.state.images.length > 0) {
+      return (
+        <Modal visible={this.state.isImageView}
+          transparent>
+          <ImageViewer
+            enableSwipeDown
+            onSwipeDown={() => this.setState({ isImageView: false })}
+            imageUrls={this.state.images} />
+        </Modal>
+      )
+    }
     return (
       <Container>
         <Header>
@@ -119,7 +141,8 @@ export default class ReviewView extends Component {
             </View>
             <List horizontal dataArray={this.state.review.imgUrls}
               renderRow={(imgUrl) =>
-                <Button transparent style={styles.itemImage}>
+                <Button transparent style={styles.itemImage}
+                  onPress={() => { this.setState({ isImageView: true }) }}>
                   <Image
                     source={{ uri: imgUrl }} style={styles.itemImage} />
                 </Button>} />
