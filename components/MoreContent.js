@@ -1,5 +1,5 @@
 import React from 'react'
-import { Content, Card, CardItem, Left, Thumbnail, Body, Text, List, ListItem } from 'native-base'
+import { Content, Card, CardItem, Left, Thumbnail, Body, Text, List, ListItem, Right, Icon, Separator } from 'native-base'
 import { AsyncStorage } from 'react-native'
 import Layout from '../constants/Layout'
 
@@ -40,17 +40,46 @@ export default class MoreContent extends React.Component {
           </CardItem>
         </Card>
         <List>
-          <ListItem>
-            <Text>프로필 수정</Text>
+          <ListItem itemDivider>
+            <Text>계정</Text>
           </ListItem>
-          <ListItem>
-            <Text>공지사항</Text>
+          <ListItem icon>
+            <Left>
+              <Icon name={'md-settings'} />
+            </Left>
+            <Body>
+              <Text>프로필 수정</Text>
+            </Body>
           </ListItem>
-          <ListItem>
-            <Text>버전</Text>
+          <ListItem itemDivider>
+            <Text>앱 정보</Text>
           </ListItem>
-          <ListItem>
-            <Text>라이센스</Text>
+          <ListItem icon>
+            <Left>
+              <Icon name={'md-megaphone'} />
+            </Left>
+            <Body>
+              <Text>공지사항</Text>
+            </Body>
+          </ListItem>
+          <ListItem icon>
+            <Left>
+              <Icon name={'md-information-circle'} />
+            </Left>
+            <Body>
+              <Text>버전</Text>
+            </Body>
+            <Right>
+              <Text>2.0</Text>
+            </Right>
+          </ListItem>
+          <ListItem icon>
+            <Left>
+              <Icon name={'md-bulb'} />
+            </Left>
+            <Body>
+              <Text>라이센스</Text>
+            </Body>
           </ListItem>
         </List>
       </Content>
