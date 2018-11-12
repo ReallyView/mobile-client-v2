@@ -33,8 +33,8 @@ export default class MoreContent extends React.Component {
             <Left>
               <Thumbnail square source={{ uri: this.state.profileImgUrl }} style={{ width: 90, height: 90 }} />
               <Body>
-                <Text style={{ fontSize: 0.045 * Layout.window.width }}>email: {this.state.email}</Text>
-                <Text style={{ fontSize: 0.045 * Layout.window.width, marginTop: 20 }}>name: {this.state.name}</Text>
+                <Text style={{ fontSize: 0.045 * Layout.window.width, fontWeight: 'bold' }}>{this.state.name}</Text>
+                <Text style={{ fontSize: 0.03 * Layout.window.width, marginTop: 10, color: 'gray' }}>{this.state.email}</Text>
               </Body>
             </Left>
           </CardItem>
