@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Form, Item, Input, View, Title, Button, Text } from 'native-base'
+import { Container, Form, Item, Input, View, Button, Text } from 'native-base'
 import { AsyncStorage } from 'react-native'
 
 import LoginButton from '../components/LoginButton'
@@ -46,7 +46,7 @@ export default class LoginView extends Component {
     return (
       <Container>
         <View>
-          <Title style={titleStyle}>ReallyView</Title>
+          <Text style={titleStyle}>ReallyView</Text>
           <Form>
             <Item>
               <Input placeholder='Email'
@@ -80,5 +80,6 @@ export default class LoginView extends Component {
 const titleStyle = {
   fontSize: 50,
   marginTop: 0.2 * height,
-  marginBottom: 0.1 * height
+  marginBottom: 0.1 * height,
+  marginLeft: 0.1 * height
 }
