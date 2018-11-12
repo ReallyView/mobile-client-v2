@@ -8,7 +8,7 @@ import ItemView from '../Views/ItemView'
 import AddReviewView from '../Views/AddReviewView'
 import ReviewView from '../Views/ReviewView'
 import UserRecordsView from '../Views/UserRecordsView'
-
+import ChangeProfileView from '../Views/ChangeProfileView'
 export default createSwitchNavigator({
   Home: {
     screen: HomeView,
@@ -54,6 +54,12 @@ export default createSwitchNavigator({
   },
   UserRecords: {
     screen: UserRecordsView,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ChangeProfile: {
+    screen: ChangeProfileView,
     navigationOptions: {
       header: null
     }

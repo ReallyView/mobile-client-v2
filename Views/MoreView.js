@@ -21,6 +21,7 @@ export default class MoreView extends React.Component {
           email={this.props.navigation.getParam('email')}
           name={this.props.navigation.getParam('name')}
           profileImgUrl={this.props.navigation.getParam('profileImgUrl')}
+          navigation={this.props.navigation}
         />
         <Footer>
           <FooterTab>

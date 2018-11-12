@@ -43,7 +43,7 @@ export default class MoreContent extends React.Component {
           <ListItem itemDivider>
             <Text>계정</Text>
           </ListItem>
-          <ListItem icon>
+          <ListItem icon onPress={() => this.props.navigation.navigate('ChangeProfile')}>
             <Left>
               <Icon name={'md-settings'} />
             </Left>
