@@ -19,6 +19,7 @@ export default class AddReviewGrade extends React.Component {
           <Input
             placeholder='Grade'
             onChangeText={(gradeName) => this.props.onChangeGradeName(gradeName, this.props.id)}
+            maxLength={5}
           />
         </Item>
         <Body>

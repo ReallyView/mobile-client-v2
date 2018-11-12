@@ -127,6 +127,7 @@ export default class RequestAndCompareContent extends React.Component {
                 bordered
                 placeholder='글쓰기(10000자 이내)'
                 onChangeText={(Text) => this.onChangeText(Text)}
+                maxLength={10000}
               /> : <Form />
           }
           <CardItem>
