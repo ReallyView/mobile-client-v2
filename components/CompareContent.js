@@ -46,7 +46,11 @@ export const CompareItems = (ids) => {
                 </Left>
                 <Body>
                   <CardItem>
-                    <Text>{name}</Text>
+                    {
+                      (name.length < 5)
+                        ? <Text style={shortTextStyle}>{name}</Text>
+                        : <Text>{name}</Text>
+                    }
                   </CardItem>
                 </Body>
                 <Right>
@@ -67,4 +71,8 @@ export const CompareItems = (ids) => {
 
 const textStyle = {
   margin: 0.05 * width
+}
+
+const shortTextStyle = {
+  marginLeft: 0.03 * width
 }
