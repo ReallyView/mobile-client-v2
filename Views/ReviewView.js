@@ -16,7 +16,7 @@ import {
   Content,
   Segment
 } from 'native-base'
-import { AsyncStorage, Image, StyleSheet, Modal } from 'react-native'
+import { AsyncStorage, Image, StyleSheet, Modal, Platform, StatusBar } from 'react-native'
 import ImageViewer from 'react-native-image-zoom-viewer'
 
 import Layout from '../constants/Layout'
@@ -32,6 +32,8 @@ const starImages = [
   require('../assets/images/GradeStars/4-star.png'),
   require('../assets/images/GradeStars/5-star.png')
 ]
+
+const platform = Platform.OS
 
 export default class ReviewView extends Component {
   constructor (props) {
@@ -105,7 +107,7 @@ export default class ReviewView extends Component {
     }
     return (
       <Container>
-        <Header>
+        <Header style={platform === 'android' ? androidStyle : {}} hasTabs={this.props.hasTabs}>
           <Left>
             <Button transparent
               onPress={
@@ -217,3 +219,7 @@ const styles = StyleSheet.create({
     marginLeft: 3
   }
 })
+
+const androidStyle = {
+  marginTop: StatusBar.currentHeight
+}

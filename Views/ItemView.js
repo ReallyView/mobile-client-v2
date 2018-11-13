@@ -11,7 +11,9 @@ import {
 } from 'native-base'
 
 import ReviewCardGroup from '../components/ReviewCardGroup'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, Platform, StatusBar } from 'react-native'
+
+const platform = Platform.OS
 
 export default class ItemView extends Component {
   constructor (props) {
@@ -42,7 +44,7 @@ export default class ItemView extends Component {
   render () {
     return (
       <Container>
-        <Header>
+        <Header style={platform === 'android' ? androidStyle : {}} hasTabs={this.props.hasTabs}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.navigate('Home')}>
               <Icon
@@ -60,4 +62,8 @@ export default class ItemView extends Component {
       </Container>
     )
   }
+}
+
+const androidStyle = {
+  marginTop: StatusBar.currentHeight
 }
