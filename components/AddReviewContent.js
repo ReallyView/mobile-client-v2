@@ -5,10 +5,11 @@ import AddReviewItemName from '../components/AddReviewItemName'
 import AddReviewCategory from '../components/AddReviewCategory'
 import AddReviewTitleName from '../components/AddReviewTitleName'
 import AddReviewGradeGroup from '../components/AddReviewGradeGroup'
-import { SearchProduct } from './AddReviewSearchProduct'
+import { AddReviewSearchProduct } from './AddReviewSearchProduct'
 import AddReviewCreateReview from './AddReviewCreateReview'
 import AddReviewButtons from './AddReviewButtons'
 import AddReviewCreateReviewAndItem from './AddReviewCreateReviewAndItem'
+import Layout from '../constants/Layout'
 
 export default class RequestAndCompareContent extends React.Component {
   constructor (props) {
@@ -136,10 +137,10 @@ export default class RequestAndCompareContent extends React.Component {
         <CardItem>
           {
             (this.state.isItemReady && this.state.itemName) // 아이템이 검색되지 않거나 검색을 다했으면 serach 결과가 보이지 않도록 함.
-              ? <SearchProduct itemName={this.state.itemName} onChangeItemNameAndId={this.onChangeItemNameAndId} /> : <Form />
+              ? <AddReviewSearchProduct itemName={this.state.itemName} onChangeItemNameAndId={this.onChangeItemNameAndId} /> : <Form />
           }
         </CardItem>
-        <Card transparent style={{ marginTop: 25 }}>
+        <Card transparent>
           <Textarea
             rowSpan={5}
             bordered

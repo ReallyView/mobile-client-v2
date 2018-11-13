@@ -18,7 +18,7 @@ const SearchQuery = gql`
     }
   }
 `
-export const SearchProduct = (props) => {
+export const AddReviewSearchProduct = (props) => {
   return (
     <Query
       query={SearchQuery}
