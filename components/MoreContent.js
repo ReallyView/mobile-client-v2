@@ -31,10 +31,10 @@ export default class MoreContent extends React.Component {
         <Card transparent>
           <CardItem>
             <Left>
-              <Thumbnail square source={{ uri: this.state.profileImgUrl }} style={{ width: 90, height: 90 }} />
+              <Thumbnail square source={{ uri: this.state.profileImgUrl }} style={{ width: 0.2 * Layout.window.width, height: 0.2 * Layout.window.width }} />
               <Body>
                 <Text style={{ fontSize: 0.045 * Layout.window.width, fontWeight: 'bold' }}>{this.state.name}</Text>
-                <Text style={{ fontSize: 0.03 * Layout.window.width, marginTop: 10, color: 'gray' }}>{this.state.email}</Text>
+                <Text style={{ fontSize: 0.03 * Layout.window.width, marginTop: 0.02 * Layout.window.width, color: 'gray' }}>{this.state.email}</Text>
               </Body>
             </Left>
           </CardItem>
@@ -43,12 +43,25 @@ export default class MoreContent extends React.Component {
           <ListItem itemDivider>
             <Text>계정</Text>
           </ListItem>
-          <ListItem icon onPress={() => this.props.navigation.navigate('ChangeProfile')}>
+          <ListItem
+            icon
+            onPress={() => this.props.navigation.navigate('ChangeProfile', { name: this.state.name })}
+          >
             <Left>
               <Icon name={'md-settings'} />
             </Left>
             <Body>
               <Text>프로필 수정</Text>
+            </Body>
+          </ListItem>
+          <ListItem
+            icon
+          >
+            <Left>
+              <Icon name={'ios-lock'} />
+            </Left>
+            <Body>
+              <Text>비밀번호 변경</Text>
             </Body>
           </ListItem>
           <ListItem itemDivider>
