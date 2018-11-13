@@ -24,7 +24,7 @@ const CompareQuery = gql`
     }
   }
 `
-export const CompareItems = (ids) => {
+export const CompareItemContent = (ids) => {
   return (
     <Query
       query={CompareQuery}

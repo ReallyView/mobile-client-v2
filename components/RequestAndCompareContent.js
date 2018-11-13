@@ -3,9 +3,9 @@ import { Content, Card, CardItem, Textarea, Body, Text, Button, Right, Left, For
 import { Alert } from 'react-native'
 import RequestAndCompareInput from './RequestAndCompareInput'
 import RequestAndCompareButton from './RequestAndCompareButton'
-import { CompareItem1 } from './CompareSearchProduct1'
-import { CompareItem2 } from './CompareSearchProduct2'
-import { CompareItems } from './CompareContent'
+import { CompareSearchItem1 } from './CompareSearchProduct1'
+import { CompareSearchItem2 } from './CompareSearchProduct2'
+import { CompareItemContent } from './CompareItemContent'
 import RequestAndCompareVoteItem from './RequestAndCompareVoteItem'
 
 export default class RequestAndCompareContent extends React.Component {
@@ -110,13 +110,13 @@ export default class RequestAndCompareContent extends React.Component {
             <Left>
               {
                 (this.props.product1)
-                  ? <CompareItem1 product1={this.props.product1} onChangeProductNameAndId1={this.onChangeProductNameAndId1} /> : <Body />
+                  ? <CompareSearchItem1 product1={this.props.product1} onChangeProductNameAndId1={this.onChangeProductNameAndId1} /> : <Body />
               }
             </Left>
             <Body>
               {
                 (this.props.product2)
-                  ? <CompareItem2 product2={this.props.product2} onChangeProductNameAndId2={this.onChangeProductNameAndId2} /> : <Body />
+                  ? <CompareSearchItem2 product2={this.props.product2} onChangeProductNameAndId2={this.onChangeProductNameAndId2} /> : <Body />
               }
             </Body>
           </CardItem>
@@ -140,7 +140,7 @@ export default class RequestAndCompareContent extends React.Component {
           </CardItem>
           {
             (this.state.isCompare)
-              ? <CompareItems itemIds={[this.state.productId1, this.state.productId2]} /> : <Form />
+              ? <CompareItemContent itemIds={[this.state.productId1, this.state.productId2]} /> : <Form />
           }
           {
             (this.state.isSubmit)

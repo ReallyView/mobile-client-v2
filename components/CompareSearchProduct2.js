@@ -15,7 +15,7 @@ const SearchQuery = gql`
     }
   }
 `
-export const CompareItem2 = (props) => {
+export const CompareSearchItem2 = (props) => {
   return (
     <Query
       query={SearchQuery}
