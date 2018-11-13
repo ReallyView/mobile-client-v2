@@ -8,7 +8,7 @@ export default class AddReviewItemName extends React.Component {
         <Item>
           <Input
             placeholder='제품명'
-            onChangeText={(itemName) => this.props.onChangeItemName(itemName)}me
+            onChangeText={(itemName) => this.props.onChangeItemName(itemName)}
             value={this.props.itemName}
           />
         </Item>
