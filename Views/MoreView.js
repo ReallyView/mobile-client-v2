@@ -16,6 +16,7 @@ export default class MoreView extends React.Component {
         <Headers
           navigation={this.props.navigation}
           headerTitle={'더보기'}
+          navigate={'Home'}
         />
         <MoreContent
           email={this.props.navigation.getParam('email')}

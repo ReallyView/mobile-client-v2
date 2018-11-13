@@ -72,6 +72,7 @@ export default class UserRecordsView extends React.Component {
           navigation={this.props.navigation}
           headerTitle={'내 기록'}
           hasTabs
+          navigate={'Home'}
         />
         <Tabs initialPage={this.state.initialPage}>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>구독</Text></TabHeading>} />

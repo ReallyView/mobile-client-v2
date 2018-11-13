@@ -10,7 +10,7 @@ export default class Headers extends React.Component {
     return (
       <Header style={platform === 'android' ? androidStyle : {}} hasTabs={this.props.hasTabs}>
         <Left>
-          <Button transparent onPress={() => this.props.navigation.navigate('Home')}>
+          <Button transparent onPress={() => this.props.navigation.navigate(this.props.navigate)}>
             <Icon name={'arrow-back'} style={{ marginLeft: 0.02 * Layout.window.width }} />
           </Button>
         </Left>

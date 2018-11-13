@@ -32,7 +32,7 @@ export default class RequestAndCompareView extends React.Component {
   render () {
     return (
       <Container>
-        <Headers navigation={this.props.navigation} headerTitle={'비교하기/요청하기'} />
+        <Headers navigation={this.props.navigation} headerTitle={'비교하기/요청하기'} navigate={'Home'} hasTabs />
         <RequestAndCompareContent
           onChangeProduct1={this.onChangeProduct1}
           onChangeProduct2={this.onChangeProduct2}
