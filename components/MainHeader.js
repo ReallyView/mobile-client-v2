@@ -20,7 +20,7 @@ export default class MainHeader extends React.Component {
         <Header style={{ marginTop: StatusBar.currentHeight }}>
           <Left>
             <Button transparent onPress={this.props.onClickProfileImage}>
-              <Icon name={'ios-contact'} style={{ color: 'gray', marginLeft: 0.02 * Layout.window.width }} />
+              <Icon name={'ios-contact'} style={{ color: 'white', marginLeft: 0.02 * Layout.window.width }} />
             </Button>
           </Left>
           <Body>
@@ -28,10 +28,10 @@ export default class MainHeader extends React.Component {
           </Body>
           <Right>
             <Button transparent onPress={this.props.onClickSearchButton}>
-              <Icon name={'search'} style={{ color: 'gray' }} />
+              <Icon name={'search'} style={{ color: 'white' }} />
             </Button>
             <Button transparent onPress={this.props.onClickAddIcon}>
-              <Icon name={'md-add'} style={{ color: 'gray' }} />
+              <Icon name={'md-add'} style={{ color: 'white' }} />
             </Button>
           </Right>
         </Header>
