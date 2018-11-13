@@ -12,6 +12,9 @@ const SearchQuery = gql`
     searchItems(name: $itemName) {
       id
       name
+      category {
+        id
+      }
     }
   }
 `
@@ -32,9 +35,9 @@ export const SearchProduct = (props) => {
           <Content>
             <List transparent style={{ width: 0.4 * Layout.window.width, alignItems: 'center' }}>
               {
-                data.searchItems.map(({ id, name }) => {
+                data.searchItems.map(({ id, name, category }) => {
                   return (
-                    <ListItem key={id} onPress={() => props.onChangeItemNameAndId(name, id) }>
+                    <ListItem key={id} onPress={() => props.onChangeItemNameAndId(name, id, category.id)}>
                       <Text>{name}</Text>
                     </ListItem>
                   )

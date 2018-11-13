@@ -20,7 +20,7 @@ export default class RequestAndCompareContent extends React.Component {
       categoryId: 'null',
       text: '',
       grades: [{ name: '', starNum: 1 }],
-      isItemReady: false,
+      isItemReady: true,
       isSubmitReady: false
     }
     this.onChangeTitle = this.onChangeTitle.bind(this)
@@ -83,9 +83,11 @@ export default class RequestAndCompareContent extends React.Component {
       itemId: id
     })
   }
-  onChangeItemNameAndId (name, id) { // 검색된 아이템을 누르면 itemName에 검색된 item 이름이 들어가고 itemId에 검색된 item Id가 들어감, 그리고 isItemReady가 false로 바뀌어 검색창이 안보이게 함
+  onChangeItemNameAndId (name, id, categoryId) {
+    // 검색된 아이템을 누르면 itemName에 검색된 item 이름이 들어가고 itemId에 검색된 item Id가 들어감, 그리고 isItemReady가 false로 바뀌어 검색창이 안보이게 함, category가 자동적으로 바뀌게 함
     this.onChangeItemName(name)
     this.onChangeItemId(id)
+    this.onChangeCategoryId(categoryId)
     this.setState({
       isItemReady: false
     })
@@ -95,17 +97,26 @@ export default class RequestAndCompareContent extends React.Component {
       isSubmitReady: true
     })
   }
-  onClickSubmitButton () { // 제출하기 버튼을 눌렀을 때 사용, OK버튼을 누르면 isSubmitReady값이 true로 바뀌면서 mutation 보냄
-    Alert.alert(
-      'Message',
-      '제출하시겠습니까?',
-      [
-        { text: 'Cancel' },
-        { text: 'OK',
-          onPress: this.onChangeIsSubmitReadyState
-        }
-      ]
-    )
+  onClickSubmitButton () {
+    // 제출하기 버튼을 눌렀을 때 사용, 만약 입력칸중 빈칸이 하나라도 있으면 경고가 나오게 하고, 아니면 제출하시겟습니까? 메세지가 나옴OK버튼을 누르면 isSubmitReady값이 true로 바뀌면서 mutation 보냄
+    if (this.state.itemName && this.state.text && this.state.title && this.state.grades[0].name && this.state.categoryId) {
+      Alert.alert(
+        'Message',
+        '제출하시겠습니까?',
+        [
+          { text: 'Cancel' },
+          {
+            text: 'OK',
+            onPress: this.onChangeIsSubmitReadyState
+          }
+        ]
+      )
+    } else {
+      Alert.alert(
+        '경고',
+        '빈칸을 모두 입력 해주세요.'
+      )
+    }
   }
   // 이미지 넣는 함수
   render () {
