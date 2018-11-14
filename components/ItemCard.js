@@ -89,6 +89,16 @@ export default class ItemCard extends React.Component {
     if (!(this.props.item && this.state.userId)) {
       return <View />
     }
+    let hasImage = false
+    for (let i = 0; i < this.props.item.reviews.length; i++) {
+      if (this.props.item.reviews[i].imgUrls.length > 0) {
+        hasImage = true
+        break
+      }
+    }
+    if (!hasImage) {
+      return <View />
+    }
     return (
       <Item style={{ borderBottomWidth: 0 }}
         onPress={() => this.props.navigation.navigate('Item', {

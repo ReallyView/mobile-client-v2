@@ -15,11 +15,11 @@ function showItemCards ({ data: { loading, items, variables } }) {
     return (
       <Content style={{ backgroundColor: '#e9ebee' }}>
         {
-          items.map((item, index) => {
+          items.map((item) => {
             return (
               <ItemCard
                 item={item}
-                key={index}
+                key={item.id}
                 navigation={variables.navigation} />
             )
           })
