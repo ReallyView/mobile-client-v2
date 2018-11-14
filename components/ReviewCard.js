@@ -134,7 +134,7 @@ export default class ReviewCard extends React.Component {
                   source={{ uri: imgUrl }} style={styles.itemImage} />
               </Button>} />
           <View style={styles.likeButtonContainer}>
-            <Segment>
+            <Segment style={{ backgroundColor: 'white' }}>
               <LikeButton
                 reviewId={this.state.review.id}
                 isLiked={this.state.isLiked}

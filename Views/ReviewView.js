@@ -163,7 +163,7 @@ export default class ReviewView extends Component {
               }
             </List>
             <View style={styles.likeButtonContainer}>
-              <Segment>
+              <Segment style={{ backgroundColor: 'white' }}>
                 <LikeButton
                   reviewId={this.state.review.id}
                   isLiked={this.state.isLiked}
