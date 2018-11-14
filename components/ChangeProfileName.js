@@ -15,8 +15,8 @@ function updateProfile ({ mutate, navigation }) {
 }
 
 export default graphql(gql`
-  mutation updateProfile($email: String!, $name: String!, $password: String!) {
-    updateProfile(email: $email, name: $name, password: $password) {
+  mutation updateProfile($email: String, $name: String) {
+    updateProfile(email: $email, name: $name) {
       id
     }
   }
@@ -25,8 +25,7 @@ export default graphql(gql`
     return ({
       variables: {
         email: props.email,
-        name: props.name,
-        password: props.password
+        name: props.name
       }
     })
   }

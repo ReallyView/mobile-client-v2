@@ -58,7 +58,7 @@ export default class ChangeProfileNameView extends React.Component {
           </List>
           {
             (this.state.isSubmit)
-              ? <ChangeProfileName navigation={this.props.navigation} email={this.state.email} name={this.state.name} password={'1234'} /> : <Form />
+              ? <ChangeProfileName navigation={this.props.navigation} email={this.state.email} name={this.state.name} /> : <Form />
           }
         </Content>
       </Container>
