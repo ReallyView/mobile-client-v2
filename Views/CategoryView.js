@@ -18,10 +18,12 @@ export default class CategoryView extends React.Component {
     this.state = {
       isCategorySelected: false,
       categoryId: '',
-      categoryName: ''
+      categoryName: '',
+      filter: 'HOT'
     }
     this.returnToCategoryView = this.returnToCategoryView.bind(this)
     this.onClickCategory = this.onClickCategory.bind(this)
+    this.onFilterChange = this.onFilterChange.bind(this)
   }
   returnToCategoryView () {
     this.setState({
@@ -33,6 +35,11 @@ export default class CategoryView extends React.Component {
       isCategorySelected: true,
       categoryId: categoryId,
       categoryName: categoryName
+    })
+  }
+  onFilterChange (filter) {
+    this.setState({
+      filter: filter
     })
   }
   render () {
@@ -47,7 +54,11 @@ export default class CategoryView extends React.Component {
         <Body>
           {
             this.state.isCategorySelected
-              ? <CategoryItemCardGroup categoryId={this.state.categoryId} navigation={this.props.navigation} />
+              ? <CategoryItemCardGroup
+                categoryId={this.state.categoryId}
+                navigation={this.props.navigation}
+                onFilterChange={this.onFilterChange}
+                filter={this.state.filter} />
               : <CategoryGroup onClickCategory={this.onClickCategory} />
           }
         </Body>
