@@ -3,7 +3,6 @@ import {
   View,
   List,
   ListItem,
-  Item,
   Text,
   Title
 } from 'native-base'
@@ -71,9 +70,12 @@ export default class SideBar extends React.Component {
 const styles = StyleSheet.create({
   profileImage: {
     marginTop: 0.1 * height,
-    width: 0.15 * height,
-    height: 0.15 * height,
-    alignSelf: 'center'
+    width: 0.16 * height,
+    height: 0.16 * height,
+    alignSelf: 'center',
+    borderRadius: 0.08 * height,
+    borderWidth: 2,
+    borderColor: '#dfe4ea'
   },
   name: {
     marginTop: 0.05 * height,
