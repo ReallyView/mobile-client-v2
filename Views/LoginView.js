@@ -12,8 +12,8 @@ export default class LoginView extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: 'sskim0126@gmail.com',
-      password: '1234',
+      email: '',
+      password: '',
       isSignUpView: false
     }
     this.finishLogin = this.finishLogin.bind(this)
