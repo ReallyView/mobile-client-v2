@@ -154,7 +154,7 @@ export default class RequestAndCompareContent extends React.Component {
               <Text>평점</Text>
             </Left>
             <Body>
-              <Button onPress={this.onClickAddGrade}>
+              <Button onPress={this.onClickAddGrade} bordered>
                 <Text>평점 추가하기</Text>
               </Button>
             </Body>

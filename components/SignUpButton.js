@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 
 function signUp ({ mutate, finishSignUp }) {
   return (
-    <Button block
+    <Button block bordered
       style={{ margin: 15, marginTop: 50 }}
       onPress={() => {
         mutate()

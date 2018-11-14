@@ -14,7 +14,7 @@ function login ({ mutate, finishLogin }) {
   let profileImgUrl = null
   let userId = null
   return (
-    <Button block
+    <Button block bordered
       style={{ margin: 15, marginTop: 0.1 * height }}
       onPress={() => {
         mutate()

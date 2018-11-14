@@ -66,7 +66,7 @@ export default class LoginView extends Component {
             email={this.state.email}
             password={this.state.password}
             finishLogin={this.finishLogin} />
-          <Button block
+          <Button block bordered
             style={{ margin: 15, marginTop: 0.02 * height }}
             onPress={() => this.setState({ isSignUpView: true })}>
             <Text>Sign Up</Text>
