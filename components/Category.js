@@ -19,7 +19,8 @@ export default class Category extends React.Component {
       return <View />
     }
     return (
-      <Item onPress={() => this.props.onClickCategory(this.props.id, this.props.name)} style={{ borderBottomWidth: 0 }}>
+      <Item onPress={() => this.props.onClickCategory(this.props.id, this.props.name)}
+        style={{ borderBottomWidth: 0, width: 0.48 * width }}>
         <Card style={styles.layout}>
           <Icon name={this.props.icon} style={{ color: 'gray' }} />
           <Text style={{ alignSelf: 'center' }}>{this.props.name}</Text>
