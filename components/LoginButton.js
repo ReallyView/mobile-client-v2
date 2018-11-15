@@ -30,24 +30,11 @@ function login ({ mutate, finishLogin }) {
           .catch(error => {
             console.log(error)
             Toast.show({
-              text: 'Wrong password!',
+              text: '로그인에 실패햐였습니다',
               buttonText: 'Okay',
-              type: 'warning'
+              type: 'danger'
             })
           }).then(() => {
-            Toast.show({
-              text: 'Succeed to sign in!',
-              buttonText: 'Okay',
-              type: 'success',
-              position: 'top',
-              style: {
-                opacity: 0.7,
-                backgroundColor: 'gray'
-              },
-              textStyle: {
-                marginLeft: 10
-              }
-            })
             finishLogin(token, email, name, profileImgUrl, userId)
           })
       }}>

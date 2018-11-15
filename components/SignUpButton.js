@@ -11,7 +11,7 @@ function signUp ({ mutate, finishSignUp }) {
         mutate()
           .then(result => {
             Toast.show({
-              text: 'Succeed to sign up!',
+              text: '회원가입에 성공하였습니다',
               buttonText: 'Okay',
               type: 'success'
             })
@@ -20,9 +20,9 @@ function signUp ({ mutate, finishSignUp }) {
           .catch(error => {
             console.log(error)
             Toast.show({
-              text: 'Wrong email or password!',
+              text: '회원가입에 실패하였습니다',
               buttonText: 'Okay',
-              type: 'warning'
+              type: 'danger'
             })
           })
       }}>
