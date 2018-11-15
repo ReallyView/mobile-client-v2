@@ -96,7 +96,7 @@ export default class HomeView extends React.Component {
               <Button onPress={() => this.props.navigation.navigate('RequestAndCompare')}>
                 <Icon name='navigate' />
               </Button>
-              <Button onPress={() => this.props.navigation.navigate('More', { email: this.state.email, name: this.state.name, profileImgUrl: this.state.profileImgUrl })}>
+              <Button onPress={() => this.props.navigation.navigate('More')}>
                 <Icon name='ios-more' />
               </Button>
             </FooterTab>

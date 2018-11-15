@@ -1,15 +1,15 @@
 import React from 'react'
-import { Content, Card, CardItem, Left, Thumbnail, Body, Text, List, ListItem, Right, Icon, Separator } from 'native-base'
-import { AsyncStorage } from 'react-native'
+import { Content, Card, CardItem, Left, Body, Text, List, ListItem, Right, Icon } from 'native-base'
+import { AsyncStorage, Image } from 'react-native'
 import Layout from '../constants/Layout'
 
 export default class MoreContent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      profileImgUrl: undefined,
-      email: '',
-      name: ''
+      profileImgUrl: '', // 없으면 null
+      email: '', // 없으면 null
+      name: '' // 없으면 null
     }
   }
   componentWillMount () {
@@ -31,10 +31,28 @@ export default class MoreContent extends React.Component {
         <Card transparent>
           <CardItem>
             <Left>
-              <Thumbnail square source={{ uri: this.state.profileImgUrl }} style={{ width: 0.2 * Layout.window.width, height: 0.2 * Layout.window.width }} />
+              {
+                (this.state.profileImgUrl)
+                  ? <Image
+                    source={{ uri: this.state.profileImgUrl }}
+                    style={{ width: 0.2 * Layout.window.width, height: 0.2 * Layout.window.width, borderRadius: 0.02 * Layout.window.width }}
+                  />
+                  : <Image
+                    source={require('../assets/images/profileIcon.png')}
+                    style={{ width: 0.2 * Layout.window.width, height: 0.2 * Layout.window.width, borderRadius: 0.02 * Layout.window.width }}
+                  />
+              }
               <Body>
-                <Text style={{ fontSize: 0.045 * Layout.window.width, fontWeight: 'bold' }}>{this.state.name}</Text>
-                <Text style={{ fontSize: 0.03 * Layout.window.width, marginTop: 0.02 * Layout.window.width, color: 'gray' }}>{this.state.email}</Text>
+                {
+                  (this.state.name)
+                    ? <Text style={{ fontSize: 0.045 * Layout.window.width, fontWeight: 'bold' }}>{this.state.name}</Text>
+                    : <Text style={{ fontSize: 0.045 * Layout.window.width, fontWeight: 'bold' }}>입력된 이름이 없습니다.</Text>
+                }
+                {
+                  (this.state.email)
+                    ? <Text style={{ fontSize: 0.03 * Layout.window.width, marginTop: 0.02 * Layout.window.width, color: 'gray' }}>{this.state.email}</Text>
+                    : <Text style={{ fontSize: 0.03 * Layout.window.width, marginTop: 0.02 * Layout.window.width, color: 'gray' }}>입력된 이메일이 없습니다.</Text>
+                }
               </Body>
             </Left>
           </CardItem>
