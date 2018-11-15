@@ -18,19 +18,10 @@ export default class MoreView extends React.Component {
           headerTitle={'더보기'}
           navigate={'Home'}
         />
-        <MoreContent
-          email={this.props.navigation.getParam('email')}
-          name={this.props.navigation.getParam('name')}
-          profileImgUrl={this.props.navigation.getParam('profileImgUrl')}
-          navigation={this.props.navigation}
-        />
+        <MoreContent navigation={this.props.navigation} />
         <Footer>
           <FooterTab>
-            <Button onPress={() => this.props.navigation.navigate('Home',
-              { email: this.props.navigation.getParam('email'),
-                name: this.props.navigation.getParam('name'),
-                profileImgUrl: this.props.navigation.getParam('profileImgUrl') })}
-            >
+            <Button onPress={() => this.props.navigation.navigate('Home')}>
               <Icon name='home' />
             </Button>
             <Button onPress={() => this.props.navigation.navigate('Category')}>
