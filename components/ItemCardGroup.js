@@ -36,6 +36,7 @@ export default graphql(gql`
       name
       reviews {
         id,
+        title,
         imgUrls
       }
     }

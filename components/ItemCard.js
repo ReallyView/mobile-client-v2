@@ -2,10 +2,10 @@ import React from 'react'
 import {
   Card,
   List,
-  Button,
   Label,
   Item,
-  View
+  View,
+  Text
 } from 'native-base'
 import { Image, StyleSheet, AsyncStorage } from 'react-native'
 import gql from 'graphql-tag'
@@ -45,10 +45,10 @@ const ReviewImage = graphql(gql`
   }
 `)(goToReview)
 
-function goToReview ({ mutate, reviewId, reviewImgUrl, userId, navigation }) {
+function goToReview ({ mutate, reviewId, reviewTitle, reviewImgUrl, userId, navigation }) {
   return (
-    <Button transparent
-      style={styles.imageStyle}
+    <Item transparent
+      style={styles.reviewContainer}
       onPress={() => mutate({
         variables: {
           reviewId: reviewId,
@@ -63,9 +63,10 @@ function goToReview ({ mutate, reviewId, reviewImgUrl, userId, navigation }) {
         .catch(error => {
           console.error(error)
         })}>
-      <Image style={styles.imageStyle}
+      <Image style={styles.image}
         source={{ uri: reviewImgUrl }} />
-    </Button>
+      <Text style={styles.reviewTitle} numberOfLines={1}>{reviewTitle}</Text>
+    </Item>
   )
 }
 
@@ -105,15 +106,16 @@ export default class ItemCard extends React.Component {
           itemName: this.props.item.name,
           itemId: this.props.item.id,
           userId: this.state.userId })}>
-        <Card style={styles.cardStyle}>
-          <Label style={styles.titleStyle}>{this.props.item.name}</Label>
-          <List horizontal dataArray={this.props.item.reviews}
+        <Card style={styles.card}>
+          <Label style={styles.title}>{this.props.item.name}</Label>
+          <List horizontal dataArray={this.props.item.reviews} style={{ marginLeft: 0.01 * width }}
             renderRow={(review) => {
               if (review.imgUrls && review.imgUrls.length > 0) {
                 return (
                   <ReviewImage
                     reviewId={review.id}
                     reviewImgUrl={review.imgUrls[0]}
+                    reviewTitle={review.title}
                     userId={this.state.userId}
                     navigation={this.props.navigation} />)
               } else {
@@ -127,23 +129,42 @@ export default class ItemCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  titleStyle: {
+  title: {
     margin: 0.03 * width,
     marginLeft: 0.05 * width,
     fontSize: 18
   },
-  imageStyle: {
-    height: 0.35 * width,
-    width: 0.5 * width,
-    marginLeft: 0.02 * width,
-    marginRight: 0.02 * width
+  reviewContainer: {
+    height: 0.5 * width,
+    width: 0.6 * width,
+    marginLeft: 0.01 * width,
+    marginRight: 0.01 * width,
+    borderBottomWidth: 0,
+    flexDirection: 'column',
+    borderRadius: 0.02 * width,
+    backgroundColor: '#f1f2f6'
   },
-  cardStyle: {
+  image: {
+    height: 0.4 * width,
+    width: 0.6 * width,
+    marginLeft: 0.01 * width,
+    marginRight: 0.01 * width,
+    borderRadius: 0.02 * width
+  },
+  reviewTitle: {
+    height: 0.1 * width,
+    width: 0.6 * width,
+    marginLeft: 0.01 * width,
+    marginRight: 0.01 * width,
+    padding: 0.03 * width,
+    color: '#2f3542'
+  },
+  card: {
     marginTop: 0.01 * height,
     marginBottom: 0.01 * height,
     marginLeft: 0.02 * width,
     marginRight: 0.02 * width,
-    paddingBottom: 0.02 * height,
+    paddingBottom: 0.01 * height,
     width: 0.95 * width
   }
 })
