@@ -24,11 +24,13 @@ const CompareQuery = gql`
     }
   }
 `
-export const CompareItemContent = (ids) => {
+export const CompareItemContent = (props) => {
   return (
     <Query
       query={CompareQuery}
-      variables={ids}
+      variables={{
+        itemIds: [props.itemId1, props.itemId2]
+      }}
     >
       {({ loading, error, data }) => {
         if (loading) return <Text style={textStyle}>Loading...</Text>

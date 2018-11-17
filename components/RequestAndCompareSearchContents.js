@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, ListItem, Content, Text } from 'native-base'
+import { List, ListItem, Content, Text, View } from 'native-base'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
@@ -15,26 +15,27 @@ const SearchQuery = gql`
     }
   }
 `
-export const CompareSearchItem1 = (props) => {
+export const RequestAndCompareSearchContents = (props) => {
   return (
     <Query
       query={SearchQuery}
       variables={{
-        itemName: props.product1
+        itemName: props.itemName
       }}
     >
       {({ loading, error, data }) => {
         if (loading) return <Text style={textStyle}>Loading...</Text>
         if (error) return <Text style={textStyle}>Error : {error.message}</Text>
         if (data.searchItems.length === 0) return <Text style={textStyle}>찾은 결과가 없습니다.</Text>
+        if (!props.itemName) return <View />
 
         return (
           <Content>
-            <List transparent style={{ width: 0.4 * Layout.window.width, alignItems: 'center' }}>
+            <List transparent style={{ width: 0.4 * width, alignItems: 'center' }}>
               {
                 data.searchItems.map(({ id, name }) => {
                   return (
-                    <ListItem key={id} onPress={() => props.onChangeProductNameAndId1(name, id) }>
+                    <ListItem key={id} onPress={() => props.onChangeItemAndId(name, id)}>
                       <Text>{name}</Text>
                     </ListItem>
                   )
