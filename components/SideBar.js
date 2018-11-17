@@ -59,7 +59,7 @@ export default class SideBar extends React.Component {
             <Text style={styles.text}>좋아요 / 싫어요</Text>
           </ListItem>
           <ListItem style={styles.listItem} onPress={() => this.onClickUserRecords('vote')}>
-            <Text style={styles.text}>투표</Text>
+            <Text style={styles.text}>투표한</Text>
           </ListItem>
         </List>
       </View>

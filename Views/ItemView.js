@@ -7,7 +7,8 @@ import {
   Right,
   Title,
   Icon,
-  Button
+  Button,
+  Text
 } from 'native-base'
 
 import ReviewCardGroup from '../components/ReviewCardGroup'
@@ -54,7 +55,15 @@ export default class ItemView extends Component {
           <Body>
             <Title>{this.state.itemName}</Title>
           </Body>
-          <Right />
+          <Right>
+            <Button transparent onPress={() => this.props.navigation.navigate('Votes', {
+              itemName: this.state.itemName,
+              itemId: this.state.itemId,
+              userId: this.state.userId
+            })}>
+              <Text>투표</Text>
+            </Button>
+          </Right>
         </Header>
         <Body>
           <ReviewCardGroup itemId={this.state.itemId} onClickReviewCard={this.onClickReviewCard} userId={this.state.userId} />

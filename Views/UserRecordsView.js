@@ -10,8 +10,10 @@ import {
 import { AsyncStorage, StyleSheet } from 'react-native'
 
 import Headers from '../components/Headers'
+import UserRecordsVoteRequest from '../components/UserRecordsVoteRequest'
 import UserRecordsReview from '../components/UserRecordsReview'
 import UserRecordsLikeAndDislike from '../components/UserRecordsLikeAndDislike'
+import UserRecordsVotedVotes from '../components/UserRecordsVotedVotes'
 import Layout from '../constants/Layout'
 
 const width = Layout.window.width
@@ -76,7 +78,9 @@ export default class UserRecordsView extends React.Component {
         />
         <Tabs initialPage={this.state.initialPage}>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>구독</Text></TabHeading>} />
-          <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표 요청</Text></TabHeading>} />
+          <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표 요청</Text></TabHeading>}>
+            <UserRecordsVoteRequest userId={this.state.userId} />
+          </Tab>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>리뷰</Text></TabHeading>}>
             <UserRecordsReview userId={this.state.userId} onClickReviewCard={this.onClickReviewCard} />
           </Tab>
@@ -85,7 +89,9 @@ export default class UserRecordsView extends React.Component {
               ? <UserRecordsLikeAndDislike userId={this.state.userId} onClickReviewCard={this.onClickReviewCard} />
               : <View />}
           </Tab>
-          <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표</Text></TabHeading>} />
+          <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표한</Text></TabHeading>}>
+            <UserRecordsVotedVotes userId={this.state.userId}/>
+          </Tab>
         </Tabs>
       </Container>
     )
