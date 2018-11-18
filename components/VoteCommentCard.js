@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardItem, Form, Text, Thumbnail, Item, View } from 'native-base'
+import { Card, CardItem, Text, Thumbnail, Item, View } from 'native-base'
 
 import Layout from '../constants/Layout'
 

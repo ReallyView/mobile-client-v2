@@ -1,7 +1,8 @@
 import React from 'react'
-import { Body, Button, Container, Header, Icon, Left, Right, Title, Content } from 'native-base'
-import { Platform, StatusBar } from 'react-native'
+import { Body, Button, Container, Header, Icon, Left, Right, Title, Content, Footer } from 'native-base'
+import { Platform, StatusBar, KeyboardAvoidingView } from 'react-native'
 import VoteCommentCardGroup from '../components/VoteCommentCardGroup'
+import VoteCommentButton from '../components/VoteCommentButton'
 
 const platform = Platform.OS
 
@@ -12,7 +13,15 @@ export default class VoteCommentView extends React.Component {
       itemName: this.props.navigation.getParam('itemName'),
       itemId: this.props.navigation.getParam('itemId'),
       userId: this.props.navigation.getParam('userId'),
+      voteId: this.props.navigation.getParam('voteId'),
+      text: ''
     }
+    this.onChangeText = this.onChangeText.bind(this)
+  }
+  onChangeText (text) {
+    this.setState({
+      text: text
+    })
   }
   render () {
     return (
@@ -32,6 +41,11 @@ export default class VoteCommentView extends React.Component {
         <Content>
           <VoteCommentCardGroup itemId={this.state.itemId} />
         </Content>
+        <KeyboardAvoidingView behavior='padding'>
+          <Footer style={{ backgroundColor: 'white' }}>
+            <VoteCommentButton text={this.state.text} onChangeText={this.onChangeText} voteId={this.state.voteId} />
+          </Footer>
+        </KeyboardAvoidingView>
       </Container>
     )
   }
