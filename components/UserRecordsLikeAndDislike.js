@@ -19,11 +19,11 @@ function showReviewCards ({ data: { loading, userInfo, variables } }) {
         <Tab heading='좋아요'>
           <Content>
             {
-              userInfo.likedReviews.map((review, index) => {
+              userInfo.likedReviews.map((review) => {
                 return (
                   <ReviewCard
                     review={review}
-                    key={index}
+                    key={review.id}
                     onClickReviewCard={variables.onClickReviewCard} />
                 )
               })

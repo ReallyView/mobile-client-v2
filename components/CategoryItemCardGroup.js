@@ -3,7 +3,6 @@ import {
   Content,
   Spinner,
   View,
-  Right,
   Picker,
   Icon
 } from 'native-base'
@@ -43,11 +42,11 @@ function showCategoryItemCards ({ data: { loading, items, variables } }) {
         </View>
         <Content>
           {
-            items.map((item, index) => {
+            items.map((item) => {
               return (
                 <ItemCard
                   item={item}
-                  key={index}
+                  key={item.id}
                   navigation={variables.navigation} />
               )
             })

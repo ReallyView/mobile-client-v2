@@ -15,11 +15,11 @@ function showVoteCards ({ data: { loading, userInfo, variables } }) {
     return (
       <Content>
         {
-          userInfo.votedVotes.map((vote, index) => {
+          userInfo.votedVotes.map((vote) => {
             return (
               <VoteCard
                 vote={vote}
-                key={index}
+                key={vote.id}
               />
             )
           })
