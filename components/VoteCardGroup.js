@@ -55,6 +55,12 @@ export default graphql(gql`
       text
       comments {
         id
+        author {
+          name
+          email
+          profileImgUrl
+        }
+        text
       }
       createdAt
     }

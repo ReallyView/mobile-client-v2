@@ -14,6 +14,7 @@ export default class VoteCommentView extends React.Component {
       itemId: this.props.navigation.getParam('itemId'),
       userId: this.props.navigation.getParam('userId'),
       voteId: this.props.navigation.getParam('voteId'),
+      comments: this.props.navigation.getParam('comments'),
       text: ''
     }
     this.onChangeText = this.onChangeText.bind(this)
@@ -28,7 +29,7 @@ export default class VoteCommentView extends React.Component {
       <Container>
         <Header style={platform === 'android' ? androidStyle : {}} hasTabs={this.props.hasTabs}>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.navigate('Vote', { itemName: this.state.itemName, itemId: this.state.itemId, userId: this.state.userId })}>
+            <Button transparent onPress={() => this.props.navigation.navigate('Votes', { itemName: this.state.itemName, itemId: this.state.itemId, userId: this.state.userId })}>
               <Icon
                 name={'arrow-back'} />
             </Button>
@@ -39,11 +40,15 @@ export default class VoteCommentView extends React.Component {
           <Right />
         </Header>
         <Content>
-          <VoteCommentCardGroup itemId={this.state.itemId} />
+          <VoteCommentCardGroup itemId={this.state.itemId} comments={this.state.comments} />
         </Content>
         <KeyboardAvoidingView behavior='padding'>
           <Footer style={{ backgroundColor: 'white' }}>
-            <VoteCommentButton text={this.state.text} onChangeText={this.onChangeText} voteId={this.state.voteId} />
+            <VoteCommentButton
+              text={this.state.text}
+              onChangeText={this.onChangeText}
+              voteId={this.state.voteId}
+            />
           </Footer>
         </KeyboardAvoidingView>
       </Container>

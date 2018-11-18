@@ -45,6 +45,11 @@ export default graphql(gql`
   mutation ($voteId: ID!, $text: String!) {
     createComment(voteId: $voteId, text: $text) {
       id
+      author {
+        name
+        email
+        profileImgUrl
+      }
       text
     }
   }

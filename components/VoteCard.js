@@ -171,7 +171,12 @@ export default class ReviewCard extends React.Component {
             transparent
             onPress={() =>
               this.props.navigation.navigate('VoteComment',
-                { itemName: this.props.itemName, itemId: this.props.itemId, userId: this.props.userId, voteId: this.props.vote.id })
+                { itemName: this.props.itemName,
+                  itemId: this.props.itemId,
+                  userId: this.props.userId,
+                  voteId: this.props.vote.id,
+                  comments: this.state.vote.comments
+                })
             }
           >
             <Text>댓글달기</Text>
