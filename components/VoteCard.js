@@ -3,11 +3,12 @@ import {
   Card,
   Item,
   View,
-  Text, Left, Thumbnail, Button
+  Text, Left, Thumbnail, Right, Button, Icon
 } from 'native-base'
-import { AsyncStorage, StyleSheet } from 'react-native'
+import { Alert, AsyncStorage, StyleSheet } from 'react-native'
 import VoteItemButton from './VoteItemButton'
 import Layout from '../constants/Layout'
+import DeleteVote from './DeleteVote'
 
 const width = Layout.window.width
 const height = Layout.window.height
@@ -16,10 +17,17 @@ export default class ReviewCard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      vote: this.props.vote
+      vote: this.props.vote,
+      isDeleted: false,
+      isDeleteReady: false,
+      isError: false
     }
     this.onClickVoteItem1 = this.onClickVoteItem1.bind(this)
     this.onClickVoteItem2 = this.onClickVoteItem2.bind(this)
+    this.finishDeleteVote = this.finishDeleteVote.bind(this)
+    this.errorDeleteVote = this.errorDeleteVote.bind(this)
+    this.onChangeDeleteReady = this.onChangeDeleteReady.bind(this)
+    this.onClickDeleteButton = this.onClickDeleteButton.bind(this)
   }
   componentWillMount () {
     const getData = async () => {
@@ -67,9 +75,52 @@ export default class ReviewCard extends React.Component {
       isVoted2: !this.state.isVoted2
     })
   }
+  finishDeleteVote (reviewId) {
+    this.setState({
+      isDeleted: true
+    })
+  }
+  errorDeleteVote (error) {
+    console.log(error)
+    this.setState({
+      isError: true
+    })
+  }
+  onChangeDeleteReady () {
+    this.setState({
+      isDeleteReady: true
+    })
+  }
+  onClickDeleteButton () {
+    Alert.alert(
+      'Message',
+      '정말로 지우시겠습니까?',
+      [
+        { text: 'Cancel' },
+        {
+          text: 'OK',
+          onPress: this.onChangeDeleteReady
+        }
+      ]
+    )
+  }
   render () {
     if (!this.props.vote) {
       return <View />
+    }
+    if (this.state.isDeleted) {
+      return (
+        <Card style={{ width: 0.95 * width, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ margin: 0.05 * height }}>삭제되었습니다.</Text>
+        </Card>
+      )
+    }
+    if (this.state.isError) {
+      return (
+        <Card style={{ width: 0.95 * width, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ margin: 0.05 * height }}>이미 삭제된 투표입니다.</Text>
+        </Card>
+      )
     }
     return (
       <Item style={{ borderBottomWidth: 0 }}>
@@ -83,6 +134,18 @@ export default class ReviewCard extends React.Component {
                     ? (this.state.vote.author.profileImgUrl)
                     : 'https://facebook.github.io/react-native/docs/assets/favicon.png' }} />
               <Text style={{ margin: 0.02 * width }}>{this.state.vote.author.name}</Text>
+              {
+                (this.state.userId === this.state.vote.author.id)
+                  ? <Right>
+                    <Button
+                      transparent
+                      onPress={this.onClickDeleteButton}
+                    >
+                      <Icon name={'md-trash'} style={{ color: 'gray' }} />
+                    </Button>
+                  </Right>
+                  : <View />
+              }
             </Left>
           </View>
           <Text style={{ margin: 0.03 * width }}>{this.state.vote.text}</Text>
@@ -105,6 +168,11 @@ export default class ReviewCard extends React.Component {
             userId={this.state.userId}
           />
         </Card>
+        {
+          (this.state.isDeleteReady)
+            ? <DeleteVote finishDeleteVote={this.finishDeleteVote} errorDeleteVote={this.errorDeleteVote} voteId={this.state.vote.id} />
+            : <View />
+        }
       </Item>
     )
   }
