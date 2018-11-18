@@ -19,9 +19,13 @@ class VoteItemButton extends React.Component {
         onPress={() => {
           this.props.mutate({
             variables: {
-              voteInfoId: this.props.voteInfoId
+              voteInfoId: this.props.voteInfoId,
+              userId: this.props.userId
             }
           })
+            .then(result => {
+              this.props.onClickVoteItem(result.data.vote)
+            })
             .catch(error =>
               console.error(error))
         }}
@@ -38,10 +42,13 @@ class VoteItemButton extends React.Component {
 }
 
 export default graphql(gql`
-  mutation ($voteInfoId: ID!) {
+  mutation ($voteInfoId: ID!, $userId: ID!) {
     vote(voteInfoId: $voteInfoId) {
       id
       voteNum
+      votedBy (where: { id: $userId }) {
+        id
+      }
     }
   }
 `)(VoteItemButton)
