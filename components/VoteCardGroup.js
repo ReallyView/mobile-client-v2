@@ -8,7 +8,7 @@ import { graphql } from 'react-apollo'
 
 import VoteCard from './VoteCard'
 
-function showVoteCards ({ data: { loading, votes, variables } }) {
+function showVoteCards ({ data: { loading, votes, variables }, itemName, itemId, userId, navigation }) {
   if (loading) {
     return <Spinner color='gray' />
   } else {
@@ -20,6 +20,10 @@ function showVoteCards ({ data: { loading, votes, variables } }) {
               <VoteCard
                 vote={vote}
                 key={vote.id}
+                itemName={itemName}
+                itemId={itemId}
+                userId={userId}
+                navigation={navigation}
               />
             )
           })

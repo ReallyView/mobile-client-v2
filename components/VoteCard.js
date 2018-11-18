@@ -5,7 +5,7 @@ import {
   View,
   Text, Left, Thumbnail, Right, Button, Icon
 } from 'native-base'
-import { Alert, AsyncStorage, StyleSheet } from 'react-native'
+import { Alert, AsyncStorage } from 'react-native'
 import VoteItemButton from './VoteItemButton'
 import Layout from '../constants/Layout'
 import DeleteVote from './DeleteVote'
@@ -167,6 +167,15 @@ export default class ReviewCard extends React.Component {
             onClickVoteItem={this.onClickVoteItem2}
             userId={this.state.userId}
           />
+          <Button
+            transparent
+            onPress={() =>
+              this.props.navigation.navigate('VoteComment',
+                { itemName: this.props.itemName, itemId: this.props.itemId, userId: this.props.userId })
+            }
+          >
+            <Text>댓글달기</Text>
+          </Button>
         </Card>
         {
           (this.state.isDeleteReady)
@@ -177,21 +186,3 @@ export default class ReviewCard extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  voteInfo: {
-    flexDirection: 'row',
-    width: 0.9 * width,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    margin: 0.02 * width
-  },
-  voteBar: {
-    flexDirection: 'row',
-    width: 0.5 * width,
-    height: 0.02 * height,
-    borderWidth: 1,
-    borderColor: '#bdc3c7',
-    borderRadius: 0.005 * height
-  }
-})

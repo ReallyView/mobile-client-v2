@@ -44,7 +44,7 @@ export default class VotesView extends Component {
           <Right />
         </Header>
         <Body>
-          <VoteCardGroup itemId={this.state.itemId} userId={this.state.userId} />
+          <VoteCardGroup itemId={this.state.itemId} userId={this.state.userId} itemName={this.state.itemName} navigation={this.props.navigation} />
         </Body>
       </Container>
     )
