@@ -6,7 +6,7 @@ import {
   Text, Left, Thumbnail, Button
 } from 'native-base'
 import { StyleSheet } from 'react-native'
-
+import VoteItemButton from './VoteItemButton'
 import Layout from '../constants/Layout'
 
 const width = Layout.window.width
@@ -47,22 +47,20 @@ export default class ReviewCard extends React.Component {
             </Left>
           </View>
           <Text style={{ margin: 0.03 * width }}>{this.state.vote.text}</Text>
-          <Button transparent style={styles.voteInfo} bordered={this.state.isVoted1}>
-            <Text style={{ color: 'black' }}>{this.state.vote.voteInfo[0].item.name}</Text>
-            <View style={styles.voteBar}>
-              <View style={{ flex: this.state.voteNum1, backgroundColor: '#62B1F6' }} />
-              <View style={{ flex: this.state.totalVoteNum - this.state.voteNum1 }} />
-            </View>
-            <Text style={{ color: 'black' }}>{this.state.voteNum1}</Text>
-          </Button>
-          <Button transparent style={styles.voteInfo} bordered={this.state.isVoted2}>
-            <Text style={{ color: 'black' }}>{this.state.vote.voteInfo[1].item.name}</Text>
-            <View style={styles.voteBar}>
-              <View style={{ flex: this.state.voteNum2, backgroundColor: '#62B1F6' }} />
-              <View style={{ flex: this.state.totalVoteNum - this.state.voteNum2 }} />
-            </View>
-            <Text style={{ color: 'black' }}>{this.state.voteNum2}</Text>
-          </Button>
+          <VoteItemButton
+            voteInfoId={this.state.vote.voteInfo[0].id}
+            isVoted={this.state.isVoted1}
+            itemName={this.state.vote.voteInfo[0].item.name}
+            voteNum={this.state.voteNum1}
+            totalVoteNum={this.state.totalVoteNum}
+          />
+          <VoteItemButton
+            voteInfoId={this.state.vote.voteInfo[1].id}
+            isVoted={this.state.isVoted2}
+            itemName={this.state.vote.voteInfo[1].item.name}
+            voteNum={this.state.voteNum2}
+            totalVoteNum={this.state.totalVoteNum}
+          />
         </Card>
       </Item>
     )
