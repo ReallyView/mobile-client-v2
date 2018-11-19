@@ -35,6 +35,7 @@ export const CompareItemContent = (props) => {
       {({ loading, error, data }) => {
         if (loading) return <Text style={textStyle}>Loading...</Text>
         if (error) return <Text style={textStyle}>Error : {error.message}</Text>
+        if (data.compareItems.length === 0) return <Text style={textStyle}>해당 제품들의 비교 결과가 없습니다</Text>
 
         return (
           data.compareItems.map(({ name, starNumAverages }) => {
