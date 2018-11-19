@@ -16,16 +16,10 @@ export default class VoteCommentCard extends React.Component {
       text: this.props.comment.text
     }
     this.onChangeText = this.onChangeText.bind(this)
-    this.onChangeIsEdit = this.onChangeIsEdit.bind(this)
   }
   onChangeText (text) {
     this.setState({
       text: text
-    })
-  }
-  onChangeIsEdit () {
-    this.setState({
-      isEdit: true
     })
   }
   render () {

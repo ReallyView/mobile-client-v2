@@ -28,6 +28,9 @@ class ClickSubmitButton extends React.Component {
                     text: this.props.text
                   }
                 })
+                  .then(result => {
+                    this.props.finishSubmitComment(result.data.createComment)
+                  })
                   .catch(error =>
                     console.error(error))
               }}

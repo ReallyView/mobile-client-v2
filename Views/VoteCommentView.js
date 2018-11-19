@@ -13,13 +13,35 @@ export default class VoteCommentView extends React.Component {
       itemName: this.props.navigation.getParam('itemName'),
       itemId: this.props.navigation.getParam('itemId'),
       userId: this.props.navigation.getParam('userId'),
-      voteId: this.props.navigation.getParam('voteId')
+      voteId: this.props.navigation.getParam('voteId'),
+      comments: this.props.navigation.getParam('comments'),
+      isEdit: false,
+      isDelete: false,
+      text: ''
     }
     this.onChangeText = this.onChangeText.bind(this)
+    this.onChangeIsEdit = this.onChangeIsEdit.bind(this)
+    this.onChangeIsDelete = this.onChangeIsDelete.bind(this)
+    this.finishSubmitComment = this.finishSubmitComment.bind(this)
   }
   onChangeText (text) {
     this.setState({
       text: text
+    })
+  }
+  onChangeIsEdit () {
+    this.setState({
+      isEdit: true
+    })
+  }
+  onChangeIsDelete () {
+    this.setState({
+      isDelete: true
+    })
+  }
+  finishSubmitComment (comment) {
+    this.setState({
+      comments: this.state.comments.concat(comment)
     })
   }
   render () {
@@ -38,7 +60,7 @@ export default class VoteCommentView extends React.Component {
           <Right />
         </Header>
         <Content>
-          <VoteCommentCardGroup userId={this.state.userId} itemId={this.state.itemId} />
+          <VoteCommentCardGroup userId={this.state.userId} comments={this.state.comments} />
         </Content>
         <KeyboardAvoidingView behavior='padding'>
           <Footer style={{ backgroundColor: 'white' }}>
@@ -46,6 +68,7 @@ export default class VoteCommentView extends React.Component {
               text={this.state.text}
               onChangeText={this.onChangeText}
               voteId={this.state.voteId}
+              finishSubmitComment={this.finishSubmitComment}
             />
           </Footer>
         </KeyboardAvoidingView>
