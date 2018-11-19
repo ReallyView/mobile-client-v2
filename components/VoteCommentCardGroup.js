@@ -6,16 +6,22 @@ import {
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
-import VoteCommentCard from './VoteCommentCard'
+import VoteCommentCards from './VoteCommentCards'
 
-export default class VoteCommentCardGroup extends React.Component {
-  render () {
+function showVoteCommentCards ({ data: { loading, votes }, userId }) {
+  if (loading) {
+    return <Spinner color='gray' />
+  } else {
     return (
       <Content>
         {
-          this.props.comments.map((comment, index) => {
+          votes.map((vote, index) => {
             return (
-              <VoteCommentCard comment={comment} key={index} />
+              <VoteCommentCards
+                vote={vote}
+                key={index}
+                userId={userId}
+              />
             )
           })
         }
@@ -23,3 +29,29 @@ export default class VoteCommentCardGroup extends React.Component {
     )
   }
 }
+
+export default graphql(gql`
+  query ($itemId: ID!, $userId: ID!) {
+    votes(itemId: $itemId) {
+      comments {
+        id
+        author {
+          id
+          name
+          email
+          profileImgUrl
+        }
+        text
+      }
+    }
+  }
+`, {
+  options: props => {
+    return ({
+      variables: {
+        itemId: props.itemId,
+        userId: props.userId
+      }
+    })
+  }
+})(showVoteCommentCards)

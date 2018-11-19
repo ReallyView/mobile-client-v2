@@ -46,6 +46,7 @@ export default graphql(gql`
     createComment(voteId: $voteId, text: $text) {
       id
       author {
+        id
         name
         email
         profileImgUrl

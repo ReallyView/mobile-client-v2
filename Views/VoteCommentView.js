@@ -13,9 +13,7 @@ export default class VoteCommentView extends React.Component {
       itemName: this.props.navigation.getParam('itemName'),
       itemId: this.props.navigation.getParam('itemId'),
       userId: this.props.navigation.getParam('userId'),
-      voteId: this.props.navigation.getParam('voteId'),
-      comments: this.props.navigation.getParam('comments'),
-      text: ''
+      voteId: this.props.navigation.getParam('voteId')
     }
     this.onChangeText = this.onChangeText.bind(this)
   }
@@ -40,7 +38,7 @@ export default class VoteCommentView extends React.Component {
           <Right />
         </Header>
         <Content>
-          <VoteCommentCardGroup itemId={this.state.itemId} comments={this.state.comments} />
+          <VoteCommentCardGroup userId={this.state.userId} itemId={this.state.itemId} />
         </Content>
         <KeyboardAvoidingView behavior='padding'>
           <Footer style={{ backgroundColor: 'white' }}>

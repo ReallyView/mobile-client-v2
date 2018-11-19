@@ -56,6 +56,7 @@ export default graphql(gql`
       comments {
         id
         author {
+          id
           name
           email
           profileImgUrl
@@ -71,7 +72,8 @@ export default graphql(gql`
       variables: {
         itemId: props.itemId,
         userId: props.userId
-      }
+      },
+      pollInterval: 100
     })
   }
 })(showVoteCards)
