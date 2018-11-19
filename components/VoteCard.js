@@ -46,6 +46,11 @@ export default class ReviewCard extends React.Component {
     })
   }
   onClickVoteItem1 (voteItem1) {
+    if (this.state.isVoted2) {
+      this.setState({
+        voteNum2: this.state.voteNum2 - 1
+      })
+    }
     let tempVoteInfo = this.state.vote.voteInfo
     tempVoteInfo[0].voteNum = voteItem1.voteNum
     tempVoteInfo[0].votedBy = voteItem1.votedBy
@@ -61,6 +66,11 @@ export default class ReviewCard extends React.Component {
     })
   }
   onClickVoteItem2 (voteItem2) {
+    if (this.state.isVoted1) {
+      this.setState({
+        voteNum1: this.state.voteNum1 - 1
+      })
+    }
     let tempVoteInfo = this.state.vote.voteInfo
     tempVoteInfo[1].voteNum = voteItem2.voteNum
     tempVoteInfo[1].votedBy = voteItem2.votedBy
