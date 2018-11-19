@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  Spinner,
-  Content
-} from 'native-base'
+import { Spinner, Content } from 'native-base'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
