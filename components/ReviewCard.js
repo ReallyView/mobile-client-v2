@@ -55,8 +55,8 @@ export default class ReviewCard extends React.Component {
         likeNum: likeReview.likeNum,
         dislikeNum: likeReview.dislikeNum
       },
-      isLiked: !this.state.isLiked,
-      isDisliked: false
+      isLiked: likeReview.likedBy.length > 0,
+      isDisliked: likeReview.dislikedBy.length > 0
     })
   }
   onClickDislikeButton (dislikeReview) {
@@ -67,8 +67,8 @@ export default class ReviewCard extends React.Component {
         likeNum: dislikeReview.likeNum,
         dislikeNum: dislikeReview.dislikeNum
       },
-      isLiked: false,
-      isDisliked: !this.state.isDisliked
+      isLiked: dislikeReview.likedBy.length > 0,
+      isDisliked: dislikeReview.dislikedBy.length > 0
     })
   }
   finishDeleteReview (reviewId) {
