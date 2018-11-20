@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  Card,
-  Item,
-  View,
-  Text, Left, Thumbnail, Right, Button, Icon
-} from 'native-base'
+import { Card, Item, View, Text, Left, Thumbnail, Right, Button, Icon } from 'native-base'
 import { Alert, AsyncStorage } from 'react-native'
 import VoteItemButton from './VoteItemButton'
 import Layout from '../constants/Layout'
@@ -44,6 +39,7 @@ export default class ReviewCard extends React.Component {
       isVoted1: this.props.vote.voteInfo[0].votedBy.length > 0,
       isVoted2: this.props.vote.voteInfo[1].votedBy.length > 0
     })
+    // 댓글을 삭제한 다음 삭제한 댓글의 author가 null로 출력되어 뒤에서 에러를 발생시킴, 그래서 author가 null인 원소를 제외시킴
     let tempComments = []
     for (let i = 0; i < this.state.vote.comments.length; i++) {
       if (this.state.vote.comments[i].author === null) {
@@ -56,6 +52,12 @@ export default class ReviewCard extends React.Component {
       vote: {
         ...this.state.vote,
         comments: tempComments
+      }
+    })
+    this.setState({
+      vote: {
+        ...this.state.vote,
+        comments: this.props.navigation.getParam('comments') || this.state.vote.comments
       }
     })
   }
@@ -129,8 +131,6 @@ export default class ReviewCard extends React.Component {
     )
   }
   render () {
-    console.log(this.state.vote.comments)
-    console.log('-------------------------------------------------------------')
     if (!this.props.vote) {
       return <View />
     }
