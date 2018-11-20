@@ -73,7 +73,7 @@ export default graphql(gql`
         itemId: props.itemId,
         userId: props.userId
       },
-      pollInterval: 100
+      pollInterval: 500
     })
   }
 })(showVoteCards)

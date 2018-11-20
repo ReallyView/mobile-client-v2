@@ -44,6 +44,20 @@ export default class ReviewCard extends React.Component {
       isVoted1: this.props.vote.voteInfo[0].votedBy.length > 0,
       isVoted2: this.props.vote.voteInfo[1].votedBy.length > 0
     })
+    let tempComments = []
+    for (let i = 0; i < this.state.vote.comments.length; i++) {
+      if (this.state.vote.comments[i].author === null) {
+        continue
+      } else {
+        tempComments = tempComments.concat(this.state.vote.comments[i])
+      }
+    }
+    this.setState({
+      vote: {
+        ...this.state.vote,
+        comments: tempComments
+      }
+    })
   }
   onClickVoteItem1 (voteItem1) {
     if (this.state.isVoted2) {
@@ -115,6 +129,8 @@ export default class ReviewCard extends React.Component {
     )
   }
   render () {
+    console.log(this.state.vote.comments)
+    console.log('-------------------------------------------------------------')
     if (!this.props.vote) {
       return <View />
     }
