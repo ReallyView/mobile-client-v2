@@ -12,6 +12,7 @@ import ChangeProfileView from '../Views/ChangeProfileView'
 import ChangeProfileNameView from '../Views/ChangeProfileNameView'
 import VotesView from '../Views/VotesView'
 import VoteCommentView from '../Views/VoteCommentView'
+import VoteCommentEditView from '../Views/VoteCommentEditView'
 
 export default createSwitchNavigator({
   Home: {
@@ -82,6 +83,12 @@ export default createSwitchNavigator({
   },
   VoteComment: {
     screen: VoteCommentView,
+    navigationOptions: {
+      header: null
+    }
+  },
+  VoteCommentEdit: {
+    screen: VoteCommentEditView,
     navigationOptions: {
       header: null
     }

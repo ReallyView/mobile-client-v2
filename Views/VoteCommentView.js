@@ -15,28 +15,14 @@ export default class VoteCommentView extends React.Component {
       userId: this.props.navigation.getParam('userId'),
       voteId: this.props.navigation.getParam('voteId'),
       comments: this.props.navigation.getParam('comments'),
-      isEdit: false,
-      isDelete: false,
       text: ''
     }
     this.onChangeText = this.onChangeText.bind(this)
-    this.onChangeIsEdit = this.onChangeIsEdit.bind(this)
-    this.onChangeIsDelete = this.onChangeIsDelete.bind(this)
     this.finishSubmitComment = this.finishSubmitComment.bind(this)
   }
   onChangeText (text) {
     this.setState({
       text: text
-    })
-  }
-  onChangeIsEdit () {
-    this.setState({
-      isEdit: true
-    })
-  }
-  onChangeIsDelete () {
-    this.setState({
-      isDelete: true
     })
   }
   finishSubmitComment (comment) {
@@ -60,7 +46,14 @@ export default class VoteCommentView extends React.Component {
           <Right />
         </Header>
         <Content>
-          <VoteCommentCardGroup userId={this.state.userId} comments={this.state.comments} />
+          <VoteCommentCardGroup
+            userId={this.state.userId}
+            comments={this.state.comments}
+            itemName={this.state.itemName}
+            itemId={this.state.itemId}
+            voteId={this.state.voteId}
+            navigation={this.props.navigation}
+          />
         </Content>
         <KeyboardAvoidingView behavior='padding'>
           <Footer style={{ backgroundColor: 'white' }}>

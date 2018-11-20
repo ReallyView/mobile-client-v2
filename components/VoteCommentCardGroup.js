@@ -9,7 +9,16 @@ export default class VoteCommentCardGroup extends React.Component {
         {
           this.props.comments.map((comment, index) => {
             return (
-              <VoteCommentCard key={index} comment={comment} userId={this.props.userId} />
+              <VoteCommentCard
+                key={index}
+                comment={comment}
+                comments={this.props.comments}
+                itemName={this.props.itemName}
+                itemId={this.props.itemId}
+                userId={this.props.userId}
+                voteId={this.props.voteId}
+                navigation={this.props.navigation}
+              />
             )
           })
         }
