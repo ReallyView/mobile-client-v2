@@ -35,7 +35,8 @@ export default class VoteCommentView extends React.Component {
   finishSubmitComment (comment) {
     this.setState({
       comments: this.state.comments.concat(comment),
-      isSubmitReady: false
+      isSubmitReady: false,
+      text: ''
     })
   }
   onChangeIsSubmitReady () {
@@ -81,6 +82,7 @@ export default class VoteCommentView extends React.Component {
           <Footer style={{ backgroundColor: 'white' }}>
             <Input
               placeholder='댓글을 입력하세요.'
+              value={this.state.text}
               onChangeText={(text) => this.onChangeText(text)}
             />
             {

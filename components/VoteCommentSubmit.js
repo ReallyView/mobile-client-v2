@@ -2,10 +2,14 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import React from 'react'
 import { Form } from 'native-base'
+import { Keyboard } from 'react-native'
 
 function submitComment ({ mutate, finishSubmitComment }) {
   mutate()
-    .then(result => finishSubmitComment(result.data.createComment))
+    .then(result => {
+      finishSubmitComment(result.data.createComment)
+      Keyboard.dismiss()
+    })
   return (
     <Form />
   )
