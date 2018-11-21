@@ -12,6 +12,7 @@ export default class AddReviewCategory extends React.Component {
           style={{ width: 0.4 * Layout.window.width }}
           selectedValue={this.props.categoryId}
           onValueChange={this.props.onChangeCategoryId}
+          enabled={this.props.enabled}
         >
           <Picker.Item label='Category' value='null' />
           <Picker.Item label='전자제품' value='cjny2hwqyep0s0995wn65axi7' />

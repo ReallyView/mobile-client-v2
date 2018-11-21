@@ -22,7 +22,8 @@ export default class RequestAndCompareContent extends React.Component {
       text: '',
       grades: [{ name: '', starNum: 1 }],
       isItemReady: true,
-      isSubmitReady: false
+      isSubmitReady: false,
+      enabled: true
     }
     this.onChangeTitle = this.onChangeTitle.bind(this)
     this.onChangeItemName = this.onChangeItemName.bind(this)
@@ -45,7 +46,8 @@ export default class RequestAndCompareContent extends React.Component {
     this.setState({
       itemName: itemName,
       isItemReady: true,
-      itemId: ''
+      itemId: '',
+      enabled: true
     })
   }
   onChangeCategoryId (value) {
@@ -76,7 +78,7 @@ export default class RequestAndCompareContent extends React.Component {
   }
   onChangeReviewText (Text) {
     this.setState({
-      text: Text
+      enabled: true
     })
   }
   onChangeItemId (id) {
@@ -90,7 +92,8 @@ export default class RequestAndCompareContent extends React.Component {
     this.onChangeItemId(id)
     this.onChangeCategoryId(categoryId)
     this.setState({
-      isItemReady: false
+      isItemReady: false,
+      enabled: false
     })
   }
   onChangeIsSubmitReadyState () {
@@ -131,7 +134,7 @@ export default class RequestAndCompareContent extends React.Component {
         <Card transparent>
           <CardItem>
             <AddReviewItemName itemName={this.state.itemName} onChangeItemName={this.onChangeItemName} />
-            <AddReviewCategory categoryId={this.state.categoryId} onChangeCategoryId={this.onChangeCategoryId} />
+            <AddReviewCategory categoryId={this.state.categoryId} onChangeCategoryId={this.onChangeCategoryId} enabled={this.state.enabled} />
           </CardItem>
         </Card>
         <CardItem>
