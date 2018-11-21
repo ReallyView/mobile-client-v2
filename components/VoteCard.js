@@ -160,6 +160,7 @@ export default class ReviewCard extends React.Component {
                     ? (this.state.vote.author.profileImgUrl)
                     : 'https://facebook.github.io/react-native/docs/assets/favicon.png' }} />
               <Text style={{ margin: 0.02 * width }}>{this.state.vote.author.name}</Text>
+              <Text>{this.state.vote.updatedAt.substring(0, 10)}</Text>
               {
                 (this.state.userId === this.state.vote.author.id)
                   ? <Right>

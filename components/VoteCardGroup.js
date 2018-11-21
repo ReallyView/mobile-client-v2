@@ -62,8 +62,9 @@ export default graphql(gql`
           profileImgUrl
         }
         text
+        updatedAt
       }
-      createdAt
+      updatedAt
     }
   }
 `, {
