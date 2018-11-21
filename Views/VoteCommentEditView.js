@@ -15,7 +15,8 @@ class VoteCommentEdit extends React.Component {
     super(props)
     this.state = {
       comment: this.props.navigation.getParam('comment'),
-      text: this.props.navigation.getParam('text')
+      text: this.props.navigation.getParam('text'),
+      comments: this.props.navigation.getParam('comments')
     }
     this.onChangeText = this.onChangeText.bind(this)
   }
@@ -77,12 +78,22 @@ class VoteCommentEdit extends React.Component {
                   }
                 })
                   .then(result => {
+                    let tempComments = this.state.comments
+                    for (let i = 0; i < tempComments.length; i++) {
+                      if (tempComments[i].id === result.data.updateComment.id) {
+                        tempComments[i] = result.data.updateComment
+                        break
+                      }
+                    }
+                    this.setState({
+                      comments: tempComments
+                    })
                     this.props.navigation.navigate('VoteComment',
                       { itemName: this.props.navigation.getParam('itemName'),
                         itemId: this.props.navigation.getParam('itemId'),
                         userId: this.props.navigation.getParam('userId'),
                         voteId: this.props.navigation.getParam('voteId'),
-                        comments: this.props.navigation.getParam('comments')
+                        comments: this.state.comments
                       })
                   })
                   .catch(error =>
@@ -97,6 +108,7 @@ class VoteCommentEdit extends React.Component {
     )
   }
 }
+
 export default graphql(gql`
   mutation ($commentId: ID!, $text: String!) {
     updateComment(commentId: $commentId, text: $text) {
