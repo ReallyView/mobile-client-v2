@@ -76,7 +76,7 @@ export default class ReviewCard extends React.Component {
         voteInfo: tempVoteInfo
       },
       voteNum1: tempVoteInfo[0].voteNum,
-      totalVoteNum: tempVoteInfo[0].voteNum + this.props.vote.voteInfo[1].voteNum,
+      totalVoteNum: tempVoteInfo[0].voteNum + this.state.voteNum2,
       isVoted1: !this.state.isVoted1,
       isVoted2: false
     })
@@ -96,7 +96,7 @@ export default class ReviewCard extends React.Component {
         voteInfo: tempVoteInfo
       },
       voteNum2: tempVoteInfo[1].voteNum,
-      totalVoteNum: this.props.vote.voteInfo[0].voteNum + tempVoteInfo[1].voteNum,
+      totalVoteNum: this.state.voteNum1 + tempVoteInfo[1].voteNum,
       isVoted1: false,
       isVoted2: !this.state.isVoted2
     })
