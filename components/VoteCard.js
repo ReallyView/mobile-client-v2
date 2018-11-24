@@ -202,7 +202,7 @@ export default class ReviewCard extends React.Component {
                   itemId: this.props.itemId,
                   userId: this.props.userId,
                   voteId: this.props.vote.id,
-                  comments: this.state.vote.comments
+                  comments: this.props.vote.comments
                 })
             }
           >
