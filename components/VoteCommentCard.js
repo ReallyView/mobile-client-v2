@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardItem, Text, Thumbnail, Item, View, Button } from 'native-base'
+import { Card, CardItem, Text, Thumbnail, Item, View, Button, Separator } from 'native-base'
 
 import VoteCommentDelete from './VoteCommentDelete'
 import Layout from '../constants/Layout'
@@ -69,9 +69,9 @@ export default class VoteCommentCard extends React.Component {
                 : <Thumbnail circular style={{ margin: 0.02 * width, marginLeft: 0.04 * width }} source={require('../assets/images/profileIcon.png')} />
             }
             <View>
-              <Card style={{ borderRadius: 0.05 * width, backgroundColor: '#DFDFDF' }}>
+              <Card style={{ borderRadius: 0.05 * width, backgroundColor: '#DFDFDF', maxWidth: 0.7 * width }}>
                 <Text style={{ fontWeight: 'bold', margin: 0.02 * width, fontSize: 0.03 * width }}>{this.state.comment.author.name}</Text>
-                <Text style={{ margin: 0.02 * width, fontSize: 0.04 * width }}>{this.state.comment.text}</Text>
+                <Text style={{ margin: 0.02 * width, fontSize: 0.04 * width, flex: 3 }}>{this.state.comment.text}</Text>
               </Card>
             </View>
           </CardItem>
