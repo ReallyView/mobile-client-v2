@@ -20,6 +20,7 @@ function showVoteCards ({ data: { loading, userInfo, variables } }) {
               <VoteCard
                 vote={vote}
                 key={vote.id}
+                navigation={variables.navigation}
               />
             )
           })
@@ -54,6 +55,7 @@ export default graphql(gql`
           id
         }
         createdAt
+        updatedAt
       }
     }
   }
@@ -61,7 +63,8 @@ export default graphql(gql`
   options: props => {
     return ({
       variables: {
-        userId: props.userId
+        userId: props.userId,
+        navigation: props.navigation
       }
     })
   }

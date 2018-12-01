@@ -90,7 +90,7 @@ export default class UserRecordsView extends React.Component {
               : <View />}
           </Tab>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표한</Text></TabHeading>}>
-            <UserRecordsVotedVotes userId={this.state.userId}/>
+            <UserRecordsVotedVotes userId={this.state.userId} navigation={this.props.navigation} />
           </Tab>
         </Tabs>
       </Container>

@@ -8,7 +8,7 @@ import DeleteVote from './DeleteVote'
 const width = Layout.window.width
 const height = Layout.window.height
 
-export default class ReviewCard extends React.Component {
+export default class VoteCard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
