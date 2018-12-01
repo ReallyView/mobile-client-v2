@@ -11,9 +11,10 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import LoginView from './Views/LoginView'
+import SERVER_URI from './constants/SERVER_URI'
 
 const httpLink = createHttpLink({
-  uri: 'http://ec2-13-209-7-24.ap-northeast-2.compute.amazonaws.com:4000/'
+  uri: SERVER_URI
 })
 
 const authLink = setContext((_, { headers }) => {
