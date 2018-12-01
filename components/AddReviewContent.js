@@ -1,6 +1,7 @@
 import React from 'react'
-import { Card, CardItem, Content, Textarea, Text, Left, Button, Body, Form } from 'native-base'
-import { Alert } from 'react-native'
+import { Card, CardItem, Content, Textarea, Text, Left, Button, Body, Form, View } from 'native-base'
+import { Alert, Image } from 'react-native'
+
 import AddReviewItemName from '../components/AddReviewItemName'
 import AddReviewCategory from '../components/AddReviewCategory'
 import AddReviewTitleName from '../components/AddReviewTitleName'
@@ -10,6 +11,8 @@ import AddReviewCreateReview from './AddReviewCreateReview'
 import AddReviewButtons from './AddReviewButtons'
 import AddReviewCreateReviewAndItem from './AddReviewCreateReviewAndItem'
 import Layout from '../constants/Layout'
+
+const width = Layout.window.width
 
 export default class RequestAndCompareContent extends React.Component {
   constructor (props) {
@@ -23,7 +26,8 @@ export default class RequestAndCompareContent extends React.Component {
       grades: [{ name: '', starNum: 1 }],
       isItemReady: true,
       isSubmitReady: false,
-      enabled: true
+      enabled: true,
+      imgUrl: ''
     }
     this.onChangeTitle = this.onChangeTitle.bind(this)
     this.onChangeItemName = this.onChangeItemName.bind(this)
@@ -36,6 +40,7 @@ export default class RequestAndCompareContent extends React.Component {
     this.onChangeItemNameAndId = this.onChangeItemNameAndId.bind(this)
     this.onClickSubmitButton = this.onClickSubmitButton.bind(this)
     this.onChangeIsSubmitReadyState = this.onChangeIsSubmitReadyState.bind(this)
+    this.onClickImage = this.onClickImage.bind(this)
   }
   onChangeTitle (title) {
     this.setState({
@@ -123,6 +128,9 @@ export default class RequestAndCompareContent extends React.Component {
     }
   }
   // 이미지 넣는 함수
+  onClickImage (imgUrl) {
+    this.setState({ imgUrl })
+  }
   render () {
     return (
       <Content >
@@ -170,7 +178,12 @@ export default class RequestAndCompareContent extends React.Component {
             />
           </CardItem>
         </Card>
-        <AddReviewButtons onClickSubmitButton={this.onClickSubmitButton} />
+        {
+          this.state.imgUrl
+            ? <Image source={{ uri: this.state.imgUrl }} style={{ width: 0.3 * width, height: 0.3 * width, alignSelf: 'center' }} />
+            : <View />
+        }
+        <AddReviewButtons onClickSubmitButton={this.onClickSubmitButton} navigation={this.props.navigation} onClickImage={this.onClickImage} />
         {
           (this.state.isSubmitReady && this.state.itemId) // 제출하기 버튼에서 예를 눌렀을 때, 그리고 itemId가 있을 때(이미 존재하는 제품일 때) mutation을 보내도록 함
             ? <AddReviewCreateReview
@@ -190,6 +203,7 @@ export default class RequestAndCompareContent extends React.Component {
               navigation={this.props.navigation}
             /> : <Form />
         }
+
       </Content>
     )
   }
