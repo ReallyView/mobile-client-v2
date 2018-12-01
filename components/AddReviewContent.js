@@ -78,7 +78,7 @@ export default class RequestAndCompareContent extends React.Component {
   }
   onChangeReviewText (Text) {
     this.setState({
-      enabled: true
+      text: Text
     })
   }
   onChangeItemId (id) {
