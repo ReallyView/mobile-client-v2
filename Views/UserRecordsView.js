@@ -79,7 +79,7 @@ export default class UserRecordsView extends React.Component {
         <Tabs initialPage={this.state.initialPage}>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>구독</Text></TabHeading>} />
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>투표 요청</Text></TabHeading>}>
-            <UserRecordsVoteRequest userId={this.state.userId} />
+            <UserRecordsVoteRequest userId={this.state.userId} navigation={this.props.navigation} />
           </Tab>
           <Tab heading={<TabHeading><Text style={styles.tabHeading}>리뷰</Text></TabHeading>}>
             <UserRecordsReview userId={this.state.userId} onClickReviewCard={this.onClickReviewCard} />

@@ -175,6 +175,7 @@ export default class RequestAndCompareContent extends React.Component {
               grades={this.state.grades}
               onIncreaseStarNum={this.onIncreaseStarNum}
               onChangeGradeName={this.onChangeGradeName}
+              itemId={this.state.itemId}
             />
           </CardItem>
         </Card>

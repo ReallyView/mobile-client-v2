@@ -12,6 +12,7 @@ export default class AddReviewGradeGroup extends React.Component {
               <AddReviewGrade
                 key={id}
                 id={id}
+                itemId={this.props.itemId}
                 starNum={grade.starNum}
                 onIncreaseStarNum={this.props.onIncreaseStarNum}
                 onChangeGradeName={this.props.onChangeGradeName}

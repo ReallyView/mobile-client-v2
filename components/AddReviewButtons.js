@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text, View, Image } from 'native-base'
+import { Button, Text, View } from 'native-base'
 import { ImagePicker, Permissions } from 'expo'
 
 import Layout from '../constants/Layout'
