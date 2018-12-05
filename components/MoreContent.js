@@ -104,7 +104,7 @@ export default class MoreContent extends React.Component {
               <Text>2.0</Text>
             </Right>
           </ListItem>
-          <ListItem icon>
+          <ListItem icon onPress={() => this.props.navigation.navigate('OpensourceLicense')}>
             <Left>
               <Icon name={'md-bulb'} />
             </Left>

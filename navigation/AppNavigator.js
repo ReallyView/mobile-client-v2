@@ -13,6 +13,7 @@ import ChangeProfileNameView from '../Views/ChangeProfileNameView'
 import VotesView from '../Views/VotesView'
 import VoteCommentView from '../Views/VoteCommentView'
 import VoteCommentEditView from '../Views/VoteCommentEditView'
+import OpensourceLicenseView from '../Views/OpensourceLicenseView'
 
 export default createSwitchNavigator({
   Home: {
@@ -89,6 +90,12 @@ export default createSwitchNavigator({
   },
   VoteCommentEdit: {
     screen: VoteCommentEditView,
+    navigationOptions: {
+      header: null
+    }
+  },
+  OpensourceLicense: {
+    screen: OpensourceLicenseView,
     navigationOptions: {
       header: null
     }
