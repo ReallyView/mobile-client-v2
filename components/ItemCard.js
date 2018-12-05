@@ -74,7 +74,7 @@ export default class ItemCard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      userId: ''
+      userId: '',
     }
   }
   componentWillMount () {
@@ -105,7 +105,8 @@ export default class ItemCard extends React.Component {
         onPress={() => this.props.navigation.navigate('Item', {
           itemName: this.props.item.name,
           itemId: this.props.item.id,
-          userId: this.state.userId })}>
+          userId: this.state.userId,
+          subscribedUsers: this.props.subscribedUsers })}>
         <Card style={styles.card}>
           <Label style={styles.title}>{this.props.item.name}</Label>
           <List horizontal dataArray={this.props.item.reviews} style={{ marginLeft: 0.01 * width }}

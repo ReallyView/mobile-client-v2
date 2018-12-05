@@ -20,7 +20,9 @@ function showItemCards ({ data: { loading, items, variables } }) {
               <ItemCard
                 item={item}
                 key={item.id}
-                navigation={variables.navigation} />
+                navigation={variables.navigation}
+                subscribedUsers={item.subscribedBy}
+              />
             )
           })
         }
@@ -38,6 +40,9 @@ export default graphql(gql`
         id,
         title,
         imgUrls
+      }
+      subscribedBy {
+        id
       }
     }
   }

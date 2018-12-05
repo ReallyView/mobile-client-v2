@@ -12,6 +12,7 @@ import {
 } from 'native-base'
 
 import ReviewCardGroup from '../components/ReviewCardGroup'
+import SubscribeButton from '../components/SubscribeButton'
 import { AsyncStorage, Platform, StatusBar } from 'react-native'
 
 const platform = Platform.OS
@@ -22,7 +23,9 @@ export default class ItemView extends Component {
     this.state = {
       itemName: this.props.navigation.getParam('itemName'),
       itemId: this.props.navigation.getParam('itemId'),
-      userId: this.props.navigation.getParam('userId') || ''
+      userId: this.props.navigation.getParam('userId') || '',
+      subscribedUsers: this.props.navigation.getParam('subscribedUsers') || '',
+      isSubscribed: false
     }
     this.onClickReviewCard = this.onClickReviewCard.bind(this)
   }
@@ -34,6 +37,15 @@ export default class ItemView extends Component {
       })
     }
     getData()
+    if (this.state.subscribedUsers.length > 0) {
+      for (let i = 0; i < this.state.subscribedUsers.length; i++) {
+        if (this.state.subscribedUsers[i].id === this.state.userId) {
+          this.setState({
+            isSubscribed: true
+          })
+        }
+      }
+    }
   }
   onClickReviewCard (review) {
     this.props.navigation.navigate('Review', {
@@ -56,6 +68,7 @@ export default class ItemView extends Component {
             <Title>{this.state.itemName}</Title>
           </Body>
           <Right>
+            <SubscribeButton itemId={this.state.itemId} />
             <Button transparent onPress={() => this.props.navigation.navigate('Votes', {
               itemName: this.state.itemName,
               itemId: this.state.itemId,
