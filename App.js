@@ -53,7 +53,7 @@ export default class App extends React.Component {
   }
   onLogin (token) {
     const httpLink = createHttpLink({
-      uri: 'http://ec2-13-209-7-24.ap-northeast-2.compute.amazonaws.com:4000/'
+      uri: 'http://ec2-13-125-217-194.ap-northeast-2.compute.amazonaws.com:4000'
     })
     const authLink = setContext((_, { headers }) => {
       return {
