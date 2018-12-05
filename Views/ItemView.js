@@ -74,7 +74,7 @@ export default class ItemView extends Component {
               itemId: this.state.itemId,
               userId: this.state.userId
             })}>
-              <Text>투표</Text>
+              <Text>투표함</Text>
             </Button>
           </Right>
         </Header>
