@@ -42,14 +42,14 @@ function showCategoryItemCards ({ data: { loading, items, variables } }) {
         </View>
         <Content>
           {
-            items.map((item) => {
+            items && items.length ? items.map((item) => {
               return (
                 <ItemCard
                   item={item}
                   key={item.id}
                   navigation={variables.navigation} />
               )
-            })
+            }) : <View />
           }
         </Content>
       </View>

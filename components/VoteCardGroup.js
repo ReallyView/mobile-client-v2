@@ -1,7 +1,8 @@
 import React from 'react'
 import {
   Spinner,
-  Content
+  Content,
+  View
 } from 'native-base'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
@@ -15,7 +16,7 @@ function showVoteCards ({ data: { loading, votes, variables }, itemName, itemId,
     return (
       <Content>
         {
-          votes.map((vote) => {
+          votes && votes.length ? votes.map((vote) => {
             return (
               <VoteCard
                 vote={vote}
@@ -26,7 +27,7 @@ function showVoteCards ({ data: { loading, votes, variables }, itemName, itemId,
                 navigation={navigation}
               />
             )
-          })
+          }) : <View />
         }
       </Content>
     )

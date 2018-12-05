@@ -68,7 +68,6 @@ export default class ItemView extends Component {
             <Title>{this.state.itemName}</Title>
           </Body>
           <Right>
-            <SubscribeButton itemId={this.state.itemId} />
             <Button transparent onPress={() => this.props.navigation.navigate('Votes', {
               itemName: this.state.itemName,
               itemId: this.state.itemId,
