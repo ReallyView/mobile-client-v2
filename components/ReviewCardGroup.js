@@ -1,7 +1,8 @@
 import React from 'react'
 import {
   Spinner,
-  Content
+  Content,
+  View
 } from 'native-base'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
@@ -15,14 +16,14 @@ function showReviewCards ({ data: { loading, reviews, variables } }) {
     return (
       <Content>
         {
-          reviews.map((review, index) => {
+          reviews && reviews.length ? reviews.map((review, index) => {
             return (
               <ReviewCard
                 review={review}
                 key={index}
                 onClickReviewCard={variables.onClickReviewCard} />
             )
-          })
+          }) : <View />
         }
       </Content>
     )

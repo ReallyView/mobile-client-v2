@@ -1,7 +1,8 @@
 import React from 'react'
 import {
   Content,
-  Spinner
+  Spinner,
+  View
 } from 'native-base'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
@@ -15,7 +16,7 @@ function showItemCards ({ data: { loading, items, variables } }) {
     return (
       <Content style={{ backgroundColor: '#e9ebee' }}>
         {
-          items.map((item) => {
+          items && items.length ? items.map((item) => {
             return (
               <ItemCard
                 item={item}
@@ -25,6 +26,7 @@ function showItemCards ({ data: { loading, items, variables } }) {
               />
             )
           })
+            : <View />
         }
       </Content>
     )
