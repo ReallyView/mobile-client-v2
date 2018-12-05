@@ -13,7 +13,6 @@ function requestVote ({ mutate, navigation }) {
       onPress={() => {
         mutate()
           .then(result => {
-            console.log(result)
             navigation.navigate('Home')
           })
           .catch(error => {
