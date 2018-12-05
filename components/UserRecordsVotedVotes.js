@@ -65,7 +65,8 @@ export default graphql(gql`
       variables: {
         userId: props.userId,
         navigation: props.navigation
-      }
+      },
+      pollInterval: 100
     })
   }
 })(showVoteCards)
