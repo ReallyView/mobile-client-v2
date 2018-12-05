@@ -1,5 +1,5 @@
 export default
-'The following sets forth attribution notices for third party software that may be contained in portions of the Instagram product. We thank the open source community for all of their contributions.\n' +
+'The following sets forth attribution notices for third party software that may be contained in this application.\n' +
 '\n' +
 '=====\n' +
 '\n' +
