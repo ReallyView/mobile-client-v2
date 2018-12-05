@@ -1,4 +1,4 @@
-export default
+const opensourceLicense =
 'The following sets forth attribution notices for third party software that may be contained in this application.\n' +
 '\n' +
 '=====\n' +
@@ -483,3 +483,5 @@ export default
 'SOFTWARE.\n' +
 '\n' +
 '====='
+
+export default opensourceLicense
