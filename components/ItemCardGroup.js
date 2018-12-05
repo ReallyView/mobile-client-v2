@@ -51,7 +51,8 @@ export default graphql(gql`
     return ({
       variables: {
         navigation: props.navigation
-      }
+      },
+      pollInterval: 100
     })
   }
 })(showItemCards)

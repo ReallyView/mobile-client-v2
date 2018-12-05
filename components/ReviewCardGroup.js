@@ -63,7 +63,8 @@ export default graphql(gql`
         itemId: props.itemId,
         userId: props.userId,
         onClickReviewCard: props.onClickReviewCard
-      }
+      },
+      pollInterval: 100
     })
   }
 })(showReviewCards)
