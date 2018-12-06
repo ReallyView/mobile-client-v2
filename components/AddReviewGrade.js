@@ -26,6 +26,7 @@ export default class AddReviewGrade extends React.Component {
       gradeName,
       isSelected: true
     })
+    this.props.onChangeGradeName(gradeName, this.props.id)
   }
   render () {
     return (
@@ -35,7 +36,7 @@ export default class AddReviewGrade extends React.Component {
             <Input
               placeholder='Grade'
               onChangeText={(gradeName) => {
-                this.setState({ gradeName })
+                this.setState({ gradeName, isSelected: false })
                 this.props.onChangeGradeName(gradeName, this.props.id)
               }}
               maxLength={5}
